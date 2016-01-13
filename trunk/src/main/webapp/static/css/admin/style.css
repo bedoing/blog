@@ -1,0 +1,49 @@
+.btnLabel{
+	display:inline;
+	margin: 0 10px 10px 0;
+	font-size:16px;
+	/*font-weight:bold;*/
+	/*line-height:1;*/
+	color: white;
+	/*color: #708284;*/
+	text-align:center;
+	white-space:nowrap;
+	vertical-align:baseline;
+	border-radius:.25em;
+	background-color: #4BA1F3;
+	/*background-color: #07242E;*/
+	/*width: 64px;
+	height: 30px;*/
+	padding: 8px 10px 8px 10px;
+	float: left;
+}
+
+/*a.btnLabel:hover,a.btnLabel:focus{
+	color:#ffffff;
+	text-decoration:none;
+	cursor:pointer
+}
+.btnLabel:visited{
+	background-color: green
+}
+.btnLabel:focus{
+	background-color: #40AA53
+}*/
+/*.btnLabel:active{
+	background-color:lightgreen
+}*/
+
+.btnLabel:empty{
+	display:none
+}
+
+.btn .btnLabel{
+	position:relative;
+	top:-1px
+}
+
+/*.btnLabel-primary{background-color:#2fa4e7}
+.btnLabel-success{background-color:#73a839}
+.btnLabel-info{background-color:#033c73}
+.btnLabel-warning{background-color:#dd5600}
+.btnLabel-danger{background-color:#c71c22}*/

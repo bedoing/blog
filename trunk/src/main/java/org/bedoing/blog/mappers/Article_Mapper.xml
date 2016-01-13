@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">   
+<mapper namespace="article"> 
+	<resultMap type="org.bedoing.blog.vo.TagsVO" id="tagsMap">  
+		<result property="tagId" column="tagId"/>  
+		<result property="articleNum" column="articleNum"/>  
+	</resultMap> 
+	
+	<sql id="_limitPart">
+		<if test="sortColumn != null &amp; sortColumn != ''">
+			order by ${sortColumn } ${sortMode }
+		</if>
+		limit #{beginRow }, #{pageSize }
+	</sql> 
+	
+	<insert id="addArticle" parameterType="article" useGeneratedKeys="true" keyProperty="articleId">
+		insert into article 
+			(
+				title,
+				articleType,
+				summary,
+				content,
+				createBy,
+				createTime,
+				lastUpdBy,
+				lastUpdTime
+			) 
+			values (
+				#{title},
+				#{articleType},
+				#{summary},
+				#{content},
+				#{createBy},
+				#{createTime},
+				#{lastUpdBy},
+				#{lastUpdTime}
+			)
+	</insert>
+	
+	<delete id="deleteArticleById" parameterType="int">
+		delete from article where articleId = #{articleId}
+	</delete>
+	
+	<update id="updateArticle" parameterType="article">
+		update article 
+			<set>
+				<if test="title != null &amp; title != ''">
+					title = #{title},
+				</if>
+				<if test="articleType != null &amp; articleType != ''">
+					articleType = #{articleType},
+				</if>
+				<if test="summary != null &amp; summary != ''">
+					summary = #{summary},
+				</if>
+				<if test="content != null &amp; content != ''">
+					content = #{content},
+				</if>
+				
+				<if test="lastUpdBy != null &amp; lastUpdBy != ''">
+					lastUpdBy = #{lastUpdBy}
+				</if>
+				<if test="lastUpdTime != null &amp; lastUpdTime != ''">
+					lastUpdTime = #{lastUpdTime}
+				</if>
+			</set>
+		where articleId = #{articleId}
+	</update>
+	
+	<select id="countArticlesByCriteria" resultType="int" parameterType="org.bedoing.blog.vo.ArticleVO">
+		select count(articleId) from article
+		where 1 = 1
+			<if test="articleType != null &amp; articleType != '' &amp; articleType != -1">
+				and articleType = #{articleType }
+			</if>
+			<if test="articleId != null &amp; articleId != ''">
+				and articleId = #{articleId}
+			</if> 
+	</select>
+	
+	<select id="findArticleByTitle" resultType="article" parameterType="string">
+		select * from article 
+		where title = #{title }
+	</select>
+	
+	<select id="findArticlesByCriteria" resultType="article" parameterType="org.bedoing.blog.vo.ArticleVO">
+		select * from article 
+		where 1 = 1
+			<if test="articleType != null &amp; articleType != '' &amp; articleType != -1">
+				and articleType = #{articleType }
+			</if>
+			<if test="articleId != null &amp; articleId != ''">
+				and articleId = #{articleId}
+			</if>
+		<include refid="_limitPart" />
+	</select>
+	
+	<select id="findArticlesOrderByClicks" resultType="article" parameterType="org.bedoing.blog.vo.ArticleVO">
+		select * from article a
+		left join clicks c on a.articleId = c.articleId
+		where a.articleType = #{articleType }
+		
+				
+		<include refid="_limitPart" />
+	</select>
+	
+	<!-- subject -->
+	<select id="findSubjectById" resultType="subject" parameterType="int">
+		select * from subject where subjectId = #{subjectId }
+	</select>
+	
+	<select id="findSubjectByArticleId" resultType="subject" parameterType="int">
+		select * from subject where articleId = #{articleId }
+	</select>
+	<insert id="addSubject" parameterType="subject" useGeneratedKeys="true" keyProperty="subjectId">
+		insert into subject 
+			(
+				articleId,
+				difficulty,
+				timeLimit,
+				memoryLimit,
+				otherLimit
+			) 
+			values (
+				#{articleId},
+				#{difficulty},
+				#{timeLimit},
+				#{memoryLimit},
+				#{otherLimit}
+			)
+	</insert>
+	
+	<delete id="deleteSubjectByArticleId" parameterType="int">
+		delete from subject where articleId = #{articleId }
+	</delete>
+	
+	<update id="updateSubject" parameterType="subject">
+		update subject
+		set  
+			difficulty = #{difficulty},
+			timeLimit = #{timeLimit},
+			memoryLimit = #{memoryLimit},
+			otherLimit = #{otherLimit}
+		where articleId = #{articleId}
+	</update>
+		
+	<!-- tags -->
+	<insert id="addTag" parameterType="tag" useGeneratedKeys="true" keyProperty="tagId">
+		insert into tag
+			(
+				tagName, tagType
+			) 
+			values (
+				#{tagName}, #{tagType}
+			)
+	</insert>
+	
+	<select id="findTagById" resultType="String" parameterType="int">
+		select tagName from tag where tagId = #{tagId }
+	</select>
+	
+	<select id="findAllTags" resultType="tag">
+		select * from tag
+	</select>
+	
+	<select id="findTagsByType" resultType="tag" parameterType="int">
+		select * from tag where tagType = #{tagType }
+	</select>
+	
+	<insert id="addArticleTag" parameterType="articleTags" useGeneratedKeys="false">
+		insert into article_tags 
+			(
+				articleId,
+				tagId
+			) 
+			values (
+				#{articleId},
+				#{tagId}
+			)
+	</insert>
+	
+	<select id="findArticleTagsByArticleId" resultType="articleTags" parameterType="int">
+		select * from article_tags where articleId = #{articleId }
+	</select>
+	
+	<select id="tagsGroup" resultMap="tagsMap" parameterType="int">
+		select tagId, count(articleId) articleNum
+		from article_tags
+		group by tagId
+	</select>
+	
+	<select id="tagsGroupByTagType" resultMap="tagsMap" parameterType="int">
+		select t.tagId, count(at.articleId) articleNum
+		from tag t, article_tags at
+		where t.tagType = #{tagType}
+			and t.tagId = at.tagId 
+		
+		group by at.tagId
+	</select>
+	
+	<select id="countArticlesByTagId" resultType="int" parameterType="org.bedoing.blog.vo.TagsVO">
+		select count(articleId) from article_tags where tagId = #{tagId }
+	</select>
+	
+	<select id="findArticlesByTagId" resultType="article" parameterType="org.bedoing.blog.vo.TagsVO">
+		select *
+		from article
+		where articleId in (
+			select articleId 
+			from article_tags where tagId = #{tagId }
+		)
+		<include refid="_limitPart" />
+	</select>
+	<delete id="deleteArticleTagByArticleId" parameterType="int">
+		delete from article_tags where articleId = #{articleId }
+	</delete>
+	
+	<insert id="addClicks" parameterType="clicks" useGeneratedKeys="false">
+		insert into clicks 
+			(
+				articleId,
+				clicks
+			) 
+			values (
+				#{articleId},
+				#{clicks}
+			)
+	</insert>
+	
+	<delete id="deleteClicksByArticleId" parameterType="int">
+		delete from clicks where articleId = #{articleId}
+	</delete>
+	
+	<select id="getClicks" resultType="int" parameterType="int" >
+		select clicks from clicks where articleId = #{articleId }
+	</select>
+	
+	<update id="updateClicks" parameterType="clicks">
+		update clicks
+		set clicks = #{clicks } 
+			
+		where articleId = #{articleId}
+	</update>
+</mapper>  

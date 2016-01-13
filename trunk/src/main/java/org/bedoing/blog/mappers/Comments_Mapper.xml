@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">   
+<mapper namespace="comments"> 
+	
+	<sql id="_limitPart">
+		<if test="sortColumn != null &amp; sortColumn != ''">
+			order by ${sortColumn } ${sortMode }
+		</if>
+		limit #{beginRow }, #{pageSize }
+	</sql> 
+	
+	<insert id="addComment" parameterType="comments" useGeneratedKeys="true" keyProperty="commentId">
+		insert into comments 
+			(
+				articleId,
+				content,
+				status,
+				createTime
+			) 
+			values (
+				#{articleId},
+				#{content},
+				#{status},
+				#{createTime}
+			)
+	</insert>
+	
+	<delete id="deleteCommentsByArticleId" parameterType="int">
+		delete from comments where articleId = #{articleId}
+	</delete>
+	
+	<update id="updateStatusById" parameterType="comments">
+		update comments 
+		set status = #{status}
+		where comentId = #{comentId}
+	</update>
+	
+	<select id="countCommentByArticleId" resultType="int" parameterType="int">
+		select count(commentId) from comments
+		where articleId = #{articleId}
+	</select>
+	
+	<select id="findCommentsByArticleId" resultType="comments" parameterType="org.bedoing.blog.vo.CommentsVO">
+		select * from comments
+		where articleId = #{articleId}
+		<include refid="_limitPart" />
+	</select>
+	
+	
+</mapper>  
