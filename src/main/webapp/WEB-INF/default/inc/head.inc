@@ -27,12 +27,4 @@
 	PRE_URI_TAG="/tag";
 	PRE_URI_COMMENT="/c";
 
-	var _hmt = _hmt || [];
-	(function() {
-		var hm = document.createElement("script");
-		hm.src = "//hm.baidu.com/hm.js?e66a05834c64fd17c9f0d5457c333e0f";
-		var s = document.getElementsByTagName("script")[0]; 
-		s.parentNode.insertBefore(hm, s);
-	})();
-
 </script>
