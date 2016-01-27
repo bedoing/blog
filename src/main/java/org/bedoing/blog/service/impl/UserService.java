@@ -9,6 +9,7 @@ import org.bedoing.blog.constant.MapperConstant;
 import org.bedoing.blog.orm.mybatis.MyBatisDAO;
 import org.bedoing.blog.po.LoginAccount;
 import org.bedoing.blog.po.LoginLog;
+import org.bedoing.blog.security.EndecryptUtil;
 import org.bedoing.blog.service.IUserService;
 import org.bedoing.blog.util.DateUtils;
 import org.bedoing.blog.vo.LoginAccountVO;
@@ -32,7 +33,7 @@ public class UserService implements IUserService{
 		LoginAccount loginAccount = new LoginAccount();
 		
 		loginAccount.setLoginAccount(user.getLoginAccount());
-		loginAccount.setPassword(user.getPassword());
+		loginAccount.setPassword(EndecryptUtil.decrypt(user.getPassword()));
 		loginAccount.setRole(user.getRole());
 		loginAccount.setMobilePhone(user.getMobilePhone());
 		loginAccount.setSex(user.getSex());

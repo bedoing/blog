@@ -9,7 +9,6 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.bedoing.blog.commons.MapFactory;
 import org.bedoing.blog.commons.TagsDict;
@@ -39,8 +38,9 @@ public class ArticleController extends BaseController{
 	
 	@RequestMapping(value = "/articleList")
 	public @ResponseBody Map<String, Object> articleList(HttpServletRequest request, ArticleVO articleVO){
+		log.info("user: " + request.getSession().getAttribute(Constant.SESSION_USER));
+		
 		articleVO.setBeginRow((articleVO.getPageNo() - 1) * articleVO.getPageSize());
-		log.info(JSON.toJSONString(articleVO));
 		articleVO.setSortColumn("createTime");
 		
 		// TODO
@@ -85,43 +85,6 @@ public class ArticleController extends BaseController{
 		map.put("subjectCount", countSubjects);
 		map.put("dayCount", countDays);
 		res.setRetData(map);
-		
-		return res;
-	}
-	
-	@RequestMapping(value = "/addArticle")
-	public @ResponseBody ResponseVO addArticle(ArticleVO article) {
-		log.info(JSON.toJSONString(article));
-		ResponseVO res = new ResponseVO();
-		
-		if(articleService.findArticleByTitle(article.getTitle()) != null) {
-			res.setErrNum(Constant.N_0);
-			res.setRetMsg(Constant.ERROR);
-		}else{
-			// TODO
-			article.setCreateBy("Admin");
-			int resultId = articleService.addArticle(article);
-			
-			res.setRetMsg(Constant.SUCCESS);
-		}
-		
-		return res;
-	}
-	
-	@RequestMapping(value = "/deleteArticle")
-	public @ResponseBody ResponseVO deleteArticle(int articleId) {
-		articleService.deleteArticleById(articleId);
-		ResponseVO res = new ResponseVO();
-		res.setRetMsg(Constant.SUCCESS);
-		
-		return res;
-	}
-	
-	@RequestMapping(value = "/updateArticle")
-	public @ResponseBody ResponseVO updateArticle(ArticleVO article) {
-		articleService.updateArticle(article);
-		ResponseVO res = new ResponseVO();
-		res.setRetMsg(Constant.SUCCESS);
 		
 		return res;
 	}
@@ -195,49 +158,10 @@ public class ArticleController extends BaseController{
 		return result;
 	}
 	
-	@RequestMapping(value = "/addNewTag")
-	public @ResponseBody ResponseVO addNewTag(String tagName, int tagType) {
-		ResponseVO vo = new ResponseVO();
-		String msg = "";
-		// TODO
-		if(tagType == -1) {
-			msg = "请选择标签类型";
-		}
-		if(StringUtils.isBlank(tagName)) {
-			msg = "空标签";
-		}
-		
-		if(msg == "") {
-			tagName = tagName.trim();
-			if(TagsDict.getTagIdByName(tagName) != -1) {
-				msg = "已存在标签";
-			}else {
-				Tag t = new Tag();
-				t.setTagName(tagName);
-				t.setTagType(tagType);
-				int tagId = articleService.addTag(t);
-				// TODO save error
-				if(tagId != -1) {
-					TagsDict.tagsDict.put(tagId, tagName);
-					
-					msg = Constant.SUCCESS;
-				}
-			}
-		}
-		vo.setRetMsg(msg);
-		
-		return vo;
-	}
-	
-	@RequestMapping(value = "/UpdateArticlePage")
-	public ModelAndView toUpdateArticle(int articleId) {
-		ModelAndView mv = new ModelAndView(UriConstant.ADMIN_BLOG_UPDATE_ARTICLE);
-		// TODO
-		ArticleVO a = articleService.findArticleById(articleId);
-		mv.addObject("article", a);
+	@RequestMapping(value="/search")
+	public ModelAndView search(String content) {
+		ModelAndView mv = new ModelAndView(UriConstant.DEFAULT_DEFAULT);
 		
 		return mv;
 	}
-	
-	
 }

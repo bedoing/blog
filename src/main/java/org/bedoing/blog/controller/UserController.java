@@ -1,7 +1,11 @@
 package org.bedoing.blog.controller;
 
+import java.io.IOException;
+
 import javax.annotation.Resource;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.apache.commons.lang3.StringUtils;
@@ -9,12 +13,14 @@ import org.apache.log4j.Logger;
 import org.bedoing.blog.constant.Constant;
 import org.bedoing.blog.constant.UriConstant;
 import org.bedoing.blog.po.LoginAccount;
+import org.bedoing.blog.security.EndecryptUtil;
 import org.bedoing.blog.service.IUserService;
 import org.bedoing.blog.vo.UserRegVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
@@ -49,7 +55,7 @@ public class UserController extends BaseController {
 		}
 		
 		LoginAccount user = userService.findUserByLoginAccount(loginAccount);
-		if(null == user || !user.getPassword().equals(password)) {
+		if(null == user || !user.getPassword().equals(EndecryptUtil.encrypt(password))) {
 			return new ModelAndView(UriConstant.ADMIN_LOGIN).addObject(Constant.MSG, "不存在账号或密码错误")
 					.addObject("loginAccount", loginAccount)
 					.addObject("password", password);
@@ -58,6 +64,20 @@ public class UserController extends BaseController {
 		setSessionAttribute(Constant.SESSION_USER, user, request);
 		
 		return new ModelAndView(UriConstant.ADMIN_INDEX);
+	}
+	
+	@RequestMapping(value = "/logout")
+	public @ResponseBody void logout(HttpServletRequest request, HttpServletResponse response) {
+		Object obj = getSessionValue(Constant.SESSION_USER, request);
+		if(null != obj) {
+			setSessionAttribute(Constant.SESSION_USER, null, request);
+			request.setAttribute(Constant.MSG, "登出成功!");
+		}
+		try {
+			request.getRequestDispatcher("/app/place/login").forward(request, response);
+		} catch (ServletException | IOException e) {
+			log.error(e);
+		}
 	}
 	
 	@RequestMapping(value = "/userRegiste")
