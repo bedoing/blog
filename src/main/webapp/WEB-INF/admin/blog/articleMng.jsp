@@ -118,7 +118,7 @@
             });
             if (flag) {
                 $.ajax({
-                    url: PRE_URI_LIST + "/deleteArticle",
+                    url: PRE_URI_AA + "/deleteArticle",
                     data: {
                         "articleId": articleId
                     },
@@ -134,7 +134,7 @@
         }
 
         function updateArticle(articleId) {
-            window.location = PRE_URI_LIST + "/UpdateArticlePage?articleId=" + articleId;
+            window.location = PRE_URI_AA + "/UpdateArticlePage?articleId=" + articleId;
         }
 </script>
     </body>

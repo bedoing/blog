@@ -37,7 +37,7 @@
                 <p>Copyright © 2015 Ken   <a target="_blank" href="http://www.miitbeian.gov.cn">粤ICP备15117367号</a></p>
             </div>
             <div class="social span8">
-                <a class="github" href=""></a>
+                <a class="github" href="https://github.com/KenKwan" target="_blank"></a>
                 <a class="linkedin" href=""></a>
                 <a class="email" href=""></a>
                 <a class="rss" href=""></a>

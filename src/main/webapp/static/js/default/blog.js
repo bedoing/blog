@@ -55,7 +55,7 @@ function more(url, paramObj, targetDiv, style, callback){
                     }
                 },  
                 error: function(response) {  
-                    alert(response);  
+                    console.error(response);  
                 }  
             });
 }
@@ -63,7 +63,7 @@ function more(url, paramObj, targetDiv, style, callback){
 function initNewsContent(newsObj, idx, style){
 	var divVal;
 	if(style == 'Y'){
-		divVal = '<div class="row-fluid card-status-custom well well-custom"><div class="span12"><h3><a href="' + PRE_URI_ARCHIVES + '/'  + newsObj['articleId'] +'">';
+		divVal = '<div class="row-fluid card-status-custom well-custom"><div class="span12"><h3><a href="' + PRE_URI_ARCHIVES + '/'  + newsObj['articleId'] +'">';
 		divVal += newsObj['title'];
 		divVal += '</a></h3><p>';
 		divVal += '<p>';
@@ -87,7 +87,7 @@ function initNewsContent(newsObj, idx, style){
 		divVal += '</p></blockquote></p>';	
 		divVal += '</div></div>';
 	}else{
-		divVal = '<div class="row-fluid card-status-custom well well-custom"><div class="span12"><h3><a href="' + PRE_URI_ARCHIVES + '/' + newsObj['articleId'] +'">';
+		divVal = '<div class="row-fluid card-status-custom well-custom"><div class="span12"><h3><a href="' + PRE_URI_ARCHIVES + '/' + newsObj['articleId'] +'">';
 		divVal += newsObj['title'];
 		divVal += '</a></h3><p>';
 		divVal += '<p>';
@@ -116,7 +116,7 @@ function listTitle(url, paramObj, targetDivId, callback) {
                     };
                 },  
                 error: function(response) {  
-                    alert(response);  
+                    console.error(response);  
                 }  
             });
 }
@@ -220,7 +220,7 @@ function refreshData(tagType, callback) {
             callback(res);
         },  
         error: function(res) {  
-            alert(res);  
+            console.error(res);  
         }  
     }); 
 }

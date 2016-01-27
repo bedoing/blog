@@ -9,7 +9,7 @@
     <body>
         <%@ include file="header.jsp"%>
         <!-- blank -->
-        <div class="container-fluid custom-top-blank">
+        <!-- <div class="container-fluid custom-top-blank"> -->
             <!-- <div class="span1"></div>
             <div class="span10">
                 <div class="call-to-action container">
@@ -67,7 +67,7 @@
                                 </div>
                             </p>
                             <div class="social-links default-links-custom">
-                                <a class="github" href=""></a>
+                                <a class="github" href="https://github.com/KenKwan" target="_blank"></a>
                                 <a class="linkedin" href=""></a>
                                 <a class="email" href=""></a>
                                 <a class="rss" href=""></a>

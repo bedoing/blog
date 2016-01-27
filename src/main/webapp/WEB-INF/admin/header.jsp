@@ -20,7 +20,7 @@
             <ul class="dropdown-menu">
                 <li><a href="#">Profile</a></li>
                 <li class="divider"></li>
-                <li><a href="login.html">Logout</a></li>
+                <li><a href="/u/logout">Logout</a></li>
             </ul>
         </div>
         <!-- user dropdown ends -->

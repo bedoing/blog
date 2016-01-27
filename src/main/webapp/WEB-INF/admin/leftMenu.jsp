@@ -7,35 +7,35 @@
             </div>
             <ul class="nav nav-pills nav-stacked main-menu">
                 <li class="nav-header">Blog</li>
-                <li><a class="ajax-link" href="/d/adminArticle">
+                <li><a class="ajax-link" href="/ad/adminArticle">
                 	<i class="glyphicon glyphicon-plus"></i><span>Add Article</span></a>
                 </li>
-                <li><a class="ajax-link" href="/d/articleMng">
+                <li><a class="ajax-link" href="/ad/articleMng">
                     <i class="glyphicon glyphicon-th-list"></i><span>Article Mng</span></a>
                 </li>
-                <!-- <li><a class="ajax-link" href="/d/adminSalaryMark"><i class="glyphicon glyphicon-home"></i><span> Salary</span></a>
+                <!-- <li><a class="ajax-link" href="/ad/adminSalaryMark"><i class="glyphicon glyphicon-home"></i><span> Salary</span></a>
                 </li> -->
             </ul>
             <ul class="nav nav-pills nav-stacked main-menu">
                 <li class="nav-header">Main</li>
-                <li><a class="ajax-link" href="/d/adminUserMng"><i class="glyphicon glyphicon-home"></i><span> User MNG</span></a>
+                <li><a class="ajax-link" href="/ad/adminUserMng"><i class="glyphicon glyphicon-home"></i><span> User MNG</span></a>
                 </li>
-                <li><a class="ajax-link" href="/d/adminPublish"><i class="glyphicon glyphicon-home"></i><span> Publish</span></a>
+                <li><a class="ajax-link" href="/ad/adminPublish"><i class="glyphicon glyphicon-home"></i><span> Publish</span></a>
                 </li>
-                <!-- <li><a class="ajax-link" href="/d/adminSalaryMark"><i class="glyphicon glyphicon-home"></i><span> Salary</span></a>
+                <!-- <li><a class="ajax-link" href="/ad/adminSalaryMark"><i class="glyphicon glyphicon-home"></i><span> Salary</span></a>
                 </li> -->
             </ul>
             <ul class="nav nav-pills nav-stacked main-menu">
                 <li class="nav-header">Main</li>
-                <li><a class="ajax-link" href="/d/adminIndex"><i class="glyphicon glyphicon-home"></i><span> Dashboard</span></a>
+                <li><a class="ajax-link" href="/ad/adminIndex"><i class="glyphicon glyphicon-home"></i><span> Dashboard</span></a>
                 </li>
-                <li><a class="ajax-link" href="/d/adminUi"><i class="glyphicon glyphicon-eye-open"></i><span> UI Features</span></a>
+                <li><a class="ajax-link" href="/ad/adminUi"><i class="glyphicon glyphicon-eye-open"></i><span> UI Features</span></a>
                 </li>
-                <li><a class="ajax-link" href="/d/adminForm"><i
+                <li><a class="ajax-link" href="/ad/adminForm"><i
                             class="glyphicon glyphicon-edit"></i><span> Forms</span></a></li>
-                <li><a class="ajax-link" href="/d/adminChart"><i class="glyphicon glyphicon-list-alt"></i><span> Charts</span></a>
+                <li><a class="ajax-link" href="/ad/adminChart"><i class="glyphicon glyphicon-list-alt"></i><span> Charts</span></a>
                 </li>
-                <li><a class="ajax-link" href="/d/adminTypography"><i class="glyphicon glyphicon-font"></i><span> Typography</span></a>
+                <li><a class="ajax-link" href="/ad/adminTypography"><i class="glyphicon glyphicon-font"></i><span> Typography</span></a>
                 </li>
                 <li><a class="ajax-link" href="gallery.html"><i class="glyphicon glyphicon-picture"></i><span> Gallery</span></a>
                 </li>
@@ -51,7 +51,7 @@
                 </li>
                 <li><a class="ajax-link" href="calendar.html"><i class="glyphicon glyphicon-calendar"></i><span> Calendar</span></a>
                 </li>
-                <li><a class="ajax-link" href="/d/adminGrid"><i
+                <li><a class="ajax-link" href="/ad/adminGrid"><i
                             class="glyphicon glyphicon-th"></i><span> Grid</span></a></li>
                 <li><a href="tour.html"><i class="glyphicon glyphicon-globe"></i><span> Tour</span></a></li>
                 <li><a class="ajax-link" href="icon.html"><i

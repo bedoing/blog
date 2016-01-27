@@ -28,7 +28,7 @@ $().ready(function(){
             beforeSend:function(){$('.table').html("正在保存，请稍候……");},
             type: "post",
             dataType: "json",
-            url: PRE_URI_LIST + "/addArticle",
+            url: PRE_URI_AA + "/addArticle",
             data: article,
             success: function(res){
                 alert(res.retMsg);
@@ -42,7 +42,7 @@ $().ready(function(){
         var tagType = $("#_newTagType").val();
         
         $.ajax({
-            url: PRE_URI_LIST + "/addNewTag",
+            url: PRE_URI_AA + "/addNewTag",
             type: "post",
             dataType: "json",
             data: {"tagName": tagName, "tagType":tagType},

@@ -6,9 +6,9 @@
         <div class="navbar">
             <div class="navbar-inner-custom navbar-inner">
                 <div class="span1"></div>
-                <div class="span2">
-                    <h1>
-                    <a class="brand" href="http://www.bedoing.org">KEN</a>
+                <div class="span2 custom-header-title">
+                    <h1 style="line-height: 61px;">
+                    <a href="http://www.bedoing.org">Doing Something</a>
                     </h1>
                 </div>
                 
@@ -54,11 +54,10 @@
                 </ul>
                 <ul class="nav pull-right" id="header-nav">
                     <li>
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="本站搜索...">
-                            <!-- <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">Search</button>
-                            </span> -->
+                        <div class="input-group  custom-header-title">
+                            <form action="/list/search" method="post" class="custom-searchform">
+                                <input type="text" class="" name="content" placeholder="本站搜索...">
+                            </form>
                             </div><!-- /input-group -->
                         </li>
                         

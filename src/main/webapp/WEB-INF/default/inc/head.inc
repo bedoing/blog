@@ -26,5 +26,4 @@
 	PRE_URI_LIST="/list";
 	PRE_URI_TAG="/tag";
 	PRE_URI_COMMENT="/c";
-
 </script>

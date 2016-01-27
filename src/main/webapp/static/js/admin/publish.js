@@ -18,7 +18,7 @@ var addArticle = function(){
 			// beforeSend:function(){$('.table').html("正在加载数据，请稍候……");},
 			type: "post",
             dataType: "json",
-            url: PRE_URI + "article/addArticle",
+            url: PRE_URI_LIST + "article/addArticle",
 			data: article,
 			success: function(res){
 				

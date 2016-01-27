@@ -88,7 +88,7 @@ strong { font-weight: bold; }
 }
 
 .header ul.nav li a i {
-    line-height: 35px;
+    /*line-height: 35px;*/
     color: #aaa;
 }
 

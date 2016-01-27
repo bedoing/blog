@@ -5,7 +5,7 @@ $().ready(function(){
 var addSalarySubmit = function(){
 	$("#_addSalaryBtn").click(function(){
 		$.ajax({
-			url: PRE_URI + "salary/addSalary",
+			url: PRE_URI_LIST + "salary/addSalary",
 			data: $("#_salaryAdd").serialize(),
 			success: function(res){
 				

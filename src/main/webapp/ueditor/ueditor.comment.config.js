@@ -38,7 +38,7 @@
             'bold', 'italic', '|',
             'blockquote', 'link', 'unlink', '|',
             'insertcode', '|',
-            'simpleupload', 'emotion', '|',
+            'emotion', '|',
             'insertorderedlist', 'insertunorderedlist', '|',
             'preview'
         ]]

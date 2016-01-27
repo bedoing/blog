@@ -138,7 +138,7 @@
                 beforeSend:function(){$('.table').html("正在保存，请稍候……");},
                 type: "post",
                 dataType: "json",
-                url: PRE_URI_LIST + "/updateArticle",
+                url: PRE_URI_AA + "/updateArticle",
                 data: article,
                 success: function(res){
                     alert(res.retMsg);

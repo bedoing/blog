@@ -1,6 +1,16 @@
 .header-custom{
       border: 1px solid #F5F5F5;
 }
+.custom-header-title h1 {
+    font-size: 20px;
+    font-family: 'Lobster', cursive;
+}
+.custom-header-title h1 a {
+    color: #5d5d5d;
+}
+.custom-header-title h1 a:hover {
+    font-family: 'Lobster', cursive;
+}
 .custom-top-blank {
 	min-height: 123px;
 }
@@ -12,8 +22,10 @@
 	/*background-color: #f5f5f5 !important*/
 }
 .well-custom{
-	background-color: white;
-      border: 0;
+
+    background-color: white;
+    border: 0;
+    padding-left: 19px;
 }
 
 /* echart */
@@ -27,6 +39,9 @@
 	position: relative;
 	display: table;
 	border-collapse: separate;
+}
+.custom-searchform {
+    margin: 0;
 }
 /* Scroll Top*/
 #scrollUp {
@@ -140,7 +155,7 @@
 .dashboard-list {
     margin-left: 35px;
 }
-.card-status-custom {
+/*.card-status-custom {
 
 }
 .card-status-custom:hover {
@@ -152,4 +167,4 @@
     -moz-transition: all .5s;
     -webkit-transition: all .5s;
     -ms-transition: all .5s;
-}
+}*/

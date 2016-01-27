@@ -61,4 +61,6 @@
 	PRE_URI_TAG="/tag";
 	PRE_URI_COMMENT="/c";
 	PRE_URI_D="/d"
+	PRE_URI_AD="/ad"
+	PRE_URI_AA="/aa"
 </script>
