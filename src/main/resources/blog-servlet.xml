@@ -18,10 +18,10 @@
 	
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="admin/*"/>
-			<mvc:mapping path="common/getVerCode"/>
+			<mvc:mapping path="/admin/**" />
 			<bean class="org.bedoing.blog.interceptor.LoginInterceptor" />
-		</mvc:interceptor>		
+		</mvc:interceptor>
+		
 	</mvc:interceptors>
 	
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
