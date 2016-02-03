@@ -7,7 +7,7 @@ public class BaseVO {
 	private int pageNo = 1;
 	private int beginRow = 0; 
 	private int endRow = -1; 
-	private int pageSize = 5;
+	private int pageSize = 10;
 	private String sortColumn = "NULL";
 	private String sortMode = "desc";
 	

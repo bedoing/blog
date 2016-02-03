@@ -23,11 +23,11 @@ public class EndecryptUtil {
 		return decrypt.get3DESDecrypt(oldStr, SPKEY);
 	}
 	
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		System.out.println(encrypt("com.mysql.jdbc.Driver"));
 		System.out.println(encrypt("jdbc:mysql://localhost:3306/kendb?useUnicode=true&characterEncoding=utf8"));
 		System.out.println(encrypt("root"));
 		System.out.println(encrypt("Lxy"));
-		System.out.println(encrypt("admin1234"));
-	}*/
+		System.out.println(encrypt("admin"));
+	}
 }

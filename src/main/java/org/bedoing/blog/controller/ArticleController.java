@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.bedoing.blog.commons.MapFactory;
 import org.bedoing.blog.commons.TagsDict;
-import org.bedoing.blog.constant.Constant;
 import org.bedoing.blog.constant.UriConstant;
 import org.bedoing.blog.po.Clicks;
 import org.bedoing.blog.po.Tag;
@@ -38,8 +37,6 @@ public class ArticleController extends BaseController{
 	
 	@RequestMapping(value = "/articleList")
 	public @ResponseBody Map<String, Object> articleList(HttpServletRequest request, ArticleVO articleVO){
-		log.info("user: " + request.getSession().getAttribute(Constant.SESSION_USER));
-		
 		articleVO.setBeginRow((articleVO.getPageNo() - 1) * articleVO.getPageSize());
 		articleVO.setSortColumn("createTime");
 		
