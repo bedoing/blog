@@ -8,7 +8,7 @@
                 <div class="span1"></div>
                 <div class="span2 custom-header-title">
                     <h1 style="line-height: 61px;">
-                    <a href="http://www.bedoing.org">Doing Something</a>
+                    <a href="http://www.bedoing.org">Ken</a>
                     </h1>
                 </div>
                 

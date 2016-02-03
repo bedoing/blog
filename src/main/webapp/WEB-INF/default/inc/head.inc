@@ -2,9 +2,9 @@
 <%
 	String path = request.getContextPath();
 %>
-<meta http-equiv="pragma" content="no-cache">
-<meta http-equiv="cache-control" content="no-cache">
-<meta http-equiv="expires" content="0">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="keywords" content="java,数据结构,算法分析,云计算,大数据">
 <link rel="shortcut icon" href="<%= path%>/img/logo/bedoing.ico">
 <!-- CSS -->

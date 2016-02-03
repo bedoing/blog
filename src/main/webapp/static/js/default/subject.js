@@ -31,7 +31,7 @@ $(document).ready(function(){
     	indexMore.text("正在加载");
     	var newsVo = {
                 "pageNo" : pageNo.val(),
-                "tagType": 1
+                "articleType": 1
 	};
     	more(PRE_URI_LIST + "/articleList", newsVo, newsContent, 'Y', function(flag){
     		if(flag){
