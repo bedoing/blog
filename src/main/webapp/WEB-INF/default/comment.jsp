@@ -44,8 +44,8 @@
 
 
     <script type="text/javascript" charset="utf-8" src="<%= path%>/ueditor/ueditor.comment.config.js"></script>
-    <script type="text/javascript" charset="utf-8" src="http://apps.bdimg.com/libs/ueditor/1.4.3.1/ueditor.all.min.js"> </script>
-    <script type="text/javascript" charset="utf-8" src="http://apps.bdimg.com/libs/ueditor/1.4.3.1/lang/zh-cn/zh-cn.js"></script>
+    <script type="text/javascript" charset="utf-8" src="<%= path%>/ueditor/ueditor.all.min.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="<%= path%>/ueditor/lang/zh-cn/zh-cn.js"></script>
     
     <script type="text/javascript">
         var alertInfo = $("#_alertInfo");
