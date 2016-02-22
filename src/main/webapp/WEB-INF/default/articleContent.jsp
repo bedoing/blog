@@ -4,7 +4,7 @@
     <head>
         <title>${article.title }</title>
         <%@ include file="inc/head.inc"%>
-        <link rel="stylesheet" href="<%= path%>/ueditor/third-party/SyntaxHighlighter/shCoreDefault.css">
+        <link rel="stylesheet" href="http://apps.bdimg.com/libs/ueditor/1.4.3.1/third-party/SyntaxHighlighter/shCoreDefault.css">
     </head>
     <body>
         <%@ include file="header.jsp"%>
@@ -63,8 +63,8 @@
     </div>
     <%@ include file="footer.jsp"%>
 
-<script src="<%= path%>/ueditor/third-party/SyntaxHighlighter/shCore.js"></script>
-<script src="<%= path%>/ueditor/ueditor.parse.min.js"></script>
+<script src="http://apps.bdimg.com/libs/ueditor/1.4.3.1/third-party/SyntaxHighlighter/shCore.js"></script>
+<script src="http://apps.bdimg.com/libs/ueditor/1.4.3.1/ueditor.parse.min.js"></script>
 <script>
     $().ready(function(){
         SyntaxHighlighter.all();

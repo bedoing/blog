@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>index</title>
+    <title>Login</title>
     <%@ include file="inc/head.inc"%>
 </head>
 

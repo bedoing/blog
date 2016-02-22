@@ -4,7 +4,7 @@
     <head>
         <title>首页</title>
         <%@ include file="inc/head.inc"%>
-        <link rel="stylesheet" href="<%= path%>/ueditor/third-party/SyntaxHighlighter/shCoreDefault.css">
+        <link rel="stylesheet" href="http://apps.bdimg.com/libs/ueditor/1.4.3.1/third-party/SyntaxHighlighter/shCoreDefault.css">
     </head>
     <body>
         <%@ include file="header.jsp"%>
@@ -41,7 +41,7 @@
                             </button>
                             <input type="hidden" value="1" name="_index_news_content_pageNo"/> -->
 
-                        <div class="call-to-action container">
+                        <!-- <div class="call-to-action container">
                             <div class="row">
                                 <div class="call-to-action-text span12">
                                     <div class="ca-text">
@@ -52,7 +52,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                         </div>
                     </div> -->
                     <!-- 3 -->
-                    <div class="team-text span12 default-summary-custom default-tags-custom team-text-custom">
+                    <!-- <div class="team-text span12 default-summary-custom default-tags-custom team-text-custom">
                         <div class="default-detail-custom">
                             <div class="page-title">
                                 <div class="article-tag-page-title-custom">
@@ -116,7 +116,7 @@
                             </div>
                             <div id="_tagsCloud"></div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="span1"></div>
             </div>

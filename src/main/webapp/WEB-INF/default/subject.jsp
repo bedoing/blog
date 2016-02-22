@@ -4,7 +4,7 @@
     <head>
         <title>题目练习</title>
         <%@ include file="inc/head.inc"%>
-        <link rel="stylesheet" href="<%= path%>/ueditor/third-party/SyntaxHighlighter/shCoreDefault.css">
+        <link rel="stylesheet" href="http://apps.bdimg.com/libs/ueditor/1.4.3.1/third-party/SyntaxHighlighter/shCoreDefault.css">
     </head>
     <body>
         <%@ include file="header.jsp"%>
@@ -78,7 +78,7 @@
         </div>
         <%@ include file="footer.jsp"%>
 
-<script src="<%= path%>/static/js/echarts.js"></script>
+<script src="http://apps.bdimg.com/libs/echarts/2.1.9/source/echarts.js"></script>
 <script src="<%= path%>/static/js/default/subject.js"></script>
 
     </body>

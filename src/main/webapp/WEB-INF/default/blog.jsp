@@ -86,7 +86,7 @@
     <%@ include file="footer.jsp"%>
 
 
-<script src="<%= path%>/static/js/echarts.js"></script>
+<script src="http://apps.bdimg.com/libs/echarts/2.1.9/source/echarts.js"></script>
 <script src="<%= path%>/static/js/default/blog.js"></script>
 <script>
     $().ready(function(){
