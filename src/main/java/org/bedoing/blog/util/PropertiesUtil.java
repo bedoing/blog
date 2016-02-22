@@ -9,8 +9,11 @@ import java.util.Properties;
 import org.apache.log4j.Logger;
 
 public class PropertiesUtil {
-
 	private static final Logger log = Logger.getLogger(PropertiesUtil.class);
+	
+	private PropertiesUtil() {
+		
+	}
 	
 	private static Map<String, Properties> fileProperties = new HashMap<String, Properties>();
 

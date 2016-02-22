@@ -1,15 +1,15 @@
-package org.bedoing.blog.controller;
+package org.bedoing.blog.controller.admin;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Iterator;
-import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.bedoing.blog.controller.BaseController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,10 +18,10 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ModelAndView;
 
-@Controller
-@RequestMapping("/upload")
-public class UploadController extends BaseController{
-	private static final Logger log = Logger.getLogger(UploadController.class);
+@Controller("adminUEUploadController")
+@RequestMapping("/admin/upload")
+public class UEUploadController extends BaseController{
+	private static final Logger log = Logger.getLogger(UEUploadController.class);
 
 	@RequestMapping(value = "/toUploadPage")
 	public ModelAndView toUploadPage() {
@@ -45,18 +45,12 @@ public class UploadController extends BaseController{
 				// 取得上传文件
 				MultipartFile file = multiRequest.getFile(iter.next());
 				if (file != null) {
-					// 取得当前上传文件的文件名称
-					String myFileName = file.getOriginalFilename();
-					// 如果名称不为“”,说明该文件存在，否则说明该文件不存在
-					if (myFileName.trim() != "") {
-						log.info(myFileName);
-						// 重命名上传后的文件名
-						String fileName = getRenameFileName() + getFileExtension(file.getName());
-						// 定义上传路径
-						String path = request.getSession().getServletContext().getRealPath("upload/temp") + File.separator + fileName;
-						File localFile = new File(path);
-						file.transferTo(localFile);
-					}
+					// 重命名上传后的文件名
+					String fileName = getRenameFileName() + getFileExtension(file.getName());
+					// 定义上传路径
+					String path = request.getSession().getServletContext().getRealPath("upload/temp") + File.separator + fileName;
+					File localFile = new File(path);
+					file.transferTo(localFile);
 				}
 				// 记录上传该文件后的时间
 				int finaltime = (int) System.currentTimeMillis();
