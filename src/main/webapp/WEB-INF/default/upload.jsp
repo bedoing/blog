@@ -1,6 +1,6 @@
 <%@ page language="java" pageEncoding="utf-8"%>
 <!DOCTYPE HTML>
-<html>
+<html lang="zh-CN">
 <head>
     <title>upload page</title>
     <%@ include file="inc/head.inc"%>

@@ -650,7 +650,7 @@ footer .social a:hover { background-position: left top; }
     -ms-transition: all .3s;
 }
 
-.team-text:hover {
+/* .team-text:hover {
     box-shadow:
         0 5px 15px 0 rgba(0,0,0,.05),
         0 1px 25px 0 rgba(0,0,0,.05) inset,
@@ -659,7 +659,7 @@ footer .social a:hover { background-position: left top; }
     -moz-transition: all .5s;
     -webkit-transition: all .5s;
     -ms-transition: all .5s;
-}
+} */
 
 .team-text .social-links {
     margin-top: 15px;

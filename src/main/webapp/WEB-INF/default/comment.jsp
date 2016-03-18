@@ -1,53 +1,35 @@
 <%@ page language="java" pageEncoding="utf-8"%>
-
-<body>
-   
-    <div class="container-fluid comment-blank">
-        <div class="span12">
-            <button class="btn btn-link" id="_pingLun"><i class="icon-comment"></i>  我要评论</button>
+<div class="row comment-blank">
+    <div class="col-md-12">
+        <button class="btn btn-link" id="_pingLun"><i class="icon-comment"></i>  我要评论</button>
+    </div>
+</div>
+<div id="_commentDiv"  style="display:none;">
+    <div class="row">
+        <div class="col-md-12">
+            <script id="_commentEditor" name="content" type="text/plain" style="width:100%;height:80px;">
+            </script>
         </div>
     </div>
-
-    <div id="_commentDiv"  style="display:none;">
-        <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="span12">
-                        <script id="_commentEditor" name="content" type="text/plain" style="width:100%;height:80px;">
-                        </script>
-                </div>
-
+    <div class="row comment-blank">
+        <div class="col-md-10">
+            <div class="alert alert-info" id="_alertInfo" style="display:none;">
             </div>
         </div>
-
-        <div class="container-fluid">
-            <div class="row-fluid comment-blank">
-                    <div class="span10">
-                            <div class="alert alert-info" id="_alertInfo" style="display:none;">
-                             
-                            </div>
-                    </div>
-                    <div class="span2">
-                         <button type="button" id="_commentBtn" class="btn btn-primary comment-submit">提 交</button>
-                         <input type="hidden" id="_hArticleId">
-                    </div>
-            </div>
+        <div class="col-md-2">
+            <button type="button" id="_commentBtn" class="btn btn-primary comment-submit">提 交</button>
+            <input type="hidden" id="_hArticleId">
         </div>
     </div>
-
-    <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="span12" id="_commentContent">
-            </div>
-        </div>
+</div>
+<div class="row">
+    <div class="col-md-12" id="_commentContent">
     </div>
-
-
-
-    <script type="text/javascript" charset="utf-8" src="<%= path%>/ueditor/ueditor.comment.config.js"></script>
-    <script type="text/javascript" charset="utf-8" src="<%= path%>/ueditor/ueditor.all.min.js"> </script>
-    <script type="text/javascript" charset="utf-8" src="<%= path%>/ueditor/lang/zh-cn/zh-cn.js"></script>
-    
-    <script type="text/javascript">
+</div>
+<script type="text/javascript" charset="utf-8" src="<%= path%>/ueditor/ueditor.comment.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="<%= path%>/ueditor/ueditor.all.min.js"> </script>
+<script type="text/javascript" charset="utf-8" src="<%= path%>/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript">
         var alertInfo = $("#_alertInfo");
         var ue = null;
 
@@ -150,7 +132,7 @@
                     
                     cStr += '<blockquote>';
                     cStr += '<p>';
-                    cStr += '<span class="label" >' + c.createTimeStr + '</span>';
+                    cStr += '<span class="label label-default" >' + c.createTimeStr + '</span>';
                     cStr += '</p>';
                     cStr += '<p>';
                     cStr += c.content;
@@ -172,6 +154,7 @@
             alertInfo.removeClass();
             if(result == "success") {
                     alertInfo.addClass("alert alert-success");
+                    setTimeout(hideAlertInfo,3000);
             }else if(result == "fail") {
                     alertInfo.addClass("alert alert-error");
             }else{
@@ -179,4 +162,3 @@
             }
     }
     </script>
-</body>

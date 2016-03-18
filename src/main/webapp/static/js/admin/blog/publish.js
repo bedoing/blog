@@ -49,6 +49,7 @@ $().ready(function(){
             success: function(res) {
                 if(res.retMsg == "success") {
                     initLabel($("#_newTagBtn").attr("tagFun"));
+                    $('#_tagModal').modal('hide')
                 }else {
                     alert(res.retMsg);
                 }

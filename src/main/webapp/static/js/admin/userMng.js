@@ -1,11 +1,7 @@
-$().ready(function() {
-
-});
-
 function loginMsg(msg) {
     if(msg != null && msg != '' && msg != 'undefined') {
-        $("#_msgLabel").removeAttr("style");
+        $("#_alertMsg").show();
     }else {
-        $("#_msgLabel").css("style", "display:none;");
+        $("#_alertMsg").hide();
     }
 }

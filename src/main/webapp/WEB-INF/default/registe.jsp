@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="zh-CN">
 <head>
     <title>Registe</title>
     <%@ include file="inc/head.inc"%>

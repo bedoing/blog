@@ -1,8 +1,7 @@
 <hr/>
-<footer class="row">
-    <p class="col-md-9 col-sm-9 col-xs-12 copyright">&copy; <a href="http://usman.it" target="_blank">Muhammad
-            Usman</a> 2012 - 2015</p>
-
-    <p class="col-md-3 col-sm-3 col-xs-12 powered-by">Powered by: <a
-            href="http://usman.it/free-responsive-admin-template">Charisma</a></p>
+<footer>
+	<div class="row">
+		<div class="col-md-9">&copy; <a href="#" target="_blank">Ken Blog</a> 2015 - 2016</div>
+		<div class="col-md-3">Powered by: <a href="#">Ken Guan</a></div>
+	</div>
 </footer>

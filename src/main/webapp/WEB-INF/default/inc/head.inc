@@ -10,14 +10,14 @@
 <meta http-equiv="keywords" content="java,数据结构,算法分析,云计算,大数据">
 <link rel="shortcut icon" href="<%= path%>/img/logo/bedoing.ico">
 <!-- CSS -->
-<link rel="stylesheet" href="<%= path%>/static/css/bootstrap.min.css">
+<link rel="stylesheet" href="<%= path%>/static/bootstrap 3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%= path%>/static/css/font-awesome.css">
 <link rel="stylesheet" href="<%= path%>/static/css/default/asStyle.css?t=<%=timeStr%>">
 <link rel="stylesheet" href="<%= path%>/static/css/default/style.css?t=<%=timeStr%>">
 <link rel="stylesheet" href="<%= path%>/static/css/nprogress.css">
 <!-- Javascript -->
 <script src="<%= path%>/static/js/jquery-1.11.3.min.js"></script>
-<script src="<%= path%>/static/js/bootstrap.min.js"></script>
+<script src="<%= path%>/static/bootstrap 3.3.5/js/bootstrap.min.js"></script>
 <script src="<%= path%>/static/js/nprogress.js"></script>
 <script src="<%= path%>/static/js/default/common.js?t=<%=timeStr%>"></script>
 <script src="<%= path%>/static/js/jquery.scrollUp.min.js"></script>

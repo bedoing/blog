@@ -1,6 +1,6 @@
 <%@ page language="java" pageEncoding="utf-8"%>
 <!DOCTYPE HTML>
-<html>
+<html lang="zh-CN">
     <head>
         <title>${tagName}</title>
         <%@ include file="inc/head.inc"%>
@@ -9,10 +9,10 @@
     <body>
         <%@ include file="header.jsp"%>
         <!-- blank -->
-        <!-- <div class="container-fluid custom-top-blank"> </div> -->
+        <!-- <div class="container custom-top-blank"> </div> -->
         <!-- Page Title -->
         <div class="page-title">
-            <div class="container-fluid article-tag-page-title-custom">
+            <div class="container article-tag-page-title-custom">
                 <div class="span1"></div>
                 <div class="span11">
                     <i class="icon-list page-title-icon"></i>
@@ -24,18 +24,18 @@
             </div>
         </div>
         
-        <!-- <div class="container-fluid custom-top-tagsChart" id="_myTags"></div> -->
+        <!-- <div class="container custom-top-tagsChart" id="_myTags"></div> -->
         
         <!-- News -->
-        <div class="container-fluid">
-            <div class="row-fluid">
+        <div class="container">
+            <div class="row">
                 <div class="span1">
                     
                 </div>
                 <div class="span7">
-                    <div class="row-fluid" id="_news_content">
+                    <div class="row" id="_news_content">
                     </div>
-                    <div class="row-fluid">
+                    <div class="row">
                         <div class="span12">
                             <button class="btn btn-block" type="button" id="index-more">
                             </button>
@@ -49,8 +49,8 @@
             </div>
         </div>
         <!-- blank -->
-        <div class="container-fluid">
-            <div class="row-fluid">
+        <div class="container">
+            <div class="row">
                 <div class="span12">
                 </div>
             </div>

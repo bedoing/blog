@@ -1,110 +1,117 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE HTML>
-<html>
+<html lang="zh-CN">
 <head>
     <title>index</title>
     <%@ include file="../inc/head.inc"%>
-
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
     <script type="text/javascript" charset="utf-8" src="<%= path%>/ueditor/ueditor.config.js"></script>
     <script type="text/javascript" charset="utf-8" src="<%= path%>/ueditor/ueditor.all.min.js"> </script>
     <script type="text/javascript" charset="utf-8" src="<%= path%>/ueditor/lang/zh-cn/zh-cn.js"></script>
 </head>
-
 <body>
     <%@ include file="../header.jsp"%>
-
-    <div class="ch-container">
-    <div class="row">
-        
-        <%@ include file="../leftMenu.jsp"%>
-
-        <div id="content" class="col-lg-10 col-sm-10">
-            <!-- content starts -->
-            <%@ include file="../breadcrumb.jsp"%>
-
-            
-                
-            <section>
+    <div class="container">
+        <div class="row">
+            <div id="content" class="col-md-12">
+                <!-- content starts -->
+                <section>
                     <input id="_articleId"  type="hidden" name="title">
-                    <div class="form-group col-md-8">
-                        <input id="_articleTitle"  type="text" name="title" class="form-control" placeholder="输入标题">
-                    </div>
-                    
-                    <div class="form-group col-md-3">
-                        <div class="btn-group">
-                                <button type="button" class="btn">文章类型</button>
-                                <button type="button" id="_articleToggleBtn" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                选择分类<span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a onclick="toggleSelect('_articleToggleBtn',1,'Article','_articleType')">Article</a></li>
-                                    <li><a onclick="toggleSelect('_articleToggleBtn',2, 'Subjtct','_articleType')">Subjtct</a></li>
-
-                                </ul>
-                                <input id="_articleType" type="hidden" name="tagType"/>
+                    <div class="col-md-7">
+                        <div class="input-group">
+                            <span class="input-group-addon">文章标题</span>
+                            <input id="_articleTitle" type="text" class="form-control" placeholder="输入标题...">
                         </div>
                     </div>
-               
-                    <div class="form-group col-md-1">
-                        <button type="button" id="_articleUpdateBtn" class="btn btn-primary">Submit</button>
-                    </div>
-            <div class="form-group col-md-12">
-                <textarea  id="_summary" name="summary" rows="3" class="form-control" placeholder="文章摘要"></textarea>
-            </div>
-
-            <br/>
-            <div class="container-fluid well">
-                <div class="form-group col-md-12">
+                    <div class="col-md-3">
                         <div class="btn-group">
-                                <button type="button" class="btn">标签类型</button>
+                            <button type="button" class="btn">文章类型</button>
+                            <button type="button" id="_articleToggleBtn" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            选择分类<span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a onclick="toggleSelect('_articleToggleBtn',1,'Article','_articleType')">Article</a></li>
+                                <li><a onclick="toggleSelect('_articleToggleBtn',2, 'Subjtct','_articleType')">Subjtct</a></li>
+                            </ul>
+                            <input id="_articleType" type="hidden" name="tagType"/>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" id="_articleUpdateBtn" class="btn btn-primary pull-right">
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 发布更新</button>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <span class="input-group-addon">文章摘要</span>
+                            <textarea  id="_summary" name="summary" rows="3" class="form-control" placeholder="文章摘要..."></textarea>
+                        </div>
+                    </div>
+                    <div class="container row well">
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#_tagModal">
+                            <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> 添加标签
+                            </button>
+                        </div>
+                        <div class="col-md-6 ">
+                            <div class="label-group" id="_labelGroup"></div>
+                        </div>
+                        <div class="col-md-6 ">
+                            <div class="label-group" id="_labelGroup2"></div>
+                        </div>
+                    </div>
+                </section>
+                <div class="row">
+                    <script id="_articleEditor" type="text/plain" style="width:100%;height:500px;"></script>
+                </div>
+                <div id="_tempContent" style="display:none;">${article.content}</div>
+                <!-- content ends -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="_tagModal" tabindex="-1" role="dialog" aria-labelledby="_tagModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="_tagModalLabel">添加新标签</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- modal begin -->
+                    <div class="row" id="_addTagDiv">
+                        <div class="col-md-8">
+                            <div class="input-group">
+                                <span class="input-group-addon">标签名称</span>
+                                <input id="_newTagName" type="text" name="tagName" class="form-control" placeholder="输入标签名称...">
+                            </div>
+                        </div>
+                        <div class="col-md-4 pull-right">
+                            <div class="btn-group">
                                 <button type="button" id="_typeToggleBtn" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                选择分类<span class="caret"></span>
+                                标签分类<span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li><a onclick="toggleSelect('_typeToggleBtn',1,'Article','_newTagType')">Article</a></li>
                                     <li><a onclick="toggleSelect('_typeToggleBtn',2, 'Subjtct','_newTagType')">Subjtct</a></li>
-                                    <!-- <li role="separator" class="divider"></li>
-                                    <li><a>选择分类</a></li> -->
                                 </ul>
                                 <input id="_newTagType" type="hidden" name="tagType"/>
-                                <input id="_newTagName" type="text" name="tagName" class="btn btn-mini" placeholder="输入标签...">
-                              <button class="btn btn-primary" tagFun="tagClick" id="_newTagBtn">Add</button>
+                            </div>
                         </div>
-
-                    <!-- <div class="btn-group">
-                          <input id="_newTagName" type="text" name="tagName" class="btn btn-mini" placeholder="输入标签...">
-                          <button class="btn btn-mini" tagFun="tagClick" id="_newTagBtn">
-                            <span class="caret"></span>
-                          </button>
-                        </div> -->
-                </div>
-                <div class="form-group col-md-6">
-                    <div class="label-group" id="_labelGroup"></div>
-                </div>
-                <div class="form-group col-md-6">
-                    <div class="label-group" id="_labelGroup2"></div>
-                </div>
-
-                <!-- <div class="form-group col-md-3">
-                    <div class="btn-group">
-                      <input id="_newTagName" type="text" name="tagName" class="btn btn-mini" placeholder="输入标签...">
-                      <button class="btn btn-mini" tagFun="tagClick" id="_newTagBtn">
-                        <span class="caret"></span>
-                      </button>
                     </div>
-                </div> -->
+                    <!-- modal end -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" tagFun="tagClick" id="_newTagBtn">添加</button>
+                </div>
             </div>
-            </section>  
-            <script id="_articleEditor" type="text/plain" style="width:1088px;height:500px;"></script>
-            <div id="_tempContent" style="display:none;">${article.content}</div>
-            <!-- content ends -->
         </div>
     </div>
-    </div>
-    
     <%@ include file="../footer.jsp"%>
-</div><!--/.fluid-container-->
+    </div><!--/container-->
 
 <script type="text/javascript" charset="utf-8" src="<%= path%>/static/js/admin/blog/publish.js"></script>
 <script type="text/javascript">
