@@ -12,7 +12,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<springframework.version>4.0.5.RELEASE</springframework.version>
+		<springframework.version>4.3.0.RELEASE</springframework.version>
 	</properties>
 
 	<dependencies>
@@ -175,6 +175,7 @@
 			<artifactId>fastjson</artifactId>
 			<version>1.2.6</version>
 		</dependency>
+
 		<!-- JSR-303 -->
 		<dependency>
 			<groupId>javax.validation</groupId>
