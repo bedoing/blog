@@ -20,14 +20,16 @@ import org.bedoing.blog.util.DateUtils;
 import org.bedoing.blog.vo.ArticleVO;
 import org.bedoing.blog.vo.ResponseVO;
 import org.bedoing.blog.vo.TagsVO;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
 
-@Controller
+@RestController
 @RequestMapping(value = "/article")
 public class ArticleController extends BaseController{
 	private static final Logger log = Logger.getLogger(ArticleController.class);
@@ -86,8 +88,8 @@ public class ArticleController extends BaseController{
 		return res;
 	}
 	
-	@RequestMapping(value = "/articleContent")
-	public ModelAndView articleContent(int articleId){
+	@RequestMapping(value = "/{articleId}", method = RequestMethod.GET)
+	public ModelAndView articleContent(@PathVariable int articleId){
 		ModelAndView mv = new ModelAndView(UriConstant.DEFAULT_ARTICLE_CONTENT);
 		ArticleVO article = articleService.findArticleById(articleId);
 		int click = articleService.getClicks(article.getArticleId());
@@ -101,7 +103,7 @@ public class ArticleController extends BaseController{
 		return mv;
 	}
 	
-	@RequestMapping(value = "/tagsGroup")
+	@RequestMapping(value = "/tagsGroup", method = RequestMethod.GET)
 	public @ResponseBody Map<String, Object> tagsGroup(int tagType){
 		List<TagsVO> result = articleService.tagsGroup(tagType);
 		log.info(JSON.toJSONString(result));
@@ -157,7 +159,12 @@ public class ArticleController extends BaseController{
 	
 	@RequestMapping(value="/search")
 	public ModelAndView search(String content) {
-		ModelAndView mv = new ModelAndView(UriConstant.DEFAULT_DEFAULT);
+		ModelAndView mv = new ModelAndView(UriConstant.DEFAULT_SEARCH);
+		mv.addObject("keywords", content);
+		
+		List<ArticleVO> list = articleService.findArticlesByCriteria(new ArticleVO());
+
+		mv.addObject("list", list);
 		
 		return mv;
 	}

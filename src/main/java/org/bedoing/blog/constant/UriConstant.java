@@ -5,11 +5,12 @@ public class UriConstant {
 	
 	public static final String DEFAULT_DEFAULT = "default/default";
 	public static final String DEFAULT_PORTFOLIO = "default/portfolio";
-	public static final String DEFAULT_BLOG = "default/blog";
+	public static final String DEFAULT_ARTICLES = "default/articles";
 	public static final String DEFAULT_SERVICES = "default/services";
 	public static final String DEFAULT_ABOUT = "default/about";
 	public static final String DEFAULT_CONTACT = "default/contact";
 	public static final String DEFAULT_COMMENT = "default/comment";
+	public static final String DEFAULT_SEARCH = "default/searchResult";
 	
 	public static final String DEFAULT_ARTICLE_CONTENT = "default/articleContent";
 	
@@ -33,5 +34,5 @@ public class UriConstant {
 	public static final String ADMIN_BLOG_ARTICLE_MNG = "admin/blog/articleMng";
 	public static final String ADMIN_BLOG_UPDATE_ARTICLE = "admin/blog/updateArticle";
 	
-	public static final String ERROR_PAGE = "../errorPage/error";
+	public static final String ERROR_PAGE = "../errorPage/404";
 }

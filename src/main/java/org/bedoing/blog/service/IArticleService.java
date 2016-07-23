@@ -17,6 +17,11 @@ public interface IArticleService {
 	public int deleteArticleById(int articleId);
 	public int updateArticle(ArticleVO article);
 	public int countArticlesByCriteria(ArticleVO articleVo);
+	/**
+	 * 不包括content
+	 * @param articleVo
+	 * @return
+	 */
 	public List<ArticleVO> findArticlesByCriteria(ArticleVO articleVo);
 	public ArticleVO findArticleById(int articleId);
 	public Article findArticleByTitle(String title);

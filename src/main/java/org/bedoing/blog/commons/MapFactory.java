@@ -32,6 +32,10 @@ public class MapFactory extends HashMap<String, Object>{
 		this.put(RESULT, result);
 		return this;
 	}
+	public MapFactory setParam(String key, Object value) {
+		this.put(key, value);
+		return this;
+	}
 	
 	public static MapFactory buildResMap() {
 		return new MapFactory();

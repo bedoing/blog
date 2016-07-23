@@ -14,6 +14,7 @@ public class Constant {
 	public static final int DEFAULT_PAGE_SIZE = 10;
 	public static final int DEFAULT_PAGE_NO = 1;
 	
+	public static final String TITLE = "title";
 	public static final String MSG = "msg";
 	public static final String SESSION_USER = "user";
 	public static final String PAGE_USER = "user";

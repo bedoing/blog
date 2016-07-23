@@ -15,6 +15,7 @@ public class MapperConstant {
 	public static final String ARTICLE_findAllTags = "article.findAllTags";
 	public static final String ARTICLE_addArticleTag = "article.addArticleTag";
 	public static final String ARTICLE_findArticleTagsByArticleId =  "article.findArticleTagsByArticleId";
+	public static final String ARTICLE_findArticleById =  "article.findArticleById";
 	public static final String ARTICLE_tagsGroup =  "article.tagsGroup";
 	public static final String ARTICLE_countArticlesByTagId = "article.countArticlesByTagId";
 	public static final String ARTICLE_findArticlesByTag = "article.findArticlesByTagId";

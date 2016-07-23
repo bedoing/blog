@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.bedoing.blog.commons.TagsDict;
@@ -166,9 +165,12 @@ public class ArticleService implements IArticleService{
 	public ArticleVO findArticleById(int articleId) {
 		ArticleVO vo = new ArticleVO();
 		vo.setArticleId(articleId);
-		List<ArticleVO> list = findArticlesByCriteria(vo);
-		
-		return CollectionUtils.isEmpty(list)? null:list.get(0);
+		Article a = myBatisDAO.get(MapperConstant.ARTICLE_findArticleById, articleId);
+		if(a == null) {
+			return null;
+		}else{
+			return convertArticleVo2Po(a);
+		}
 	}
 
 	@Override
@@ -200,6 +202,44 @@ public class ArticleService implements IArticleService{
 		return convertArticle2VOList(list);
 	}
 	
+	private ArticleVO convertArticleVo2Po(Article a) {
+		if(a == null) {
+			throw new NullPointerException("空对象不能转换。");
+		}
+		ArticleVO vo = new ArticleVO();
+		vo.setArticleId(a.getArticleId());
+		vo.setTitle(a.getTitle());
+		vo.setArticleType(a.getArticleType());
+		vo.setSummary(a.getSummary());
+		vo.setContent(a.getContent());
+		vo.setCreateBy(a.getCreateBy());
+		vo.setCreateTime(a.getCreateTime());
+		vo.setLastUpdBy(a.getLastUpdBy());
+		vo.setLastUpdTime(a.getLastUpdTime());
+		vo.setCreateTimeStr(DateUtils.toBeijinDate(a.getCreateTime(), Constant.YYYY_MM_DD));
+		vo.setLastUpdTimeStr(DateUtils.toBeijinDate(a.getLastUpdTime(), Constant.YYYY_MM_DD));
+		
+		List<ArticleTags> tags = findArticleTagsByArticleId(a.getArticleId());
+		if(a.getArticleType() == 2) {
+			// subject
+			Subject s = findSubjectByArticleId(a.getArticleId());
+			vo.setSubject(s);
+		}
+		
+		String tagIdStr = "";
+		/*for (ArticleTags articleTags : tags) {
+			tagIdStr += articleTags.getTagId() + ",";
+		}
+		vo.setTags(tagIdStr);*/
+		for (ArticleTags articleTags : tags) {
+			Tag t = new Tag();
+			t.setTagId(articleTags.getTagId());
+			t.setTagName(TagsDict.getTagNameById(t.getTagId()));
+			
+			vo.getTagList().add(t);
+		}
+		return vo;
+	}
 	
 	private List<ArticleVO> convertArticle2VOList(List<Article> list) {
 		List<ArticleVO> result = new ArrayList<ArticleVO>();

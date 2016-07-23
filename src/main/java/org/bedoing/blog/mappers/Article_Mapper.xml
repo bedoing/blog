@@ -84,7 +84,8 @@
 	</select>
 	
 	<select id="findArticlesByCriteria" resultType="article" parameterType="org.bedoing.blog.vo.ArticleVO">
-		select * from article 
+		select articleId, title, articleType, summary, createBy,createTime, lastUpdBy, lastUpdTime 
+		from article 
 		where 1 = 1
 			<if test="articleType != null &amp; articleType != '' &amp; articleType != -1">
 				and articleType = #{articleType }
@@ -95,8 +96,15 @@
 		<include refid="_limitPart" />
 	</select>
 	
+	<select id="findArticleById" resultType="article" parameterType="org.bedoing.blog.vo.ArticleVO">
+		select * 
+		from article 
+		where articleId = #{articleId}
+	</select>
+	
 	<select id="findArticlesOrderByClicks" resultType="article" parameterType="org.bedoing.blog.vo.ArticleVO">
-		select * from article a
+		select a.articleId, a.title, a.articleType, a.summary, a.createBy,a.createTime, a.lastUpdBy, a.lastUpdTime 
+		from article a
 		left join clicks c on a.articleId = c.articleId
 		where a.articleType = #{articleType }
 		

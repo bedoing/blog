@@ -14,11 +14,10 @@ import org.springframework.web.servlet.ModelAndView;
  * 
  */
 @Controller
-@RequestMapping("/place")
 public class JumpController extends BaseController {
 
 	// 菜单
-	@RequestMapping(value = "/default")
+	@RequestMapping(value = "/index")
 	public ModelAndView toDefault() {
 		return new ModelAndView(UriConstant.DEFAULT_DEFAULT);
 	}
@@ -28,9 +27,9 @@ public class JumpController extends BaseController {
 		return new ModelAndView(UriConstant.DEFAULT_PORTFOLIO);
 	}
 
-	@RequestMapping(value = "/blog")
+	@RequestMapping(value = "/articles")
 	public ModelAndView toBlog() {
-		return new ModelAndView(UriConstant.DEFAULT_BLOG);
+		return new ModelAndView(UriConstant.DEFAULT_ARTICLES);
 	}
 	
 	@RequestMapping(value = "/subject")
