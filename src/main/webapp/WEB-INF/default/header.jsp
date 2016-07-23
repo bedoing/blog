@@ -15,51 +15,50 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li id="defaultPage">
-                    <a href="/">
+                    <a href="<%= path%>/app/index">
                         <i class="icon-home"></i>
-                        <!-- <br/> -->
                     首页</a>
                 </li>
                 
                 <!-- <li>
-                    <a id="portfolioPage" href="<%= path%>/app/place/portfolio">Portfolio</a>
+                    <a id="portfolioPage" href="<%= path%>/app/portfolio">Portfolio</a>
                 </li> -->
                 
                 <li id="blogPage">
-                    <a href="/archives">
+                    <a href="<%= path%>/app/articles">
                         <i class="icon-list"></i>
                     文章列表</a>
                 </li>
                 <li id="subjectPage">
-                    <a href="/subject">
+                    <a href="<%= path%>/app/subject">
                         <i class="icon-comments"></i>
                     题目练习</a>
                 </li>
                 
                 <!-- <li>
-                    <a id="servicesPage" href="<%= path%>/app/place/services">Services</a>
+                    <a id="servicesPage" href="<%= path%>/app/services">Services</a>
                 </li> -->
                 
                 
                 <!-- <li>
-                    <a id="aboutPage" href="<%= path%>/app/place/about">
+                    <a id="aboutPage" href="<%= path%>/app/about">
                         <i class="icon-user"></i>
                     About</a>
                 </li>
                 <li>
-                    <a id="contactPage" href="<%= path%>/app/place/contact">
+                    <a id="contactPage" href="<%= path%>/app/contact">
                         <i class="icon-envelope-alt"></i>
                     Contact</a>
                 </li> -->
             </ul>
             
             <ul class="nav navbar-nav navbar-right">
-                <form class="navbar-form navbar-left" role="search" action="/list/search" method="post">
+                <form class="navbar-form navbar-left" role="search" action="/blog/app/article/search" method="post">
                     <div class="form-group">
                         <input type="text" class="form-control" name="content" placeholder="本站搜索...">
                     </div>
                 </form>
             </ul>
-            </div><!-- /.navbar-collapse -->
-            </div><!-- /.container -->
-        </nav>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container -->
+</nav>

@@ -24,8 +24,9 @@
 <!-- nav -->
 <!-- <script src="<%= path%>/inc/stickUp/stickUp.min.js"></script>-->
 <script>
-	PRE_URI_ARCHIVES="/archive";
-	PRE_URI_LIST="/list";
-	PRE_URI_TAG="/tag";
-	PRE_URI_COMMENT="/c";
+	PRE_URI_ARCHIVES="/blog/app/article/";
+	PRE_URI_SUBJECT="/blog/app/subject/";
+	PRE_URI_LIST="/blog/app/article";
+	PRE_URI_TAG="/blog/app/articleByTag?tagName=";
+	PRE_URI_COMMENT="/blog/app/comment";
 </script>

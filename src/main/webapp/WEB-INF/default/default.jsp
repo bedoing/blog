@@ -29,7 +29,7 @@
                             <p>The most difficult thing is the decision to act. The rest is merely tenacity.</p>
                             <p>
                                 <div class="vcard-stats">
-                                    <a class="vcard-stat" href="/archives">
+                                    <a class="vcard-stat" href="/articles">
                                         <strong id="_articlesCount" class="vcard-stat-count">0</strong>
                                         <span class="text-muted">Articles</span>
                                     </a>
@@ -57,8 +57,8 @@
                             <div class="page-title">
                                 <div class="col-md-12 article-tag-span-custom">
                                     <i class="icon-tags"></i>
-                                    <h4>Tags /</h4>
-                                    <p>Here is all the tags</p>
+                                    <h4>Tags </h4>
+                                    <!-- <p>Here is all the tags</p> -->
                                 </div>
                             </div>
                             <div id="_tagsCloud"></div>

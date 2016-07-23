@@ -156,7 +156,7 @@
                     alertInfo.addClass("alert alert-success");
                     setTimeout(hideAlertInfo,3000);
             }else if(result == "fail") {
-                    alertInfo.addClass("alert alert-error");
+                    alertInfo.addClass("alert alert-danger");
             }else{
                     alertInfo.addClass("alert alert-info");
             }

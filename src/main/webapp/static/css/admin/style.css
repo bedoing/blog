@@ -14,8 +14,11 @@
 	/*background-color: #07242E;*/
 	/*width: 64px;
 	height: 30px;*/
-	padding: 8px 10px 8px 10px;
+	padding: 3px 6px 3px 6px;
 	float: left;
+}
+.btnLabel:hover{
+	cursor:pointer;
 }
 
 /*a.btnLabel:hover,a.btnLabel:focus{

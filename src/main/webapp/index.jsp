@@ -6,13 +6,13 @@ String path = request.getContextPath();
 <html>
 	<head>
 		<base href="<%=path%>">
-		<title>Doing</title>
+		<title>首页</title>
 		<meta http-equiv="pragma" content="no-cache">
 		<meta http-equiv="cache-control" content="no-cache">
 		<meta http-equiv="expires" content="0">
 		<meta http-equiv="keywords" content="Java,Spark,Hadoop">
 		<meta http-equiv="description" content="Doing Somethine">
-		<meta http-equiv="refresh" content=0;URL="app/place/default">
+		<meta http-equiv="refresh" content=0;URL="blog/app/index">
 	</head>
 	<body>
 	</body>

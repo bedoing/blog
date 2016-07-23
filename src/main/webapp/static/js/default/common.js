@@ -30,9 +30,9 @@ function headerClass() {
 	var url = window.location.href;
 	$('nav ul li').removeClass("active");
 
-	if (url.indexOf("/archives/") != -1 || url.indexOf("/archive/") != -1) {
+	if (url.indexOf("/article/") != -1 || url.indexOf("/articles") != -1) {
 		$("#blogPage").addClass("active");
-	} else if (url.indexOf("/subject/") != -1) {
+	} else if (url.indexOf("/subject") != -1) {
 		$("#subjectPage").addClass("active");
 	} else {
 		$("#defaultPage").addClass("active");

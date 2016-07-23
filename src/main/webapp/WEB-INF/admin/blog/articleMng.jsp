@@ -127,7 +127,7 @@
                             '</td>' + 
                             '<td>' + 
                                 '<button type="button" class="btn btn-link pull-left">' + 
-                                    '<a target="_blank" href="' + PRE_URI_ARCHIVES + '/'  + article.articleId + '">' + article.title + '</a>' + 
+                                    '<a target="_blank" href="' + PRE_URI_ARCHIVES  + article.articleId + '">' + article.title + '</a>' + 
                                 '</button>' + 
                             '</td>' +
                             '<td>' + 

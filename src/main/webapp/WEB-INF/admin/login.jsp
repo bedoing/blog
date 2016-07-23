@@ -8,7 +8,7 @@
     </head>
     <body>
         <div class="container">
-            <form class="form-signin" action="/u/userLogin" method="post">
+            <form class="form-signin" action="/blog/app/user/userLogin" method="post">
                 
                 <div id="_alertMsg" class="alert alert-danger alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">

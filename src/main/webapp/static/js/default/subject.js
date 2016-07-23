@@ -83,7 +83,7 @@ function more(url, paramObj, targetDiv, style, callback){
 function initSubjetContent(newsObj, idx, style){
 	var divVal;
 	if(style == 'Y'){
-		divVal = '<div class="row-fluid card-status-custom well-custom"><div class="span12"><h3><a href="' + PRE_URI_ARCHIVES + '/'  + newsObj['articleId'] +'">';
+		divVal = '<div class="row-fluid card-status-custom well-custom"><div class="span12"><h3><a href="' + PRE_URI_SUBJECT   + newsObj['articleId'] +'">';
 		divVal += newsObj['title'];
 		divVal += '</a></h3><blockquote><p>';
 		divVal += '<p>';
@@ -107,7 +107,7 @@ function initSubjetContent(newsObj, idx, style){
 		divVal += '</p></blockquote></p>';	
 		divVal += '</div></div>';
 	}else{
-		divVal = '<div class="row-fluid card-status-custom well-custom"><div class="span12"><h3><a href="' + PRE_URI_ARCHIVES + '/' + newsObj['articleId'] +'">';
+		divVal = '<div class="row-fluid card-status-custom well-custom"><div class="span12"><h3><a href="' + PRE_URI_SUBJECT + newsObj['articleId'] +'">';
 		divVal += newsObj['title'];
 		divVal += '</a></h3><p>';
 		divVal += '<p>';
@@ -144,7 +144,7 @@ function listTitle(url, paramObj, targetDivId, callback) {
 function listTitleContent(newsObj) {
     var divVal = "";
     divVal += '<li class="links-item" >';
-        divVal += '<a href="' + PRE_URI_ARCHIVES + '/' + newsObj['articleId'] +'">';
+        divVal += '<a href="' + PRE_URI_SUBJECT + newsObj['articleId'] +'">';
             if(newsObj['articleType'] == 1) {
                 divVal += '<i class="icon-file"></i>';
             }else if(newsObj['articleType'] == 2) { 
@@ -225,14 +225,15 @@ function myTags(tagType) {
                 myTags.clear();
             }
             myTags.setOption(option); 
+            console.log(echarts)
             /*myTags.on(echarts.config.EVENT.DBLCLICK, dbClickTag);*/
-            myTags.on(echarts.config.EVENT.CLICK, clickTag);
+            myTags.on("click", clickTag);
     });    
 }
 
 function refreshData(tagType, callback) {
     $.ajax({
-        type: "post",  
+        type: "GET",  
         url: PRE_URI_LIST + "/tagsGroup",
         dataType: "json",
         data: {"tagType": tagType},
@@ -288,7 +289,7 @@ function initTagsCloud (funName, type) {
 }
 
 function tagClick(tagId, tagName) {
-        window.location = PRE_URI_TAG + "/" + tagName;
+        window.location = PRE_URI_TAG + tagName;
 }
 
 function statistics(){

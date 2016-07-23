@@ -81,7 +81,7 @@
         }
             
         function tagClick(tagId, tagName) {
-            window.location = PRE_URI_TAG + "/" + tagName;
+            window.location = PRE_URI_TAG + tagName;
         }
     </script>
     </body>

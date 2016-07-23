@@ -14,11 +14,11 @@
 
 <!-- ****** -->
 <script>
-	PRE_URI_ARCHIVES="/archive";
-	PRE_URI_LIST="/list";
-	PRE_URI_TAG="/tag";
-	PRE_URI_COMMENT="/c";
-	PRE_URI_D="/d"
-	PRE_URI_AD="/ad"
-	PRE_URI_AA="/aa"
+	PRE_URI_ARCHIVES="/blog/app/article/articleContent?articleId=";
+	PRE_URI_LIST="/blog/app/article";
+	PRE_URI_TAG="/blog/app/place/articleByTag?tagName=";
+	PRE_URI_COMMENT="/blog/app/comment";
+	PRE_URI_D="/blog/app/place"
+	PRE_URI_AD="/blog/app/admin/article"
+	PRE_URI_AA="/blog/app/admin/article"
 </script>
