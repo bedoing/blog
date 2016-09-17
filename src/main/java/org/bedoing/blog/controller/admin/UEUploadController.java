@@ -18,8 +18,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ModelAndView;
 
-@Controller("adminUEUploadController")
-@RequestMapping("/admin/upload")
+//@Controller("adminUEUploadController")
+//@RequestMapping("/admin/upload")
 public class UEUploadController extends BaseController{
 	private static final Logger log = Logger.getLogger(UEUploadController.class);
 

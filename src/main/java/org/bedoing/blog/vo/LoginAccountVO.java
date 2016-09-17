@@ -1,6 +1,6 @@
 package org.bedoing.blog.vo;
 
-import org.bedoing.blog.po.LoginAccount;
+import org.bedoing.blog.entity.LoginAccount;
 
 /**
  * 

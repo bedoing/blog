@@ -2,21 +2,21 @@ package org.bedoing.blog.service;
 
 import java.util.List;
 
-import org.bedoing.blog.po.Statistics;
+import org.bedoing.blog.entity.Statistics;
 import org.bedoing.blog.vo.CommentsVO;
 
 
 public interface ICommentService {
 
-	public int addComment(CommentsVO comment);
-	public int countCommentByArticleId(int articleId);
-	public List<CommentsVO> findCommentsByArticleId(CommentsVO comment);
-	public void updateStatusById(CommentsVO comment);
-	public void deleteCommentsByArticleId(int articleId);
+	int addComment(CommentsVO comment);
+	int countCommentByArticleId(int articleId);
+	List<CommentsVO> findCommentsByArticleId(CommentsVO comment);
+	void updateStatusById(CommentsVO comment);
+	void deleteCommentsByArticleId(int articleId);
 	
-	public int addStatistics(Statistics statistics);
-	public int updateStatistics(Statistics statistics);
-	public Statistics findStatisticsByType(String type);
-	public Statistics findStatisticsById(int id);
-	public List<Statistics> findAllStatistics();
+	int addStatistics(Statistics statistics);
+	int updateStatistics(Statistics statistics);
+	Statistics findStatisticsByType(String type);
+	Statistics findStatisticsById(int id);
+	List<Statistics> findAllStatistics();
 }

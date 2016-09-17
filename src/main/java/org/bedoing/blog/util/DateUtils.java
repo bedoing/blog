@@ -369,7 +369,7 @@ public class DateUtils {
      *            传入的时间串，格式为'yyyy-MM-dd'
      * @return 返回<code>sdate</code>表示的时间
      */
-    public static final java.util.Date string2Date(String sdate, String format) {
+    public static final Date string2Date(String sdate, String format) {
         if (sdate == null || sdate.length() == 0) {
             return null;
         }

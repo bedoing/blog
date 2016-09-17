@@ -12,7 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.bedoing.blog.constant.Constant;
 import org.bedoing.blog.constant.UriConstant;
-import org.bedoing.blog.po.LoginAccount;
+import org.bedoing.blog.entity.LoginAccount;
 import org.bedoing.blog.security.EndecryptUtil;
 import org.bedoing.blog.service.IUserService;
 import org.bedoing.blog.vo.UserRegVO;
@@ -30,8 +30,8 @@ import com.alibaba.fastjson.JSON;
  * @author Ken
  *
  */
-@Controller
-@RequestMapping(value = "/user")
+//@Controller
+//@RequestMapping(value = "/user")
 public class UserController extends BaseController {
 	private static final Logger log = Logger.getLogger(UserController.class);
 	

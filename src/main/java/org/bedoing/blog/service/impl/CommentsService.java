@@ -1,21 +1,21 @@
 package org.bedoing.blog.service.impl;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.bedoing.blog.constant.MapperConstant;
-import org.bedoing.blog.orm.mybatis.MyBatisDAO;
-import org.bedoing.blog.po.Comments;
-import org.bedoing.blog.po.Statistics;
+import org.bedoing.blog.entity.Comments;
+import org.bedoing.blog.entity.Statistics;
+import org.bedoing.blog.mybatis.MyBatisDAO;
 import org.bedoing.blog.service.ICommentService;
 import org.bedoing.blog.util.DateUtils;
 import org.bedoing.blog.vo.CommentsVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+//@Service
 public class CommentsService implements ICommentService{
 	private static final Logger log = Logger.getLogger(CommentsService.class);
 

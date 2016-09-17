@@ -1,0 +1,19 @@
+spring:
+    profiles.active: local
+    port: 8080
+    jpa:
+        hibernate.ddl-auto: none
+        show-sql: true
+        properties.hibernate.enable_lazy_load_no_trans: true
+    freemarker.suffix: .html
+
+demo.db.schema: sql/schema.sql
+
+cxf:
+    path: /services
+    basepath: /services
+    servlet.init:
+        service-list-path: /info
+    jaxrs:
+        component-scan: true
+        classes-scan-packages: org.apache.cxf.jaxrs.swagger

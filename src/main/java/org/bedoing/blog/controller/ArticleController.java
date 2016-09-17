@@ -1,44 +1,41 @@
 package org.bedoing.blog.controller;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-
+import com.alibaba.fastjson.JSON;
 import org.apache.log4j.Logger;
 import org.bedoing.blog.commons.MapFactory;
 import org.bedoing.blog.commons.TagsDict;
 import org.bedoing.blog.constant.UriConstant;
-import org.bedoing.blog.po.Clicks;
-import org.bedoing.blog.po.Tag;
+import org.bedoing.blog.entity.Clicks;
+import org.bedoing.blog.entity.Tag;
 import org.bedoing.blog.service.IArticleService;
 import org.bedoing.blog.util.DateUtils;
 import org.bedoing.blog.vo.ArticleVO;
 import org.bedoing.blog.vo.ResponseVO;
 import org.bedoing.blog.vo.TagsVO;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.alibaba.fastjson.JSON;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.*;
 
-@RestController
-@RequestMapping(value = "/article")
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+
+//@RestController
+//@RequestMapping("/article")
 public class ArticleController extends BaseController{
 	private static final Logger log = Logger.getLogger(ArticleController.class);
 	
 	@Resource
 	private IArticleService articleService;
 	
-	@RequestMapping(value = "/articleList")
-	public @ResponseBody Map<String, Object> articleList(HttpServletRequest request, ArticleVO articleVO){
+	@RequestMapping(value = "/list", method = GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Map<String, Object> articleList(HttpServletRequest request, ArticleVO articleVO){
 		articleVO.setBeginRow((articleVO.getPageNo() - 1) * articleVO.getPageSize());
 		articleVO.setSortColumn("createTime");
 		
@@ -55,8 +52,8 @@ public class ArticleController extends BaseController{
 			.setResult(list);
 	}
 	
-	@RequestMapping(value = "/hotArticles")
-	public @ResponseBody Map<String, Object> hotArticles(HttpServletRequest request, ArticleVO articleVO){
+	@RequestMapping(value = "/hot", method = GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Map<String, Object> hotArticles(HttpServletRequest request, ArticleVO articleVO){
 		articleVO.setPageSize(10);
 		log.info(JSON.toJSONString(articleVO));
 		articleVO.setSortColumn("clicks");
@@ -69,8 +66,9 @@ public class ArticleController extends BaseController{
 			.setResult(list);
 	}
 	
-	@RequestMapping(value = "/countArticles")
-	public @ResponseBody ResponseVO countArticles() {
+	@RequestMapping(value = "/counts", method = GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.OK)
+	public ResponseVO countArticles() {
 		ResponseVO res = new ResponseVO();
 		ArticleVO vo = new ArticleVO();
 		// TODO
@@ -88,7 +86,7 @@ public class ArticleController extends BaseController{
 		return res;
 	}
 	
-	@RequestMapping(value = "/{articleId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{articleId}", method = GET)
 	public ModelAndView articleContent(@PathVariable int articleId){
 		ModelAndView mv = new ModelAndView(UriConstant.DEFAULT_ARTICLE_CONTENT);
 		ArticleVO article = articleService.findArticleById(articleId);
@@ -103,8 +101,8 @@ public class ArticleController extends BaseController{
 		return mv;
 	}
 	
-	@RequestMapping(value = "/tagsGroup", method = RequestMethod.GET)
-	public @ResponseBody Map<String, Object> tagsGroup(int tagType){
+	@RequestMapping(value = "/tagsGroup/{tagType}", method = GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Map<String, Object> tagsGroup(@PathVariable int tagType){
 		List<TagsVO> result = articleService.tagsGroup(tagType);
 		log.info(JSON.toJSONString(result));
 		
@@ -123,8 +121,8 @@ public class ArticleController extends BaseController{
 		return map;
 	}
 	
-	@RequestMapping(value = "/findArticlesByTag")
-	public @ResponseBody Map<String, Object> findArticlesByTagId(TagsVO tagsVO) {
+	@RequestMapping(value = "/list/tag={tagsVO}", method = GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Map<String, Object> findArticlesByTagId(@PathVariable TagsVO tagsVO) {
 		tagsVO.setBeginRow((tagsVO.getPageNo() - 1) * tagsVO.getPageSize());
 		tagsVO.setTagId(TagsDict.getTagIdByName(tagsVO.getTagName()));
 		tagsVO.setSortColumn("createTime");
@@ -141,8 +139,8 @@ public class ArticleController extends BaseController{
 				.setResult(list);
 	}
 	
-	@RequestMapping(value = "/getAllTagsByType")
-	public @ResponseBody List<TagsVO> getTags(int type){
+	@RequestMapping(value = "/tags/{type}", method = GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<TagsVO> getTags(@PathVariable int type){
 		List<Tag> list = articleService.findTagsByType(type);
 		List<TagsVO> result = new ArrayList<TagsVO>();
 		for (Tag t : list) {
@@ -157,7 +155,7 @@ public class ArticleController extends BaseController{
 		return result;
 	}
 	
-	@RequestMapping(value="/search")
+	@RequestMapping(value="/search", method = GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ModelAndView search(String content) {
 		ModelAndView mv = new ModelAndView(UriConstant.DEFAULT_SEARCH);
 		mv.addObject("keywords", content);

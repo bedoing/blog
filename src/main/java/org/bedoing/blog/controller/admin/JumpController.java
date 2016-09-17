@@ -11,8 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
  * @author Ken
  * 
  */
-@Controller("adminJumpController")
-@RequestMapping("/admin/place")
+//@Controller("adminJumpController")
+//@RequestMapping("/admin/place")
 public class JumpController extends BaseController {
 
 	@RequestMapping(value = "/adminArticle")

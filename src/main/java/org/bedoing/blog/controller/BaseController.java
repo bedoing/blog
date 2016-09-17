@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.bedoing.blog.constant.Constant;
-import org.bedoing.blog.po.LoginAccount;
+import org.bedoing.blog.entity.LoginAccount;
 
 public class BaseController {
 

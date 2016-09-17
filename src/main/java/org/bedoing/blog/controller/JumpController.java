@@ -1,19 +1,19 @@
 package org.bedoing.blog.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.bedoing.blog.constant.UriConstant;
-import org.bedoing.blog.po.LoginAccount;
-import org.springframework.stereotype.Controller;
+import org.bedoing.blog.entity.LoginAccount;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 
  * @author Ken
  * 
  */
-@Controller
+//@RestController
 public class JumpController extends BaseController {
 
 	// 菜单
@@ -27,7 +27,7 @@ public class JumpController extends BaseController {
 		return new ModelAndView(UriConstant.DEFAULT_PORTFOLIO);
 	}
 
-	@RequestMapping(value = "/articles")
+	@RequestMapping(value = "/article")
 	public ModelAndView toBlog() {
 		return new ModelAndView(UriConstant.DEFAULT_ARTICLES);
 	}
@@ -57,7 +57,7 @@ public class JumpController extends BaseController {
 		return new ModelAndView(UriConstant.DEFAULT_REGISTE);
 	}
 
-	@RequestMapping(value = "/login")
+	@RequestMapping(value = "/user/login")
 	public ModelAndView toLogin(HttpServletRequest request) {
 		LoginAccount user = getUserInfo(request);
 		if (null != user) {

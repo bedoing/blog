@@ -1,14 +1,10 @@
 package org.bedoing.blog.service.impl;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import org.bedoing.blog.commons.DictParam;
 import org.bedoing.blog.constant.MapperConstant;
-import org.bedoing.blog.orm.mybatis.MyBatisDAO;
-import org.bedoing.blog.po.LoginAccount;
-import org.bedoing.blog.po.LoginLog;
+import org.bedoing.blog.entity.LoginAccount;
+import org.bedoing.blog.entity.LoginLog;
+import org.bedoing.blog.mybatis.MyBatisDAO;
 import org.bedoing.blog.security.EndecryptUtil;
 import org.bedoing.blog.service.IUserService;
 import org.bedoing.blog.util.DateUtils;
@@ -17,7 +13,11 @@ import org.bedoing.blog.vo.UserRegVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+//@Service
 public class UserService implements IUserService{
 	@Autowired
 	private MyBatisDAO myBatisDAO;
@@ -32,7 +32,7 @@ public class UserService implements IUserService{
 	public void saveLoginAccount(UserRegVO user) {
 		LoginAccount loginAccount = new LoginAccount();
 		
-		loginAccount.setLoginAccount(user.getLoginAccount());
+		loginAccount.setAccountName(user.getLoginAccount());
 		loginAccount.setPassword(EndecryptUtil.decrypt(user.getPassword()));
 		loginAccount.setRole(user.getRole());
 		loginAccount.setMobilePhone(user.getMobilePhone());
@@ -65,7 +65,7 @@ public class UserService implements IUserService{
 		for (LoginAccount user : list) {
 			LoginAccountVO vo = new LoginAccountVO();
 			vo.setId(user.getId());
-			vo.setLoginAccount(user.getLoginAccount());
+			vo.setAccountName(user.getAccountName());
 			vo.setPassword(user.getPassword());
 			vo.setRole(user.getRole());
 			vo.setMobilePhone(user.getMobilePhone());

@@ -18,8 +18,5 @@ public class ConvertUtil {
 		
 		return openId;
 	}
-	
-	public static void main(String[] args) {
-		
-	}
+
 }

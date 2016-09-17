@@ -1,20 +1,13 @@
 package org.bedoing.blog.service.impl;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
+import com.alibaba.fastjson.JSON;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.bedoing.blog.commons.TagsDict;
 import org.bedoing.blog.constant.Constant;
 import org.bedoing.blog.constant.MapperConstant;
-import org.bedoing.blog.orm.mybatis.MyBatisDAO;
-import org.bedoing.blog.po.Article;
-import org.bedoing.blog.po.ArticleTags;
-import org.bedoing.blog.po.Clicks;
-import org.bedoing.blog.po.Subject;
-import org.bedoing.blog.po.Tag;
+import org.bedoing.blog.entity.*;
+import org.bedoing.blog.mybatis.MyBatisDAO;
 import org.bedoing.blog.service.IArticleService;
 import org.bedoing.blog.service.ICommentService;
 import org.bedoing.blog.util.DateUtils;
@@ -23,10 +16,12 @@ import org.bedoing.blog.vo.TagsVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.alibaba.fastjson.JSON;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
-@Service
-public class ArticleService implements IArticleService{
+//@Service
+public class ArticleService implements IArticleService {
 	private static final Logger log = Logger.getLogger(ArticleService.class);
 
 	@Autowired

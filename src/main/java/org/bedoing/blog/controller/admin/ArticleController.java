@@ -8,7 +8,7 @@ import org.bedoing.blog.commons.TagsDict;
 import org.bedoing.blog.constant.Constant;
 import org.bedoing.blog.constant.UriConstant;
 import org.bedoing.blog.controller.BaseController;
-import org.bedoing.blog.po.Tag;
+import org.bedoing.blog.entity.Tag;
 import org.bedoing.blog.service.IArticleService;
 import org.bedoing.blog.vo.ArticleVO;
 import org.bedoing.blog.vo.ResponseVO;
@@ -19,8 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
 
-@Controller("adminArticleController")
-@RequestMapping(value = "/admin/article")
+//@Controller("adminArticleController")
+//@RequestMapping(value = "/admin/article12")
 public class ArticleController extends BaseController{
 	private static final Logger log = Logger.getLogger(ArticleController.class);
 	

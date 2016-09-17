@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 
-@Controller
-@RequestMapping(value = "/comment")
+//@Controller
+//@RequestMapping(value = "/comment")
 public class CommentsController extends BaseController{
 	private static final Logger log = Logger.getLogger(CommentsController.class);
 	

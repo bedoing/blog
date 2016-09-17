@@ -4,7 +4,7 @@ import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
 import org.bedoing.blog.constant.UriConstant;
-import org.bedoing.blog.po.Clicks;
+import org.bedoing.blog.entity.Clicks;
 import org.bedoing.blog.service.IArticleService;
 import org.bedoing.blog.vo.ArticleVO;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-@RestController
-@RequestMapping(value = "/subject")
+//@RestController
+//@RequestMapping(value = "/subject")
 public class SubjectController extends BaseController{
 	private static final Logger log = Logger.getLogger(SubjectController.class);
 	

@@ -1,10 +1,11 @@
 package org.bedoing.blog.vo;
 
+import org.bedoing.blog.entity.Subject;
+import org.bedoing.blog.entity.Tag;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bedoing.blog.po.Subject;
-import org.bedoing.blog.po.Tag;
 
 
 public class ArticleVO extends BaseVO{

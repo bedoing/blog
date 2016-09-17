@@ -1,17 +1,10 @@
-*.class
-\.*
-target/
+# Created by .ignore support plugin (hsz.mobi)
+### Example user template template
+### Example user template
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.ear
-
+# IntelliJ project files
+.idea
 *.iml
-*.idea
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+target
+out
+gen
