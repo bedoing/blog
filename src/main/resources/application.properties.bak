@@ -21,15 +21,3 @@ spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5Dialect
 server.port=8088
 server.session.timeout=30
 server.tomcat.uri-encoding=UTF-8
-
-
-# mybatis.config= classpath:mybatis-config.xml
-mybatis.mapperLocations=classpath:mappers/*.xml
-# domain object's package
-mybatis.typeAliasesPackage=org.bedoing.blog.entity
-# handler's package
-# mybatis.typeHandlersPackage=
-# check the mybatis configuration exists
-# mybatis.check-config-location=
-# mode of execution. Default is SIMPLE
-# mybatis.executorType=

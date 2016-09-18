@@ -3,8 +3,11 @@ package org.bedoing.blog.mybatis;
 import java.io.Serializable;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class MyBatisDAO extends SqlSessionDaoSupport {
 
 	public int save(String key, Object object){

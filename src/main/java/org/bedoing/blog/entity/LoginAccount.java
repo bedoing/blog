@@ -21,16 +21,16 @@ public class LoginAccount {
 
 	private String accountName;
 	private String password;
-	private int role;
+	private Integer role;
 	private String mobilePhone;
-	private int sex;
+	private Integer sex;
 	private String nickname;
 	private String headimgurl;
 	private String country;
 	private String city;
 	private String province;
 	private Date createTime;
-	private int status;
+	private Integer status;
 
 	@Override
 	public String toString() {

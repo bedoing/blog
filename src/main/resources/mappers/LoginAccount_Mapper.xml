@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">   
+<mapper namespace="loginAccount">  
+	
+	<insert id="saveLoginAccount" parameterType="loginAccount" useGeneratedKeys="true" keyProperty="id">
+		insert into loginAccount 
+			(
+				loginAccount,
+				password,
+				role,
+				mobilePhone,
+				sex,
+				nickname,
+				headimgurl,
+				country,
+				city,
+				province,
+				createTime,
+				status
+			) 
+			values (
+				#{loginAccount},
+				#{password},
+				#{role},
+				#{mobilePhone},
+				#{sex},
+				#{nickname},
+				#{headimgurl},
+				#{country},
+				#{city},
+				#{province},
+				#{createTime},
+				#{status}
+			)
+	</insert>
+	
+	<select id="countByLoginAccount" resultType="int">
+		select count(id) from loginAccount where loginAccount = #{loginAccount}
+	</select>
+	
+	<select id="findUserByLoginAccount" resultType="loginAccount">
+		select * from loginAccount where loginAccount = #{loginAccount}
+	</select>
+	
+	<select id="findUserByCriteria" resultType="loginAccount">
+		select * from loginAccount
+	</select>
+	
+	
+	
+	
+	
+	
+</mapper>  

@@ -11,8 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.rest.webmvc.RootResourceInformation;
 import org.springframework.stereotype.Component;
 
-@Aspect
-@Component
+//@Aspect
+//@Component
 public class LogAspect {
     private Logger logger = LoggerFactory.getLogger(getClass());
 

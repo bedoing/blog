@@ -19,7 +19,7 @@ import javax.sql.DataSource;
 //@PropertySource({"classpath:application.yml"})
 //@PropertySource({"classpath:application.properties"})
 public class DatabaseConfig {
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    /*private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
     private Environment env;
@@ -38,5 +38,5 @@ public class DatabaseConfig {
     @Bean
     public DefaultAdvisorAutoProxyCreator getDefaultAdvisorAutoProxyCreator(){
         return new DefaultAdvisorAutoProxyCreator();
-    }
+    }*/
 }

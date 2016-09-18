@@ -1,6 +1,6 @@
 spring:
     profiles.active: local
-    port: 8080
+    port: 8088
     jpa:
         hibernate.ddl-auto: none
         show-sql: true
