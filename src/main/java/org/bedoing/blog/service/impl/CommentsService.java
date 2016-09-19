@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-//@Service
+@Service
 public class CommentsService implements ICommentService{
 	private static final Logger log = Logger.getLogger(CommentsService.class);
 

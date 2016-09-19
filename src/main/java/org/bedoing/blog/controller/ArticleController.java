@@ -26,8 +26,8 @@ import java.util.*;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
-//@RestController
-//@RequestMapping("/article")
+@RestController
+@RequestMapping("/article")
 public class ArticleController extends BaseController{
 	private static final Logger log = Logger.getLogger(ArticleController.class);
 	

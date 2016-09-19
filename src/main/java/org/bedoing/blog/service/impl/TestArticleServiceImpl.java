@@ -16,7 +16,7 @@ public class TestArticleServiceImpl implements ITestArticleService {
     private MyBatisDAO myBatisDAO;
 
     @Override
-    public Article findArticleById(String articleId) {
+    public Article findArticleById(int articleId) {
         Article a = myBatisDAO.get(MapperConstant.ARTICLE_findArticleById, articleId);
         return a;
     }

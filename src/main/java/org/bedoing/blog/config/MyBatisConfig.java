@@ -15,8 +15,8 @@ import com.alibaba.druid.pool.DruidDataSourceFactory;
 /**
  * Created by ejiggun on 9/18/2016.
  */
-@Configuration
-@MapperScan(basePackages="org.bedoing.blog.entity")
+//@Configuration
+//@MapperScan(basePackages="org.bedoing.blog.entity")
 public class MyBatisConfig {
 
     @Autowired

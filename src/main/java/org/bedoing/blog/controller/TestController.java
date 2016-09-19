@@ -37,7 +37,7 @@ public class TestController {
     }
 
     @RequestMapping(value = "article/{articleId}", method = GET, produces = MediaType.APPLICATION_JSON_VALUE )
-    public Article getArticle(@PathVariable String articleId){
+    public Article getArticle(@PathVariable int articleId){
         Article article = articleService.findArticleById(articleId);
         return article;
     }

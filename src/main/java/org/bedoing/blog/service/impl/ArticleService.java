@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-//@Service
+@Service
 public class ArticleService implements IArticleService {
 	private static final Logger log = Logger.getLogger(ArticleService.class);
 
