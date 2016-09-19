@@ -1,25 +1,15 @@
 package org.bedoing.blog.entity;
 
+import lombok.Data;
+
 /**
  * 
  * @author ken
  *
  */
-public class Clicks extends BasePO {
+@Data
+public class Clicks extends BaseEntity {
 	
 	private int articleId;
 	private int clicks;
-	
-	public int getArticleId() {
-		return articleId;
-	}
-	public void setArticleId(int articleId) {
-		this.articleId = articleId;
-	}
-	public int getClicks() {
-		return clicks;
-	}
-	public void setClicks(int clicks) {
-		this.clicks = clicks;
-	}
 }

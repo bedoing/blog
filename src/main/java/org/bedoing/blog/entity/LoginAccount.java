@@ -14,7 +14,7 @@ import java.util.Date;
 @Entity
 @Data
 @Table(name = "login_account")
-public class LoginAccount {
+public class LoginAccount extends BaseEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
@@ -31,9 +31,4 @@ public class LoginAccount {
 	private String province;
 	private Date createTime;
 	private Integer status;
-
-	@Override
-	public String toString() {
-		return JSON.toJSONString(this);
-	}
 }

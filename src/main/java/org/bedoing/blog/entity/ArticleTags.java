@@ -1,11 +1,14 @@
 package org.bedoing.blog.entity;
 
+import lombok.Data;
+
 /**
  * 
  * @author ken
  *
  */
-public class ArticleTags extends BasePO {
+@Data
+public class ArticleTags extends BaseEntity {
 	
 	private int articleId;
 	private int tagId;
@@ -14,19 +17,6 @@ public class ArticleTags extends BasePO {
 	
 	public ArticleTags(int articleId, int tagId) {
 		this.articleId = articleId;
-		this.tagId = tagId;
-	}
-
-	public int getArticleId() {
-		return articleId;
-	}
-	public void setArticleId(int articleId) {
-		this.articleId = articleId;
-	}
-	public int getTagId() {
-		return tagId;
-	}
-	public void setTagId(int tagId) {
 		this.tagId = tagId;
 	}
 }

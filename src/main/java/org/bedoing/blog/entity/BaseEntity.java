@@ -7,7 +7,7 @@ import com.alibaba.fastjson.JSON;
  * @author ken
  *
  */
-public class BasePO {
+public class BaseEntity {
 
 	@Override
 	public String toString() {

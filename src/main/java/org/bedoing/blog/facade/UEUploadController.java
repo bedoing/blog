@@ -1,15 +1,6 @@
-package org.bedoing.blog.controller;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.Calendar;
-import java.util.Iterator;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+package org.bedoing.blog.facade;
 
 import org.apache.log4j.Logger;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,9 +8,16 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.IOException;
+import java.util.Calendar;
+import java.util.Iterator;
+
 //@Controller
 //@RequestMapping("/upload")
-public class UEUploadController extends BaseController{
+public class UEUploadController extends BaseController {
 	private static final Logger log = Logger.getLogger(UEUploadController.class);
 
 	@RequestMapping(value = "/toUploadPage")

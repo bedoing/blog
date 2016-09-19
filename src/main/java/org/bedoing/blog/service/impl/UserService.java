@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-//@Service
+@Service
 public class UserService implements IUserService{
 	@Autowired
 	private MyBatisDAO myBatisDAO;
