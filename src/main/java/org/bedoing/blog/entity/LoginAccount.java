@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
@@ -11,16 +12,18 @@ import java.util.Date;
  * @author Ken
  *
  */
-@Entity
 @Data
-@Table(name = "login_account")
-public class LoginAccount extends BaseEntity {
+@Entity
+@Table
+public class LoginAccount {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-
+	@NotNull
 	private String accountName;
+	@NotNull
 	private String password;
+	@NotNull
 	private Integer role;
 	private String mobilePhone;
 	private Integer sex;
@@ -29,6 +32,8 @@ public class LoginAccount extends BaseEntity {
 	private String country;
 	private String city;
 	private String province;
+	@NotNull
 	private Date createTime;
+	@NotNull
 	private Integer status;
 }

@@ -181,11 +181,11 @@ CREATE TABLE `login_account` (
 INSERT INTO `login_account` VALUES (1,'admin','9qt%2BCzM5rKaD3y2iRrDekwjRK5NhGCM%2F',1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-12-14 00:37:58',1);
 
 #
-# Structure for table "loginlog"
+# Structure for table "login_log"
 #
 
-DROP TABLE IF EXISTS `loginlog`;
-CREATE TABLE `loginlog` (
+DROP TABLE IF EXISTS `login_log`;
+CREATE TABLE `login_log` (
   `logId` int(11) NOT NULL AUTO_INCREMENT,
   `loginAccount` int(64) DEFAULT NULL,
   `loginType` int(2) DEFAULT NULL COMMENT '1-登录\n            2-主动退出\n            3-被动退出',
@@ -197,7 +197,7 @@ CREATE TABLE `loginlog` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 #
-# Data for table "loginlog"
+# Data for table "login_log"
 #
 
 

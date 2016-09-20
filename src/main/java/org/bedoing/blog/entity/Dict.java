@@ -2,14 +2,19 @@ package org.bedoing.blog.entity;
 
 import lombok.Data;
 
+import javax.persistence.*;
+
 /**
  * 
  * @author Ken
  *
  */
 @Data
-public class Dict extends BaseEntity {
-
+@Entity
+@Table
+public class Dict {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int dictId;
 	private String dictType;
 	private String dictCode;

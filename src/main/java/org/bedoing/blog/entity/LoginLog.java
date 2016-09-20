@@ -2,6 +2,7 @@ package org.bedoing.blog.entity;
 
 import lombok.Data;
 
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -10,8 +11,11 @@ import java.util.Date;
  *
  */
 @Data
-public class LoginLog extends BaseEntity {
-
+@Entity
+@Table
+public class LoginLog {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int logId;
 	private int loginAccount;
 	private int log;

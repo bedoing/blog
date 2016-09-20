@@ -1,6 +1,5 @@
 package org.bedoing.blog.service.impl;
 
-import com.alibaba.fastjson.JSON;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.bedoing.blog.commons.TagsDict;
@@ -8,6 +7,7 @@ import org.bedoing.blog.constant.Constant;
 import org.bedoing.blog.constant.MapperConstant;
 import org.bedoing.blog.entity.*;
 import org.bedoing.blog.mybatis.MyBatisDAO;
+import org.bedoing.blog.repository.ArticleRepository;
 import org.bedoing.blog.service.IArticleService;
 import org.bedoing.blog.service.ICommentService;
 import org.bedoing.blog.util.DateUtils;
@@ -16,16 +16,20 @@ import org.bedoing.blog.vo.TagsVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Service
+@Transactional
 public class ArticleService implements IArticleService {
 	private static final Logger log = Logger.getLogger(ArticleService.class);
 
 	@Autowired
 	private MyBatisDAO myBatisDAO;
+	@Autowired
+	private ArticleRepository articleRepository;
 	@Autowired
 	private ICommentService commentService;
 
@@ -42,8 +46,9 @@ public class ArticleService implements IArticleService {
 		a.setLastUpdTime(a.getCreateTime());
 		a.setArticleType(articleVO.getArticleType());
 		
-		log.info(JSON.toJSONString(a));
-		myBatisDAO.save(MapperConstant.ARTICLE_addArticle, a);
+		log.info(a.toString());
+		a = articleRepository.save(a);
+//		myBatisDAO.save(MapperConstant.ARTICLE_addArticle, a);
 		log.info("articleId: " + a.getArticleId());
 		
 		if(a.getArticleType() == 2) {

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/bootstrap 3.3.5/css/bootstrap.css}" />
+    <script th:src="@{/bootstrap 3.3.5/js/bootstrap.js}"></script>
+</head>
+<body>
+<table id="table">
+    <span th:text="${article.title}"/>
+    <tr>
+        <td class="username">${article.title}</td>
+        <td class="usertype">${article.content}</td>
+    </tr>
+</table>
+</body>
+</html>

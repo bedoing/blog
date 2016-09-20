@@ -12,7 +12,7 @@ public class UriConstant {
 	public static final String DEFAULT_COMMENT = "default/comment";
 	public static final String DEFAULT_SEARCH = "default/searchResult";
 	
-	public static final String DEFAULT_ARTICLE_CONTENT = "default/articleContent";
+	public static final String DEFAULT_ARTICLE_CONTENT = "blog/default/articleContent";
 	
 	public static final String DEFAULT_REGISTE = "default/registe";
 	

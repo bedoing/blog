@@ -2,16 +2,25 @@ package org.bedoing.blog.entity;
 
 import lombok.Data;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 /**
  * 
  * @author ken
  *
  */
 @Data
-public class Statistics extends BaseEntity {
-
+@Entity
+@Table
+public class Statistics {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-     private String type;
-     private int result;
-     private long statisticalTime;
+    @NotNull
+    private String type;
+    @NotNull
+    private int result;
+    @NotNull
+    private long statisticalTime;
 }
