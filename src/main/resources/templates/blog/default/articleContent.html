@@ -1,10 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8" />
-    <title>Title</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/bootstrap 3.3.5/css/bootstrap.css}" />
-    <script th:src="@{/bootstrap 3.3.5/js/bootstrap.js}"></script>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head th:insert="~{header :: header}">
+    <title>Test thymeleaf</title>
 </head>
 <body>
 <table id="table">
@@ -14,5 +12,11 @@
         <td class="usertype">${article.content}</td>
     </tr>
 </table>
+
+<div th:insert="~{footer2::copy}">&copy; 2011 The Static Templates</div>
+<div th:insert="~{footer::copy}"></div>
+
+<!--<h1 layout:fragment="header">Layout</h1>-->
+<div layout:fragment="copy">Fake content</div>
 </body>
 </html>
