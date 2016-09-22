@@ -1,8 +1,7 @@
 $(document).ready(function(){
 	
     $("button[id=index-more]").click(function(){
-            var newsContent = $("div[id=_news_content]");
-
+        var newsContent = $("div[id=_news_content]");
     	var indexMore = $("button[id=index-more]"); 
     	// var imgMore = $("#_index_news_content_more");
     	var pageNo = $("input[name='_index_news_content_pageNo']");
@@ -14,8 +13,8 @@ $(document).ready(function(){
     	var newsVo = {
                 "pageNo" : pageNo.val(),
                 "articleType": 1
-	};
-    	more(PRE_URI_LIST + "/list", newsVo, newsContent, 'Y', function(flag){
+	    };
+    	more("/article/list", newsVo, newsContent, 'Y', function(flag){
     		if(flag){
     			indexMore.text("没有更多的文章")	
     		}else{
@@ -27,37 +26,22 @@ $(document).ready(function(){
 });
 
 function initPage(url, targetDivId, paramObj, callback) {
-        var targetDiv = $("div[id=" + targetDivId +"]");
-        /*if(paramObj == "" || paramObj == "undefined") {
-            var newsVo = {
-                "pageNo" : 1
-            };
-        }else{
+    var targetDiv = $("div[id=" + targetDivId +"]");
 
-        }*/
-        more(url, paramObj, targetDiv, 'Y', callback);
+    more(url, paramObj, targetDiv, 'Y', callback);
 }
 
 function more(url, paramObj, targetDiv, style, callback){
-	$.ajax({  
-                type: "post",  
-                url: url,
-                dataType: "json",
-                data: paramObj,     
-                success: function(response) {
-                    for (var i = 0; i < response.result.length; i++) {
-                    	var newsObj = response.result[i];
-                    	targetDiv.append(initNewsContent(newsObj, i+1, style));
-                    };
-                    var flag = (response.pageNo * response.pageSize) >= response.total;
-                    if(callback){
-                    	callback(flag);
-                    }
-                },  
-                error: function(response) {  
-                    console.error(response);  
-                }  
-            });
+    GET(url, paramObj, function(res) {
+        for (var i = 0; i < res.result.length; i++) {
+            var newsObj = res.result[i];
+            targetDiv.append(initNewsContent(newsObj, i+1, style));
+        };
+        var flag = (res.pageNo * res.pageSize) >= res.total;
+        if(callback){
+            callback(flag);
+        }
+    });
 }
 
 function initNewsContent(newsObj, idx, style){
@@ -104,21 +88,13 @@ function initNewsContent(newsObj, idx, style){
 function listTitle(url, paramObj, targetDivId, callback) {
     var targetDiv = $("ul[id=" + targetDivId +"]");
     targetDiv.empty();
-    $.ajax({  
-                type: "GET",
-                url: url,
-                dataType: "json",
-                data: paramObj,     
-                success: function(response) {
-                    for (var i = 0; i < response.result.length; i++) {
-                        var newsObj = response.result[i];
-                        targetDiv.append(listTitleContent(newsObj));
-                    };
-                },  
-                error: function(response) {  
-                    console.error(response);  
-                }  
-            });
+
+    GET(url, paramObj, function(res) {
+        for (var i = 0; i < res.result.length; i++) {
+            var newsObj = res.result[i];
+            targetDiv.append(listTitleContent(newsObj));
+        };
+    });
 }
 
 function listTitleContent(newsObj) {
@@ -140,9 +116,7 @@ function listTitleContent(newsObj) {
 
 function myTags(tagType) {
     var myTags = echarts.init(document.getElementById('_myTags'));
-    /*var names;
-    var values;*/
-    
+
     var option = {
         calculable: false,
         grid: {
@@ -211,18 +185,9 @@ function myTags(tagType) {
 }
 
 function refreshData(tagType, callback) {
-    $.ajax({
-        type: "GET",  
-        url: "/blog/article/" + "tagsGroup",
-        dataType: "json",
-        data: {"tagType": tagType},
-        success: function(res) {
-            callback(res);
-        },  
-        error: function(res) {  
-            console.error(res);  
-        }  
-    }); 
+    GET("/tag/group/" + tagType, null, function(res) {
+        callback(res);
+    });
 }
 
 /*function dbClickTag(param) {
@@ -254,57 +219,23 @@ function clickTag(param) {
 function initTagsCloud (funName, type) {
         $("#_tagsCloud").empty();
 
-        $.ajax({
-                type: "GET",
-//                dataType: "json",
-                url: "/blog/article/" + "tags/" + type +"",
-//                data: {"type": type},
-                success: function(res){
-                    for (var i = 0; i < res.length; i++) {
-                        $("#_tagsCloud").append('<span class="label label-info label-page-custom" onClick="' + funName + '(' + res[i].tagId + ',\'' + res[i].tagName + '\')" id="' + res[i].tagId +'">' + res[i].tagName + '</span>');
-                    };
-                }
-            });
+        GET("/tag/list", null, function(res) {
+            for (var i = 0; i < res.length; i++) {
+                var tag = res[i];
+                $("#_tagsCloud").append('<span class="label label-info label-page-custom" onClick="' + funName + '(' + tag.tagId + ',\'' + tag.tagName + '\')" id="' + tag.tagId +'">' + tag.tagName + '</span>');
+            };
+        });
 }
 
 function tagClick(tagId, tagName) {
         window.location = PRE_URI_TAG + tagName;
 }
 
-function statistics(){
-    /*$.ajax({
-        type: "GET",
-        url: "/blog/article/" + "counts",
-        contentType: 'application/json',
-        success: function(res) {
-            $("#_articlesCount").text(res.retData.articleCount);
-            $("#_subjectsCount").text(res.retData.subjectCount);
-            $("#_days").text(res.retData.dayCount);
-        }
-    });*/
+function statistics() {
 
-    fetch("/blog/article/counts",
-        {
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            },
-            method: "GET"/*,
-            body: JSON.stringify({description: description, complete: false})*/
-        })
-        .then(
-            function(response){
-                if(response.status!==200){
-                    console.log("存在一个问题，状态码为："+response.status);
-                    return;
-                }
-                //检查响应文本
-                response.json().then(function(data){
-                    console.log(data);
-                });
-            }
-        )
-        .catch(function(err){
-            console.log("Fetch错误:"+err);
-        });
+    GET("/article/counts", null, function(res){
+        $("#_articlesCount").text(res.retData.articleCount);
+        $("#_subjectsCount").text(res.retData.subjectCount);
+        $("#_days").text(res.retData.dayCount);
+    });
 }

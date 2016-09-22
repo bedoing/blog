@@ -24,6 +24,29 @@ $(document).ready(function() {
 			});
 		});
 	});
+
+	GET = function(url, paramData, callback) {
+	    fetch(url, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "GET",
+            data: paramData
+        }).then(function(response){
+            if(response.status!==200){
+                console.log("WRONG, STATUS: "+response.status);
+                return;
+            }
+            response.json().then(function(data) {
+                if(callback){
+                    callback(data);
+                }
+            });
+        }).catch(function(err){
+            console.log("Fetch ERROR: "+err);
+        });
+	}
 });
 
 function headerClass() {

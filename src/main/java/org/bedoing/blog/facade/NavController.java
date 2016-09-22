@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
  * 
  */
 @RestController
-public class JumpController extends BaseController {
+public class NavController extends BaseController {
 
 	// 菜单
 	@RequestMapping(value = "/index")

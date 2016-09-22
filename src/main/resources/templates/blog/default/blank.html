@@ -3,13 +3,7 @@
 <head th:include="blog/default/header :: header" th:with="titleName=" />
 
 <body>
-<table id="table">
-    <span th:text="${article.title}"/>
-    <tr>
-        <td class="username">${article.title}</td>
-        <td class="usertype">${article.content}</td>
-    </tr>
-</table>
+
 
 <div th:include="blog/default/footer :: copy"></div>
 </body>

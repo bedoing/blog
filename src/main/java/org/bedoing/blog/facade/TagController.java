@@ -29,7 +29,7 @@ public class TagController extends BaseController {
     @Resource
     private IArticleService articleService;
 
-    @RequestMapping(value = "/tagsGroup/{tagType}", method = GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/group/{tagType}", method = GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public Map<String, Object> tagsGroup(@PathVariable int tagType){
         List<TagsVO> result = articleService.tagsGroup(tagType);
         log.info(JSON.toJSONString(result));
@@ -47,6 +47,22 @@ public class TagController extends BaseController {
         map.put("data", result);
 
         return map;
+    }
+
+    @RequestMapping(value = "/list", method = GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<TagsVO> allTags(){
+        List<Tag> list = articleService.findTagsByType(-1);
+        List<TagsVO> result = new ArrayList<TagsVO>();
+        for (Tag t : list) {
+            TagsVO vo = new TagsVO();
+            vo.setTagId(t.getTagId());
+            vo.setTagName(t.getTagName());
+            vo.setTagType(t.getTagType());
+
+            result.add(vo);
+        }
+
+        return result;
     }
 
     @RequestMapping(value = "/tags/{type}", method = GET, produces = MediaType.APPLICATION_JSON_VALUE)

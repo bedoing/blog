@@ -1,10 +1,9 @@
-/*$("#_userRegisteBtn").click(function(){
-	console.log($("#_userRegiste").serialize())
-	$.ajax({
-		url: PRE_URI + "user/userRegiste",
-		data: $("#_userRegiste").serialize(),
-		success: function(res){
-			console.log(res)
-		}
-	});
-});*/
+$().ready(function(){
+    initTagsCloud("tagClick", -1);
+    statistics();
+    var articleVO = {
+        "articleType": 1,
+        "pageSize": 5
+    };
+    initPage("article/list", "_news_content", articleVO);
+});
