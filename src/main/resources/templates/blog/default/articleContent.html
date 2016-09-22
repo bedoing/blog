@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
-<head th:insert="~{header :: header}">
-    <title>Test thymeleaf</title>
-</head>
+<head th:include="blog/default/header :: header" />
 <body>
 <table id="table">
     <span th:text="${article.title}"/>
@@ -13,10 +11,6 @@
     </tr>
 </table>
 
-<div th:insert="~{footer2::copy}">&copy; 2011 The Static Templates</div>
-<div th:insert="~{footer::copy}"></div>
-
-<!--<h1 layout:fragment="header">Layout</h1>-->
-<div layout:fragment="copy">Fake content</div>
+<div th:include="blog/default/footer :: copy"></div>
 </body>
 </html>
