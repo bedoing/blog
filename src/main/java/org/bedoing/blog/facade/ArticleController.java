@@ -6,23 +6,23 @@ import org.bedoing.blog.commons.MapFactory;
 import org.bedoing.blog.commons.TagsDict;
 import org.bedoing.blog.constant.UriConstant;
 import org.bedoing.blog.entity.Clicks;
-import org.bedoing.blog.entity.Tag;
 import org.bedoing.blog.service.IArticleService;
 import org.bedoing.blog.util.DateUtils;
 import org.bedoing.blog.vo.ArticleVO;
 import org.bedoing.blog.vo.ResponseVO;
 import org.bedoing.blog.vo.TagsVO;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.*;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
@@ -53,7 +53,7 @@ public class ArticleController extends BaseController {
 	}
 	
 	@RequestMapping(value = "/hot", method = GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Map<String, Object> hotArticles(HttpServletRequest request, ArticleVO articleVO){
+	public Map<String, Object> hotArticles(ArticleVO articleVO){
 		articleVO.setPageSize(10);
 		log.info(JSON.toJSONString(articleVO));
 		articleVO.setSortColumn("clicks");

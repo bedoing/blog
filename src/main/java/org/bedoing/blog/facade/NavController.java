@@ -2,11 +2,15 @@ package org.bedoing.blog.facade;
 
 import org.bedoing.blog.constant.UriConstant;
 import org.bedoing.blog.entity.LoginAccount;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
  * 
@@ -66,10 +70,9 @@ public class NavController extends BaseController {
 		return new ModelAndView(UriConstant.ADMIN_LOGIN);
 	}
 
-	@RequestMapping(value = "/articleByTag")
-	public ModelAndView toArtidcleByTag(String tagName) {
-		return new ModelAndView(UriConstant.DEFAULT_BLOG_ARTICLE_BY_TAG)
-				.addObject("tagName", tagName);
+	@RequestMapping(value = "/articles/tag={tagName}", method = GET)
+	public ModelAndView toArtidcleByTag(@PathVariable String tagName) {
+		return new ModelAndView(UriConstant.DEFAULT_BLOG_ARTICLE_BY_TAG).addObject("tagName", tagName);
 	}
 
 	// TODO

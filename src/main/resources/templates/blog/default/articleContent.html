@@ -1,16 +1,61 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:include="blog/default/header :: header" th:with="titleName=" />
+<head th:include="blog/default/header :: header" th:with="titleName=${article.title}" />
+<link rel="stylesheet" type="text/css" th:href="@{/ueditor/third-party/SyntaxHighlighter/shCoreDefault.css}"/>
 
 <body>
-<table id="table">
-    <span th:text="${article.title}"/>
-    <tr>
-        <td class="username">${article.title}</td>
-        <td class="usertype">${article.content}</td>
-    </tr>
-</table>
+<div th:include="blog/default/nav :: nav" />
 
-<div th:include="blog/default/footer :: copy"></div>
+<!-- News -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-11">
+            <article class="article">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2><a href="#">${article.title }</a></h2>
+                        <p><p>
+                        <div class="title-two">
+                            <!-- <small>' + idx + '</small> -->
+                            <i class="icon-time"> </i>
+                            <a href="#"><time>${article.createTimeStr }</time></a>
+                            &nbsp;
+                            <i class="icon-eye-open"> </i>
+                            <a>${article.clicks}</a>&nbsp;&nbsp;
+                            <i class="icon-tags"> </i>
+                                        <span id="_articleContentTags">
+                                        </span>
+
+                        </div>
+                        </p>
+                        <p class="lead">
+                            ${article.content }
+                        </p>
+                        </p>
+                    </div>
+                </div>
+            </article>
+            <!--</div>-->
+
+        </div>
+        <div class="col-md-1">
+            <!-- 此处也<abbr title="attribute">省略N个字...</abbr> -->
+        </div>
+    </div>
+</div>
+<!-- blank -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-11">
+            <div th:include="blog/default/comment :: comment"></div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>
+
+<script th:src="@{/ueditor/third-party/SyntaxHighlighter/shCore.js}"></script>
+<script th:src="@{/ueditor/ueditor.parse.min.js}"></script>
+
+<footer th:include="blog/default/footer :: copy"></footer>
 </body>
 </html>

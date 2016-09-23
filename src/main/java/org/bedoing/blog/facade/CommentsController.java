@@ -8,6 +8,8 @@ import org.bedoing.blog.service.IArticleService;
 import org.bedoing.blog.service.ICommentService;
 import org.bedoing.blog.vo.CommentsVO;
 import org.bedoing.blog.vo.ResponseVO;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +18,10 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
+
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
 @RestController
 @RequestMapping(value = "/comment")
@@ -27,8 +33,8 @@ public class CommentsController extends BaseController {
 	@Resource
 	private ICommentService commentService;
 	
-	@RequestMapping(value = "/list")
-	public @ResponseBody Map<String, Object> commentList(HttpServletRequest request, CommentsVO comment){
+	@RequestMapping(value = "/list", method = GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Map<String, Object> commentList(@PathVariable CommentsVO comment){
 		comment.setPageSize(100);
 		comment.setBeginRow((comment.getPageNo() - 1) * comment.getPageSize());
 		log.info(JSON.toJSONString(comment));
@@ -46,8 +52,8 @@ public class CommentsController extends BaseController {
 			.setResult(list);
 	}
 	
-	@RequestMapping(value = "/addComment")
-	public @ResponseBody ResponseVO addComment(CommentsVO comment) {
+	@RequestMapping(value = "/{comment}", method = POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseVO addComment(@PathVariable CommentsVO comment) {
 		log.info(JSON.toJSONString(comment));
 		ResponseVO res = new ResponseVO();
 		if(comment == null || comment.getContent() == null || comment.getContent().trim() == ""){
@@ -61,8 +67,8 @@ public class CommentsController extends BaseController {
 		return res;
 	}
 	
-	@RequestMapping(value = "/updatecomment")
-	public @ResponseBody ResponseVO updatecomment(CommentsVO comment) {
+	@RequestMapping(value = "/{comment}", method = PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseVO updatecomment(@PathVariable CommentsVO comment) {
 		commentService.updateStatusById(comment);
 		ResponseVO res = new ResponseVO();
 		res.setRetMsg(Constant.SUCCESS);
