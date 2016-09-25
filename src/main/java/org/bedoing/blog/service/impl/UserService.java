@@ -13,11 +13,13 @@ import org.bedoing.blog.vo.UserRegVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Service
+@Transactional
 public class UserService implements IUserService{
 	@Autowired
 	private MyBatisDAO myBatisDAO;
@@ -52,12 +54,7 @@ public class UserService implements IUserService{
 	public int countByLoginAccount(String loginAccount) {
 		return myBatisDAO.get(MapperConstant.LOGINACCOUNT_countByLoginAccount, loginAccount);
 	};
-	
-	@Override
-	public LoginAccount findUserByLoginAccount(String loginAccount) {
-		return myBatisDAO.get(MapperConstant.LOGINACCOUNT_findUserByLoginAccount, loginAccount);
-	};
-	
+
 	@Override
 	public List<LoginAccountVO> findUserByCriteria(Object obj) {
 		List<LoginAccount> list = myBatisDAO.getList(MapperConstant.LOGINACCOUNT_findUserByCriteria, obj);

@@ -14,6 +14,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 /**
  * Created by Administrator on 2016/9/19.
@@ -26,7 +27,7 @@ public class SearchController extends BaseController {
     @Resource
     private IArticleService articleService;
 
-    @RequestMapping(value="/{content}", method = GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value="/{content}", method = {GET, POST}, produces = MediaType.APPLICATION_JSON_VALUE)
     public ModelAndView search(@PathVariable String content) {
         ModelAndView mv = new ModelAndView(UriConstant.DEFAULT_SEARCH);
         mv.addObject("keywords", content);

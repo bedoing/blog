@@ -9,7 +9,7 @@ var alertInfo = $("#_alertInfo");
                         var content = ue.getContent();
 
                         if(content == null || content.trim() == "") {
-                                // return ;
+                                 return ;
                         }
 
                         var comment = {
@@ -24,9 +24,9 @@ var alertInfo = $("#_alertInfo");
                                         showMsg();
                                         showAlertInfo("提交中...");
                                 },
-                                type: "post",
+                                type: "POST",
                                 dataType: "json",
-                                url: PRE_URI_COMMENT + "/addComment",
+                                url: "/comment",
                                 data: comment,
                                 success: function(res){
                                     if(res.retMsg == "success") {
@@ -91,7 +91,7 @@ var alertInfo = $("#_alertInfo");
         $.ajax({
             type: "post",
             dataType: "json",
-            url: PRE_URI_COMMENT + "/commentList",
+            url: "/comment/list",
             data: comment,
             success: function(res){
                 for (var i = 0; i < res.result.length; i++) {

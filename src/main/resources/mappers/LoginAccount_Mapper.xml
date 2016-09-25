@@ -3,9 +3,9 @@
 <mapper namespace="loginAccount">  
 	
 	<insert id="saveLoginAccount" parameterType="loginAccount" useGeneratedKeys="true" keyProperty="id">
-		insert into loginAccount 
+		insert into login_account
 			(
-				loginAccount,
+				accountName,
 				password,
 				role,
 				mobilePhone,
@@ -19,7 +19,7 @@
 				status
 			) 
 			values (
-				#{loginAccount},
+				#{accountName},
 				#{password},
 				#{role},
 				#{mobilePhone},
@@ -35,15 +35,11 @@
 	</insert>
 	
 	<select id="countByLoginAccount" resultType="int">
-		select count(id) from loginAccount where loginAccount = #{loginAccount}
-	</select>
-	
-	<select id="findUserByLoginAccount" resultType="loginAccount">
-		select * from loginAccount where loginAccount = #{loginAccount}
+		select count(id) from login_account where accountName = #{accountName}
 	</select>
 	
 	<select id="findUserByCriteria" resultType="loginAccount">
-		select * from loginAccount
+		select * from login_account
 	</select>
 	
 	

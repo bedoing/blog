@@ -9,10 +9,7 @@ import org.bedoing.blog.service.ICommentService;
 import org.bedoing.blog.vo.CommentsVO;
 import org.bedoing.blog.vo.ResponseVO;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -33,8 +30,8 @@ public class CommentsController extends BaseController {
 	@Resource
 	private ICommentService commentService;
 	
-	@RequestMapping(value = "/list", method = GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Map<String, Object> commentList(@PathVariable CommentsVO comment){
+	@RequestMapping(value = "/list", method = {GET, POST}, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Map<String, Object> commentList(@RequestBody CommentsVO comment){
 		comment.setPageSize(100);
 		comment.setBeginRow((comment.getPageNo() - 1) * comment.getPageSize());
 		log.info(JSON.toJSONString(comment));
@@ -53,7 +50,7 @@ public class CommentsController extends BaseController {
 	}
 	
 	@RequestMapping(value = "/{comment}", method = POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseVO addComment(@PathVariable CommentsVO comment) {
+	public ResponseVO addComment(@RequestBody CommentsVO comment) {
 		log.info(JSON.toJSONString(comment));
 		ResponseVO res = new ResponseVO();
 		if(comment == null || comment.getContent() == null || comment.getContent().trim() == ""){
@@ -68,7 +65,7 @@ public class CommentsController extends BaseController {
 	}
 	
 	@RequestMapping(value = "/{comment}", method = PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseVO updatecomment(@PathVariable CommentsVO comment) {
+	public ResponseVO updatecomment(@RequestBody CommentsVO comment) {
 		commentService.updateStatusById(comment);
 		ResponseVO res = new ResponseVO();
 		res.setRetMsg(Constant.SUCCESS);

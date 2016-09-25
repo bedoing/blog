@@ -10,6 +10,7 @@ function tagsInit(){
     div.empty();
     // var tagList = '${article.tagList}';
     var tagList = eval('('+ '${article.tagList}' +')');
+
     var tagStr = "";
     for (var i = 0; i < tagList.length; i++) {
         var tag = tagList[i];

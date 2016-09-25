@@ -13,7 +13,6 @@ public interface IUserService {
 	void saveLoginLog(LoginLog loginLog);
 	void saveLoginAccount(UserRegVO user);
 	int countByLoginAccount(String loginAccount);
-	LoginAccount findUserByLoginAccount(String loginAccount);
 	List<LoginAccountVO> findUserByCriteria(Object obj);
 	
 }

@@ -14,12 +14,12 @@ public class UriConstant {
 	
 	public static final String DEFAULT_ARTICLE_CONTENT = "blog/default/articleContent";
 	
-	public static final String DEFAULT_REGISTE = "default/registe";
+	public static final String DEFAULT_REGISTE = "blog/default/registe";
 	
-	public static final String DEFAULT_BLOG_ARTICLE_BY_TAG = "default/articleByTag";
+	public static final String DEFAULT_BLOG_ARTICLE_BY_TAG = "blog/default/articlesByTag";
 	
-	public static final String ADMIN_LOGIN = "admin/login";
-	public static final String ADMIN_INDEX = "admin/index";
+	public static final String ADMIN_LOGIN = "blog/admin/login";
+	public static final String ADMIN_INDEX = "blog/admin/index";
 	public static final String ADMIN_FORM = "admin/form";
 	public static final String ADMIN_SALARY_MARK = "admin/salaryMark";
 	public static final String ADMIN_USER_MNG = "admin/userMng";

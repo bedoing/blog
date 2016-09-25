@@ -11,11 +11,13 @@ import org.bedoing.blog.vo.CommentsVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Service
+@Transactional
 public class CommentsService implements ICommentService{
 	private static final Logger log = Logger.getLogger(CommentsService.class);
 

@@ -30,14 +30,14 @@
                             <strong id="_articlesCount" class="vcard-stat-count">0</strong>
                             <span class="text-muted">Articles</span>
                         </a>
-                        <a class="vcard-stat" href="/subject">
+                        <a class="vcard-stat" href="/subjects">
                             <strong id="_subjectsCount" class="vcard-stat-count">0</strong>
                             <span class="text-muted">FQ</span>
                         </a>
-                        <a class="vcard-stat">
+                        <!--<a class="vcard-stat">
                             <strong id="_days" class="vcard-stat-count">0</strong>
                             <span class="text-muted">Days</span>
-                        </a>
+                        </a>-->
                     </div>
                     </p>
                     <div class="social-links default-links-custom">
@@ -73,9 +73,9 @@
     </div>
 </div>
 
+<footer th:include="blog/default/footer :: copy"></footer>
 <script th:src="@{/js/default/blog.js}"></script>
 <script th:src="@{/js/default/default.js}"></script>
 
-<footer th:include="blog/default/footer :: copy"></footer>
 </body>
 </html>

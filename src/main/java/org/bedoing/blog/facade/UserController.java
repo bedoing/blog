@@ -6,14 +6,15 @@ import org.apache.log4j.Logger;
 import org.bedoing.blog.constant.Constant;
 import org.bedoing.blog.constant.UriConstant;
 import org.bedoing.blog.entity.LoginAccount;
+import org.bedoing.blog.repository.UserRepository;
 import org.bedoing.blog.security.EndecryptUtil;
 import org.bedoing.blog.service.IUserService;
 import org.bedoing.blog.vo.UserRegVO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
@@ -22,6 +23,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
+
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 /**
  * 
@@ -35,37 +39,43 @@ public class UserController extends BaseController {
 	
 	@Resource
 	private IUserService userService;
+	@Autowired
+	private UserRepository userRepository;
 	
-	@RequestMapping(value = "/login")
-	public ModelAndView userLogin(String loginAccount, String password, HttpServletRequest request) {
+	@RequestMapping(value = "/login", method = POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public String userLogin(@RequestBody LoginAccount loginAccount, HttpServletRequest request) {
+		String returnUrl = UriConstant.ADMIN_INDEX;
 		String msg = "";
-		if(StringUtils.isBlank(loginAccount)) {
+		if(StringUtils.isBlank(loginAccount.getAccountName())) {
 			msg = "登陆账号不能为空      ";
 		}
-		if(StringUtils.isBlank(password)) {
+		if(StringUtils.isBlank(loginAccount.getPassword())) {
 			msg += "密码不能为空";
 		}
 		
 		if(StringUtils.isNotBlank(msg)) {
-			return new ModelAndView(UriConstant.ADMIN_LOGIN).addObject(Constant.MSG, msg)
+			returnUrl = UriConstant.ADMIN_LOGIN;
+			/*return new ModelAndView(UriConstant.ADMIN_LOGIN).addObject(Constant.MSG, msg)
 					.addObject("loginAccount", loginAccount)
-					.addObject("password", password);
+					.addObject("password", loginAccount.getPassword());*/
 		}
 		
-		LoginAccount user = userService.findUserByLoginAccount(loginAccount);
-		if(null == user || !user.getPassword().equals(EndecryptUtil.encrypt(password))) {
-			return new ModelAndView(UriConstant.ADMIN_LOGIN).addObject(Constant.MSG, "不存在账号或密码错误")
+		LoginAccount user = userRepository.findByAccountName(loginAccount.getAccountName());
+		if(null == user || !user.getPassword().equals(EndecryptUtil.encrypt(loginAccount.getPassword()))) {
+			returnUrl = UriConstant.ADMIN_LOGIN;
+			/*return new ModelAndView(UriConstant.ADMIN_LOGIN).addObject(Constant.MSG, "不存在账号或密码错误")
 					.addObject("loginAccount", loginAccount)
-					.addObject("password", password);
+					.addObject("password", loginAccount.getPassword());*/
 		}
 		
 		setSessionAttribute(Constant.SESSION_USER, user, request);
 		
-		return new ModelAndView(UriConstant.ADMIN_INDEX);
+//		return new ModelAndView(UriConstant.ADMIN_INDEX);
+		return returnUrl;
 	}
 	
-	@RequestMapping(value = "/logout")
-	public @ResponseBody void logout(HttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping(value = "/logout", method = {GET, POST}, produces = MediaType.APPLICATION_JSON_VALUE)
+	public void logout(HttpServletRequest request, HttpServletResponse response) {
 		Object obj = getSessionValue(Constant.SESSION_USER, request);
 		if(null != obj) {
 			setSessionAttribute(Constant.SESSION_USER, null, request);
@@ -78,7 +88,7 @@ public class UserController extends BaseController {
 		}
 	}
 	
-	@RequestMapping(value = "/join")
+	@RequestMapping(value = "/join", method = POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ModelAndView registe(@Valid UserRegVO user, BindingResult br, HttpServletRequest request){
 		log.info(JSON.toJSONString(user));
 		String msg = "";

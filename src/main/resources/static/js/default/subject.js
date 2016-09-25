@@ -7,7 +7,7 @@ $(document).ready(function(){
         var articleVO = {
             "articleType": 2
         };
-        initPage(PRE_URI_LIST + "/articleList", "_news_content", articleVO, function(flag){
+        initPage("/article/list", "_news_content", articleVO, function(flag){
             if(flag){
                 indexMore.text("没有更多的文章")
             }else{
@@ -15,7 +15,7 @@ $(document).ready(function(){
                 indexMore.text("加载更多")
             }
         });
-        listTitle(PRE_URI_LIST + "/hotArticles", articleVO, '_ranking');
+        listTitle("/article/hot", articleVO, '_ranking');
 
         myTags(2);
 
@@ -33,7 +33,7 @@ $(document).ready(function(){
                 "pageNo" : pageNo.val(),
                 "articleType": 1
 	};
-    	more(PRE_URI_LIST + "/articleList", newsVo, newsContent, 'Y', function(flag){
+    	more("/article/list", newsVo, newsContent, 'Y', function(flag){
     		if(flag){
     			indexMore.text("没有更多的文章")	
     		}else{
@@ -59,7 +59,18 @@ function initPage(url, targetDivId, paramObj, callback) {
 }
 
 function more(url, paramObj, targetDiv, style, callback){
-	$.ajax({  
+    GETWithBody(url, paramObj, function(data) {
+        for (var i = 0; i < data.result.length; i++) {
+            var newsObj = data.result[i];
+            targetDiv.append(initSubjetContent(newsObj, i+1, style));
+        };
+        var flag = (data.pageNo * data.pageSize) >= data.total;
+        if(callback){
+            callback(flag);
+        }
+    });
+
+	/*$.ajax({
                 type: "post",  
                 url: url,
                 dataType: "json",
@@ -77,13 +88,13 @@ function more(url, paramObj, targetDiv, style, callback){
                 error: function(response) {  
                     console.error(response);  
                 }  
-            });
+            });*/
 }
 
 function initSubjetContent(newsObj, idx, style){
 	var divVal;
 	if(style == 'Y'){
-		divVal = '<div class="row-fluid card-status-custom well-custom"><div class="span12"><h3><a href="' + PRE_URI_SUBJECT   + newsObj['articleId'] +'">';
+		divVal = '<div class="row-fluid card-status-custom well-custom"><div class="span12"><h3><a href="' + "/subject/"   + newsObj['articleId'] +'">';
 		divVal += newsObj['title'];
 		divVal += '</a></h3><blockquote><p>';
 		divVal += '<p>';
@@ -107,7 +118,7 @@ function initSubjetContent(newsObj, idx, style){
 		divVal += '</p></blockquote></p>';	
 		divVal += '</div></div>';
 	}else{
-		divVal = '<div class="row-fluid card-status-custom well-custom"><div class="span12"><h3><a href="' + PRE_URI_SUBJECT + newsObj['articleId'] +'">';
+		divVal = '<div class="row-fluid card-status-custom well-custom"><div class="span12"><h3><a href="' + "/subject/" + newsObj['articleId'] +'">';
 		divVal += newsObj['title'];
 		divVal += '</a></h3><p>';
 		divVal += '<p>';
@@ -124,7 +135,13 @@ function initSubjetContent(newsObj, idx, style){
 function listTitle(url, paramObj, targetDivId, callback) {
     var targetDiv = $("ul[id=" + targetDivId +"]");
     targetDiv.empty();
-    $.ajax({  
+    GETWithBody(url, paramObj, function(data) {
+        for (var i = 0; i < data.result.length; i++) {
+            var newsObj = data.result[i];
+            targetDiv.append(listTitleContent(newsObj));
+        };
+    });
+    /*$.ajax({
                 type: "post",  
                 url: url,
                 dataType: "json",
@@ -138,13 +155,13 @@ function listTitle(url, paramObj, targetDivId, callback) {
                 error: function(response) {  
                     console.error(response);  
                 }  
-            });
+            });*/
 }
 
 function listTitleContent(newsObj) {
     var divVal = "";
     divVal += '<li class="links-item" >';
-        divVal += '<a href="' + PRE_URI_SUBJECT + newsObj['articleId'] +'">';
+        divVal += '<a href="' + "/subject/" + newsObj['articleId'] +'">';
             if(newsObj['articleType'] == 1) {
                 divVal += '<i class="icon-file"></i>';
             }else if(newsObj['articleType'] == 2) { 
@@ -225,25 +242,27 @@ function myTags(tagType) {
                 myTags.clear();
             }
             myTags.setOption(option); 
-            console.log(echarts)
+
             /*myTags.on(echarts.config.EVENT.DBLCLICK, dbClickTag);*/
             myTags.on("click", clickTag);
     });    
 }
 
 function refreshData(tagType, callback) {
-    $.ajax({
+    GET("/tag/group/", tagType, function(data) {
+        callback(data);
+    });
+    /*$.ajax({
         type: "GET",  
-        url: PRE_URI_LIST + "/tagsGroup",
+        url:  "/group/{tagType}",
         dataType: "json",
-        data: {"tagType": tagType},
         success: function(res) {
             callback(res);
         },  
         error: function(res) {  
             console.error(res);  
         }  
-    }); 
+    }); */
 }
 
 /*function dbClickTag(param) {
@@ -262,7 +281,7 @@ function clickTag(param) {
             "tagName" : param.name
         };
         
-        more(PRE_URI_LIST + "/findArticlesByTag", newsVo, $("#_news_content"), "Y", function(flag){
+        more("/article/list/tag", newsVo, $("#_news_content"), "Y", function(flag){
             if(flag){
                 indexMore.text("没有更多的文章")  
             }else{
@@ -278,8 +297,7 @@ function initTagsCloud (funName, type) {
         $.ajax({
                 type: "post",
                 dataType: "json",
-                url: PRE_URI_LIST + "/getAllTagsByType",
-                data: {"type": type},
+                url: "/tags/{type}",
                 success: function(res){
                     for (var i = 0; i < res.length; i++) {
                         $("#_tagsCloud").append('<span class="label label-info label-page-custom" onClick="' + funName + '(' + res[i].tagId + ',\'' + res[i].tagName + '\')" id="' + res[i].tagId +'">' + res[i].tagName + '</span>');
@@ -289,13 +307,13 @@ function initTagsCloud (funName, type) {
 }
 
 function tagClick(tagId, tagName) {
-        window.location = PRE_URI_TAG + tagName;
+    window.location = "/subjects/tag=" + tagName;
 }
 
 function statistics(){
     $.ajax({
-        url: PRE_URI_LIST + "/countArticles",
-        type: "post",
+        url: "/article/counts",
+        type: "GET",
         dataType: "json",
         success: function(res) {
             $("#_articlesCount").text(res.retData.articleCount);

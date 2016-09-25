@@ -7,9 +7,11 @@ import org.bedoing.blog.service.ICommonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class CommonService implements ICommonService{
 
 	@Autowired

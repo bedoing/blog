@@ -32,7 +32,7 @@ function initPage(url, targetDivId, paramObj, callback) {
 }
 
 function more(url, paramObj, targetDiv, style, callback){
-    GET(url, paramObj, function(res) {
+    GETWithBody(url, paramObj, function(res) {
         for (var i = 0; i < res.result.length; i++) {
             var newsObj = res.result[i];
             targetDiv.append(initNewsContent(newsObj, i+1, style));
@@ -47,13 +47,13 @@ function more(url, paramObj, targetDiv, style, callback){
 function initNewsContent(newsObj, idx, style){
 	var divVal;
 	if(style == 'Y'){
-		divVal = '<div class="row-fluid card-status-custom well-custom"><div class="span12"><h3><a href="' + "/blog/article/"  + newsObj['articleId'] +'">';
+		divVal = '<div class="row-fluid card-status-custom well-custom"><div class="span12"><h3><a href="' + "/article/"  + newsObj['articleId'] +'">';
 		divVal += newsObj['title'];
 		divVal += '</a></h3><p>';
 		divVal += '<p>';
 		divVal += '<div class="title-two">';
 		// divVal += '<small>' + idx + '</small>';
-		divVal += '<i class="icon-time"> </i><a href="#"><time>' + newsObj['createTimeStr'] + '</time></a> ';
+		/*divVal += '<i class="icon-time"> </i><a href="#"><time>' + newsObj['createTimeStr'] + '</time></a> ';*/
                          divVal += '<i class="icon-tags"></i> ';
 
                          for (var i = 0; i < newsObj['tagList'].length; i++) {
@@ -71,12 +71,12 @@ function initNewsContent(newsObj, idx, style){
 		divVal += '</p></blockquote></p>';	
 		divVal += '</div></div>';
 	}else{
-		divVal = '<div class="row-fluid card-status-custom well-custom"><div class="span12"><h3><a href="' + "/blog/article/" + newsObj['articleId'] +'">';
+		divVal = '<div class="row-fluid card-status-custom well-custom"><div class="span12"><h3><a href="' + "/article/" + newsObj['articleId'] +'">';
 		divVal += newsObj['title'];
 		divVal += '</a></h3><p>';
 		divVal += '<p>';
 		divVal += '<div class="title-two">';
-		divVal += '<i class="icon-time"> </i><time>' + newsObj['createTimeStr'] + '</time>';
+		/*divVal += '<i class="icon-time"> </i><time>' + newsObj['createTimeStr'] + '</time>';*/
 		divVal += '</div></p>';
 		divVal += '</p>';	
 		divVal += '</div></div>';
@@ -89,7 +89,7 @@ function listTitle(url, paramObj, targetDivId, callback) {
     var targetDiv = $("ul[id=" + targetDivId +"]");
     targetDiv.empty();
 
-    GET(url, paramObj, function(res) {
+    GETWithBody(url, paramObj, function(res) {
         for (var i = 0; i < res.result.length; i++) {
             var newsObj = res.result[i];
             targetDiv.append(listTitleContent(newsObj));
@@ -100,7 +100,7 @@ function listTitle(url, paramObj, targetDivId, callback) {
 function listTitleContent(newsObj) {
     var divVal = "";
     divVal += '<li class="links-item" >';
-        divVal += '<a href="' + PRE_URI_ARCHIVES + newsObj['articleId'] +'">';
+        divVal += '<a href="' + "/article/" + newsObj['articleId'] +'">';
             if(newsObj['articleType'] == 1) {
                 divVal += '<i class="icon-file"></i>';
             }else if(newsObj['articleType'] == 2) { 
@@ -185,7 +185,7 @@ function myTags(tagType) {
 }
 
 function refreshData(tagType, callback) {
-    GET("/tag/group/" + tagType, null, function(res) {
+    GET("/tag/group/", tagType, function(res) {
         callback(res);
     });
 }
@@ -206,7 +206,7 @@ function clickTag(param) {
             "tagName" : param.name
         };
         
-        more(PRE_URI_LIST + "/list/tag=", newsVo, $("#_news_content"), "Y", function(flag){
+        more("/article/list/tag", newsVo, $("#_news_content"), "Y", function(flag){
             if(flag){
                 indexMore.text("没有更多的文章")  
             }else{
@@ -228,7 +228,7 @@ function initTagsCloud (funName, type) {
 }
 
 function tagClick(tagId, tagName) {
-        window.location = PRE_URI_TAG + tagName;
+        window.location = "/articles/tag=" + tagName;
 }
 
 function statistics() {

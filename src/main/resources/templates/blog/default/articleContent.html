@@ -13,23 +13,23 @@
             <article class="article">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2><a href="#">${article.title }</a></h2>
+                        <h2><a href="#" th:text="${article.title }"></a></h2>
                         <p><p>
                         <div class="title-two">
                             <!-- <small>' + idx + '</small> -->
-                            <i class="icon-time"> </i>
-                            <a href="#"><time>${article.createTimeStr }</time></a>
+                            <!--<i class="icon-time"> </i>
+                            <a href="#"><time th:text="${article.createTimeStr }"></time></a>-->
                             &nbsp;
                             <i class="icon-eye-open"> </i>
-                            <a>${article.clicks}</a>&nbsp;&nbsp;
+                            <a th:text="${article.clicks}"></a>&nbsp;&nbsp;
                             <i class="icon-tags"> </i>
                                         <span id="_articleContentTags">
                                         </span>
 
                         </div>
                         </p>
-                        <p class="lead">
-                            ${article.content }
+                        <p class="lead" th:utext="${article.content }">
+
                         </p>
                         </p>
                     </div>

@@ -31,14 +31,14 @@ public class NavController extends BaseController {
 		return new ModelAndView(UriConstant.DEFAULT_PORTFOLIO);
 	}
 
-	@RequestMapping(value = "/article")
+	@RequestMapping(value = "/articles")
 	public ModelAndView toBlog() {
 		return new ModelAndView(UriConstant.DEFAULT_ARTICLES);
 	}
 	
-	@RequestMapping(value = "/subject")
+	@RequestMapping(value = "/subjects")
 	public ModelAndView toSubject() {
-		return new ModelAndView("default/subject");
+		return new ModelAndView("blog/default/subject");
 	}
 
 	@RequestMapping(value = "/services")
@@ -71,7 +71,12 @@ public class NavController extends BaseController {
 	}
 
 	@RequestMapping(value = "/articles/tag={tagName}", method = GET)
-	public ModelAndView toArtidcleByTag(@PathVariable String tagName) {
+	public ModelAndView toArticlesByTag(@PathVariable String tagName) {
+		return new ModelAndView(UriConstant.DEFAULT_BLOG_ARTICLE_BY_TAG).addObject("tagName", tagName);
+	}
+
+	@RequestMapping(value = "/subjects/tag={tagName}", method = GET)
+	public ModelAndView toSubjectsByTag(@PathVariable String tagName) {
 		return new ModelAndView(UriConstant.DEFAULT_BLOG_ARTICLE_BY_TAG).addObject("tagName", tagName);
 	}
 

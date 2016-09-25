@@ -5,13 +5,15 @@ import org.bedoing.blog.constant.UriConstant;
 import org.bedoing.blog.entity.Clicks;
 import org.bedoing.blog.service.IArticleService;
 import org.bedoing.blog.vo.ArticleVO;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @RestController
 @RequestMapping(value = "/subject")
@@ -21,7 +23,7 @@ public class SubjectController extends BaseController {
 	@Resource
 	private IArticleService articleService;
 	
-	@RequestMapping(value = "/{articleId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{articleId}", method = GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ModelAndView articleContent(@PathVariable int articleId){
 		ModelAndView mv = new ModelAndView(UriConstant.DEFAULT_ARTICLE_CONTENT);
 		ArticleVO article = articleService.findArticleById(articleId);
