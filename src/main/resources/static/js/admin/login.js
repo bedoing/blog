@@ -15,7 +15,8 @@ $().ready(function() {
         }
 
         POST("/user/login", formData, function(data) {
-            window.location = data;
+            console.log(data.retData)
+            window.location = document.location.origin + data.retData;
         });
     })
 });

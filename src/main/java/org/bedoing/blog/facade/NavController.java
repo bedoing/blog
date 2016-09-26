@@ -87,4 +87,24 @@ public class NavController extends BaseController {
 
 		return mv;
 	}
+
+
+	/******************* admin ********************/
+	@RequestMapping(value = "/admin/index")
+	public ModelAndView toAdminIndex() {
+		return new ModelAndView(UriConstant.ADMIN_INDEX);
+	}
+
+	@RequestMapping(value = "/admin/add")
+	public ModelAndView toAdminArticle() {
+		return new ModelAndView(UriConstant.ADMIN_BLOG_ADD_ARTICLE);
+	}
+
+	@RequestMapping(value = "/admin/articleMng")
+	public ModelAndView toArticleMng() {
+		ModelAndView mv = new ModelAndView(UriConstant.ADMIN_BLOG_ARTICLE_MNG);
+
+		return mv;
+	}
+
 }

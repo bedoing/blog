@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:include="blog/admin/header :: header" th:with="titleName=Add Article" />
+<head th:include="blog/admin/header :: header" th:with="titleName=新增记录" />
 
 <body>
 <div th:include="blog/admin/nav :: nav" />
@@ -110,7 +110,7 @@
                     <div class="col-md-8">
                         <div class="input-group">
                             <span class="input-group-addon">标签名称</span>
-                            <input id="_newTagName" type="text" name="tagName" class="form-control" placeholder="输入标签名称...">
+                            <input id="_newTagName" type="text" name="tagName" class="form-control" placeholder="输入标签名称..."/>
                         </div>
                     </div>
                     <div class="col-md-4 pull-right">
@@ -139,8 +139,8 @@
 <footer th:include="blog/admin/footer :: copy"></footer>
 <script th:src="@{/js/admin/blog/addArticle.js}"></script>
 <script th:src="@{/js/admin/blog/publish.js}"></script>
-<script th:src="@{../public/ueditor/ueditor.config.js}"></script>
-<script th:src="@{../public/ueditor/ueditor.all.min.js}"> </script>
-<script th:src="@{../public/ueditor/lang/zh-cn/zh-cn.js}"></script>
+<script th:src="@{/js/ueditor/ueditor.config.js}"></script>
+<script th:src="@{/js/ueditor/ueditor.all.min.js}"> </script>
+<script th:src="@{/js/ueditor/lang/zh-cn/zh-cn.js}"></script>
 </body>
 </html>

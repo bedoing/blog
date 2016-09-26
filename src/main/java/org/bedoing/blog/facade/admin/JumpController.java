@@ -14,23 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 //@RequestMapping("/admin/place")
 public class JumpController extends BaseController {
 
-	@RequestMapping(value = "/adminArticle")
-	public ModelAndView toAdminArticle() {
-		return new ModelAndView(UriConstant.ADMIN_BLOG_ADD_ARTICLE);
-	}
 
-	@RequestMapping(value = "/articleMng")
-	public ModelAndView toArticleMng() {
-		ModelAndView mv = new ModelAndView(UriConstant.ADMIN_BLOG_ARTICLE_MNG);
 
-		return mv;
-	}
 
-	// admin
-	@RequestMapping(value = "/adminIndex")
-	public ModelAndView toAdminIndex() {
-		return new ModelAndView(UriConstant.ADMIN_INDEX);
-	}
 
 	@RequestMapping(value = "/adminForm")
 	public ModelAndView toAdminForm() {

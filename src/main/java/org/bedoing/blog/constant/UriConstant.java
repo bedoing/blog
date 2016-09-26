@@ -30,9 +30,9 @@ public class UriConstant {
 	public static final String ADMIN_PUBLISH = "admin/publish";
 	
 	// ****** BLOG ***
-	public static final String ADMIN_BLOG_ADD_ARTICLE = "admin/blog/addArticle";
-	public static final String ADMIN_BLOG_ARTICLE_MNG = "admin/blog/articleMng";
-	public static final String ADMIN_BLOG_UPDATE_ARTICLE = "admin/blog/updateArticle";
+	public static final String ADMIN_BLOG_ADD_ARTICLE = "blog/admin/blog/addArticle";
+	public static final String ADMIN_BLOG_ARTICLE_MNG = "blog/admin/blog/articleMng";
+	public static final String ADMIN_BLOG_UPDATE_ARTICLE = "blog/admin/blog/updateArticle";
 	
 	public static final String ERROR_PAGE = "../errorPage/404";
 }

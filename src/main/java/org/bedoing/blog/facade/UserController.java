@@ -9,6 +9,7 @@ import org.bedoing.blog.entity.LoginAccount;
 import org.bedoing.blog.repository.UserRepository;
 import org.bedoing.blog.security.EndecryptUtil;
 import org.bedoing.blog.service.IUserService;
+import org.bedoing.blog.vo.ResponseVO;
 import org.bedoing.blog.vo.UserRegVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -43,8 +44,8 @@ public class UserController extends BaseController {
 	private UserRepository userRepository;
 	
 	@RequestMapping(value = "/login", method = POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public String userLogin(@RequestBody LoginAccount loginAccount, HttpServletRequest request) {
-		String returnUrl = UriConstant.ADMIN_INDEX;
+	public ResponseVO userLogin(@RequestBody LoginAccount loginAccount, HttpServletRequest request) {
+		String returnUrl = "/admin/index";
 		String msg = "";
 		if(StringUtils.isBlank(loginAccount.getAccountName())) {
 			msg = "登陆账号不能为空      ";
@@ -54,7 +55,7 @@ public class UserController extends BaseController {
 		}
 		
 		if(StringUtils.isNotBlank(msg)) {
-			returnUrl = UriConstant.ADMIN_LOGIN;
+			returnUrl = "/login";
 			/*return new ModelAndView(UriConstant.ADMIN_LOGIN).addObject(Constant.MSG, msg)
 					.addObject("loginAccount", loginAccount)
 					.addObject("password", loginAccount.getPassword());*/
@@ -62,7 +63,7 @@ public class UserController extends BaseController {
 		
 		LoginAccount user = userRepository.findByAccountName(loginAccount.getAccountName());
 		if(null == user || !user.getPassword().equals(EndecryptUtil.encrypt(loginAccount.getPassword()))) {
-			returnUrl = UriConstant.ADMIN_LOGIN;
+			returnUrl = "/login";
 			/*return new ModelAndView(UriConstant.ADMIN_LOGIN).addObject(Constant.MSG, "不存在账号或密码错误")
 					.addObject("loginAccount", loginAccount)
 					.addObject("password", loginAccount.getPassword());*/
@@ -71,7 +72,9 @@ public class UserController extends BaseController {
 		setSessionAttribute(Constant.SESSION_USER, user, request);
 		
 //		return new ModelAndView(UriConstant.ADMIN_INDEX);
-		return returnUrl;
+		ResponseVO res = new ResponseVO();
+		res.setRetData(returnUrl);
+		return res;
 	}
 	
 	@RequestMapping(value = "/logout", method = {GET, POST}, produces = MediaType.APPLICATION_JSON_VALUE)

@@ -24,24 +24,42 @@ $().ready(function(){
             "content": content
         };
 
-        $.ajax({
+        /*$.ajax({
             beforeSend:function(){$('.table').html("正在保存，请稍候……");},
             type: "post",
             dataType: "json",
-            url: PRE_URI_AA + "/addArticle",
+            url: "/article",
             data: article,
             success: function(res){
                 alert(res.retMsg);
                 resetArticlePage("mngTagClick");
             }
+        });*/
+
+        $('.table').html("正在保存，请稍候……")
+        POST("/article", article, function(data) {
+            alert(data.retMsg);
+            resetArticlePage("mngTagClick");
         });
     });
 
     $("#_newTagBtn").on("click", function(){
         var tagName = $("#_newTagName").val();
         var tagType = $("#_newTagType").val();
-        
-        $.ajax({
+
+        var tag = new Objcet();
+        tag.tagName = tagName;
+        tag.tagType = tagType;
+
+        POST("/tag", tag, function(data) {
+            if(data.retMsg == "success") {
+                initLabel($("#_newTagBtn").attr("tagFun"));
+                $('#_tagModal').modal('hide')
+            }else {
+                alert(data.retMsg);
+            }
+        });
+        /*$.ajax({
             url: PRE_URI_AA + "/addNewTag",
             type: "post",
             dataType: "json",
@@ -54,7 +72,7 @@ $().ready(function(){
                     alert(res.retMsg);
                 }
             }
-        });
+        });*/
     });
     
 });
@@ -93,11 +111,30 @@ function resetTagStatus() {
 function initLabel(funName){
     $("#_labelGroup").empty();
     $("#_labelGroup2").empty();
-    $.ajax({
-            type: "post",
+
+    GET("/tag/tags/-1", null, function(data) {
+        for (var i = 0; i < data.length; i++) {
+            var tag = data[i];
+            if(tag.tagType == 1) {
+                $("#_labelGroup").append('<div class="btnLabel" ' + 'id="' + tag.tagId + '"' + 'onClick="' + funName + '(' + tag.tagId + ', \'' + tag.tagName + '\')">' + tag.tagName + '</div>');
+            }else {
+                $("#_labelGroup2").append('<div class="btnLabel" ' + 'id="' + tag.tagId + '"' + 'onClick="' + funName + '(' + tag.tagId + ', \'' + tag.tagName + '\')">' + tag.tagName + '</div>');
+            }
+        };
+
+        var tagList = tagIdStr.split(",");
+        for (var i = 0; i < tagList.length; i++) {
+            var tagId = tagList[i];
+            if(tagId != "") {
+                tagCss(tagId, true);
+            }
+        };
+    })
+
+    /*$.ajax({
+            type: "GET",
             dataType: "json",
-            url: PRE_URI_LIST + "/getAllTagsByType",
-            data: {"type": -1},
+            url: "/tags/-1",
             success: function(res){
                 for (var i = 0; i < res.length; i++) {
 
@@ -116,7 +153,7 @@ function initLabel(funName){
                     }
                 };
             }
-        });
+        });*/
 }
 
 function tagClick(tagId) {
