@@ -16,9 +16,12 @@ import javax.validation.constraints.NotNull;
 public class Tag {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "tagId")
 	private int tagId;
-	@NotNull
+
+	@Column(name = "tagName")
 	private String tagName;
-	@NotNull
+
+	@Column(name = "tagType")
 	private int tagType;
 }

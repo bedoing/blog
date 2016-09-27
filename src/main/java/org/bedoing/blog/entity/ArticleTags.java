@@ -2,8 +2,7 @@ package org.bedoing.blog.entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -12,12 +11,17 @@ import javax.validation.constraints.NotNull;
  *
  */
 @Data
-/*@Entity
-@Table*/
+@Entity
+@Table(name = "articleTags")
 public class ArticleTags {
-	@NotNull
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+
+	@Column(name = "articleId", nullable = false)
 	private int articleId;
-	@NotNull
+
+	@Column(name = "tagId", nullable = false)
 	private int tagId;
 	
 	public ArticleTags() {}

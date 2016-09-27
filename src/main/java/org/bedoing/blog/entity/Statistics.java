@@ -17,10 +17,13 @@ public class Statistics {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+
     @NotNull
     private String type;
+
     @NotNull
     private int result;
-    @NotNull
+
+    @Column(name = "statisticalTime")
     private long statisticalTime;
 }

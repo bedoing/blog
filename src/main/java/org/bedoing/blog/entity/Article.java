@@ -11,21 +11,30 @@ import javax.validation.constraints.NotNull;
 public class Article {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "articleId")
 	private int articleId;
-	@NotNull
+
+	@Column(nullable = false, length = 128)
 	private String title;
-	@NotNull
+
+	@Column(name = "articleType", nullable = false, length = 11)
 	private int articleType; // 1.article  2.subject
-	@NotNull
+
+	@Column(nullable = true, length = 1024)
 	private String summary;
+
 	@NotNull
 	private String content;
-	@NotNull
+
+	@Column(name = "createBy", nullable = false, length = 32)
 	private String createBy;
-	@NotNull
+
+	@Column(name = "createTime", nullable = false)
 	private long createTime;
-	@NotNull
+
+	@Column(name = "lastUpdBy", nullable = false, length = 32)
 	private String lastUpdBy;
-	@NotNull
+
+	@Column(name = "lastUpdTime", nullable = false)
 	private long lastUpdTime;
 }

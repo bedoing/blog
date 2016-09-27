@@ -16,14 +16,21 @@ import javax.validation.constraints.NotNull;
 public class Subject {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "subjectId")
 	private int subjectId;
-	@NotNull
+
+	@Column(name = "articleId")
 	private int articleId;
+
 	@NotNull
 	private int difficulty;
-	@NotNull
+
+	@Column(name = "timeLimit")
 	private int timeLimit;
-	@NotNull
+
+	@Column(name = "memoryLimit")
 	private int memoryLimit;
+
+	@Column(name = "otherLimit")
 	private String otherLimit;
 }

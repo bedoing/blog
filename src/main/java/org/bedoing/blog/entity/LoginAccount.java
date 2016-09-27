@@ -14,26 +14,39 @@ import java.util.Date;
  */
 @Data
 @Entity
-@Table
+@Table(name = "loginAccount")
 public class LoginAccount {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	@NotNull
+
+	@Column(name = "accountName", nullable = false)
 	private String accountName;
-	@NotNull
+
+	@Column(name = "password", nullable = false)
 	private String password;
+
 	@NotNull
 	private Integer role;
+
+	@Column(name = "mobilePhone")
 	private String mobilePhone;
+
 	private Integer sex;
+
 	private String nickname;
+
 	private String headimgurl;
+
 	private String country;
+
 	private String city;
+
 	private String province;
-	@NotNull
+
+	@Column(name = "createTime", nullable = false)
 	private Date createTime;
-	@NotNull
+
+	@Column(name = "status", nullable = false)
 	private Integer status;
 }

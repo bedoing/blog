@@ -34,17 +34,19 @@ INSERT INTO `article` VALUES (20,'Java面试基础之Jsp、Servlet相关',1,'jsp
 # Structure for table "article_tags"
 #
 
-DROP TABLE IF EXISTS `article_tags`;
-CREATE TABLE `article_tags` (
+DROP TABLE IF EXISTS `articleTags`;
+CREATE TABLE `articleTags` (
+  `id` int(20) NOT NULL AUTO_INCREMENT,
   `articleId` int(20) NOT NULL,
-  `tagId` int(20) NOT NULL
+  `tagId` int(20) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #
 # Data for table "article_tags"
 #
 
-INSERT INTO `article_tags` VALUES (2,7),(5,10),(5,9),(1,6),(7,1),(13,12),(12,12),(9,12),(8,12),(3,11),(14,3),(11,3),(10,3),(4,3),(15,3),(21,13),(20,13),(19,13),(18,13),(22,1);
+INSERT INTO `articleTags` VALUES (2,7),(5,10),(5,9),(1,6),(7,1),(13,12),(12,12),(9,12),(8,12),(3,11),(14,3),(11,3),(10,3),(4,3),(15,3),(21,13),(20,13),(19,13),(18,13),(22,1);
 
 #
 # Structure for table "butuidetail"
@@ -102,16 +104,17 @@ CREATE TABLE `checkingattendance` (
 
 DROP TABLE IF EXISTS `clicks`;
 CREATE TABLE `clicks` (
+  `id` int(20) NOT NULL AUTO_INCREMENT,
   `articleId` int(20) NOT NULL,
   `clicks` int(32) NOT NULL,
-  UNIQUE KEY `articleId` (`articleId`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #
 # Data for table "clicks"
 #
 
-INSERT INTO `clicks` VALUES (1,347),(2,893),(3,119),(4,82),(5,1113),(7,458),(8,34),(9,22),(10,55),(11,62),(12,26),(13,43),(14,58),(15,63),(18,973),(19,206),(20,271),(21,982),(22,204);
+
 
 #
 # Structure for table "comments"
@@ -156,20 +159,20 @@ CREATE TABLE `dict` (
 # Structure for table "login_account"
 #
 
-DROP TABLE IF EXISTS `login_account`;
-CREATE TABLE `login_account` (
+DROP TABLE IF EXISTS `loginAccount`;
+CREATE TABLE `loginAccount` (
   `id` int(128) NOT NULL AUTO_INCREMENT,
-  `account_name` varchar(64) NOT NULL,
+  `accountName` varchar(64) NOT NULL,
   `password` varchar(64) NOT NULL,
   `role` int(1) NOT NULL,
-  `mobile_phone` varchar(32) DEFAULT NULL,
+  `mobilePhone` varchar(32) DEFAULT NULL,
   `sex` int(1) DEFAULT NULL COMMENT '0-女\n            1-男',
   `nickname` varchar(64) DEFAULT NULL,
   `headimgurl` varchar(512) DEFAULT NULL,
   `country` varchar(64) DEFAULT NULL,
   `city` varchar(64) DEFAULT NULL,
   `province` varchar(64) DEFAULT NULL,
-  `create_time` datetime NOT NULL,
+  `createTime` datetime NOT NULL,
   `status` int(1) NOT NULL COMMENT '0-无效\n            1-有效',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
@@ -178,14 +181,14 @@ CREATE TABLE `login_account` (
 # Data for table "login_account"
 #
 
-INSERT INTO `login_account` VALUES (1,'admin','p9AX7PZxqabdjqtdUuPutg%3D%3D',1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-12-14 00:37:58',1);
+INSERT INTO `loginAccount` VALUES (1,'admin','p9AX7PZxqabdjqtdUuPutg%3D%3D',1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-12-14 00:37:58',1);
 
 #
 # Structure for table "loginlog"
 #
 
-DROP TABLE IF EXISTS `loginlog`;
-CREATE TABLE `loginlog` (
+DROP TABLE IF EXISTS `loginLog`;
+CREATE TABLE `loginLog` (
   `logId` int(11) NOT NULL AUTO_INCREMENT,
   `loginAccount` int(64) DEFAULT NULL,
   `loginType` int(2) DEFAULT NULL COMMENT '1-登录\n            2-主动退出\n            3-被动退出',
