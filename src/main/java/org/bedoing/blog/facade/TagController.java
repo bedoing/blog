@@ -10,10 +10,7 @@ import org.bedoing.blog.service.IArticleService;
 import org.bedoing.blog.vo.ResponseVO;
 import org.bedoing.blog.vo.TagsVO;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -87,30 +84,30 @@ public class TagController extends BaseController {
         return result;
     }
 
-    @RequestMapping(method = POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseVO addNewTag(@PathVariable String tagName, @PathVariable int tagType) {
+    @RequestMapping(value = "/add", method = POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseVO addNewTag(@RequestBody Tag tag) {
         ResponseVO vo = new ResponseVO();
         String msg = "";
         // TODO
-        if(tagType == -1) {
+        if(tag.getTagType() == -1) {
             msg = "请选择标签类型";
         }
-        if(StringUtils.isBlank(tagName)) {
+        if(StringUtils.isBlank(tag.getTagName())) {
             msg = "空标签";
         }
 
         if(msg == "") {
-            tagName = tagName.trim();
-            if(TagsDict.getTagIdByName(tagName) != -1) {
+            tag.setTagName(tag.getTagName().trim());
+            if(TagsDict.getTagIdByName(tag.getTagName()) != -1) {
                 msg = "已存在标签";
             }else {
                 Tag t = new Tag();
-                t.setTagName(tagName);
-                t.setTagType(tagType);
+                t.setTagName(tag.getTagName());
+                t.setTagType(tag.getTagType());
                 int tagId = articleService.addTag(t);
                 // TODO save error
                 if(tagId != -1) {
-                    TagsDict.tagsDict.put(tagId, tagName);
+                    TagsDict.tagsDict.put(tagId, tag.getTagName());
 
                     msg = Constant.SUCCESS;
                 }

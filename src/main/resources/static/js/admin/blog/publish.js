@@ -47,11 +47,11 @@ $().ready(function(){
         var tagName = $("#_newTagName").val();
         var tagType = $("#_newTagType").val();
 
-        var tag = new Objcet();
+        var tag = new Object();
         tag.tagName = tagName;
         tag.tagType = tagType;
 
-        POST("/tag", tag, function(data) {
+        POST("/tag/add", tag, function(data) {
             if(data.retMsg == "success") {
                 initLabel($("#_newTagBtn").attr("tagFun"));
                 $('#_tagModal').modal('hide')

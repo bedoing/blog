@@ -8,6 +8,7 @@ import org.bedoing.blog.constant.MapperConstant;
 import org.bedoing.blog.entity.*;
 import org.bedoing.blog.mybatis.MyBatisDAO;
 import org.bedoing.blog.repository.ArticleRepository;
+import org.bedoing.blog.repository.TagRepository;
 import org.bedoing.blog.service.IArticleService;
 import org.bedoing.blog.service.ICommentService;
 import org.bedoing.blog.util.DateUtils;
@@ -32,6 +33,8 @@ public class ArticleService implements IArticleService {
 	private ArticleRepository articleRepository;
 	@Autowired
 	private ICommentService commentService;
+	@Autowired
+	private TagRepository tagRepository;
 
 	@Override
 	public int addArticle(ArticleVO articleVO) {
@@ -132,10 +135,11 @@ public class ArticleService implements IArticleService {
 	}
 
 	@Override
-	public int addTag(Tag tags) {
-		myBatisDAO.save(MapperConstant.ARTICLE_addTag, tags);
+	public int addTag(Tag tag) {
+//		myBatisDAO.save(MapperConstant.ARTICLE_addTag, tags);
+		tagRepository.save(tag);
 		initTagDict();
-		return tags.getTagId();
+		return tag.getTagId();
 	}
 
 	@Override

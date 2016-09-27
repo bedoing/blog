@@ -178,7 +178,7 @@ CREATE TABLE `login_account` (
 # Data for table "login_account"
 #
 
-INSERT INTO `login_account` VALUES (1,'admin','9qt%2BCzM5rKaD3y2iRrDekwjRK5NhGCM%2F',1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-12-14 00:37:58',1);
+INSERT INTO `login_account` VALUES (1,'admin','p9AX7PZxqabdjqtdUuPutg%3D%3D',1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-12-14 00:37:58',1);
 
 #
 # Structure for table "loginlog"
