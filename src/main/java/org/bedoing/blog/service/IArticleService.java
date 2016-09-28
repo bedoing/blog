@@ -10,7 +10,7 @@ public interface IArticleService {
 
 	// article
 	int addArticle(ArticleVO article);
-	int deleteArticleById(int articleId);
+	void deleteArticleById(int articleId);
 	int updateArticle(ArticleVO article);
 	int countArticlesByCriteria(ArticleVO articleVo);
 	/**

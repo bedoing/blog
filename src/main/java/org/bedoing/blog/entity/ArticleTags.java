@@ -12,16 +12,16 @@ import javax.validation.constraints.NotNull;
  */
 @Data
 @Entity
-@Table(name = "articleTags")
+@Table
 public class ArticleTags {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
-	@Column(name = "articleId", nullable = false)
+	@Column(nullable = false)
 	private int articleId;
 
-	@Column(name = "tagId", nullable = false)
+	@Column(nullable = false)
 	private int tagId;
 	
 	public ArticleTags() {}

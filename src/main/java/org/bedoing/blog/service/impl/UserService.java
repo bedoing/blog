@@ -40,7 +40,7 @@ public class UserService implements IUserService{
 		loginAccount.setMobilePhone(user.getMobilePhone());
 		loginAccount.setSex(user.getSex());
 		loginAccount.setNickname(user.getNickname());
-		loginAccount.setHeadimgurl(user.getHeadimgurl());
+		loginAccount.setHeadImgUrl(user.getHeadimgurl());
 		loginAccount.setCountry(user.getCountry());
 		loginAccount.setCity(user.getCity());
 		loginAccount.setProvince(user.getProvince());
@@ -68,7 +68,7 @@ public class UserService implements IUserService{
 			vo.setMobilePhone(user.getMobilePhone());
 			vo.setSex(user.getSex());
 			vo.setNickname(user.getNickname());
-			vo.setHeadimgurl(user.getHeadimgurl());
+			vo.setHeadImgUrl(user.getHeadImgUrl());
 			vo.setCountry(user.getCountry());
 			vo.setCity(user.getCity());
 			vo.setProvince(user.getProvince());

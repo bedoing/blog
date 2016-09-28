@@ -16,10 +16,9 @@ import javax.validation.constraints.NotNull;
 public class Comments {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "commentId")
 	private int commentId;
 
-	@Column(name = "articleId")
+	@Column(nullable = false)
 	private int articleId;
 
 	@Column(nullable = false)
@@ -28,6 +27,6 @@ public class Comments {
 	@NotNull
 	private int status;
 
-	@Column(name = "createTime", nullable = false)
+	@Column(nullable = false)
 	private long createTime;
 }

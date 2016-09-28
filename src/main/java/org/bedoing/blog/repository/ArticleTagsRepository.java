@@ -1,5 +1,6 @@
 package org.bedoing.blog.repository;
 
+import org.bedoing.blog.entity.ArticleTags;
 import org.bedoing.blog.entity.Tag;
 import org.springframework.data.repository.CrudRepository;
 
@@ -10,6 +11,7 @@ import java.util.List;
  * Created by Ken on 2016/9/17.
  */
 @Transactional
-public interface TagRepository extends CrudRepository<Tag, Integer> {
-    List<Tag> findTagByType(String tagType);
+public interface ArticleTagsRepository extends CrudRepository<ArticleTags, Integer> {
+    List<ArticleTags> findByArticleId(String articleId);
+    void deleteByArticleId(String articleId);
 }

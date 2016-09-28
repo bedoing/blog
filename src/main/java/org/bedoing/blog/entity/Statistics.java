@@ -24,6 +24,6 @@ public class Statistics {
     @NotNull
     private int result;
 
-    @Column(name = "statisticalTime")
+    @Column
     private long statisticalTime;
 }

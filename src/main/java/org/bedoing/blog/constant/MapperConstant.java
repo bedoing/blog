@@ -4,17 +4,18 @@ public class MapperConstant {
 
 	private MapperConstant(){}
 	
-	public static final String ARTICLE_addArticle = "article.addArticle";
-	public static final String ARTICLE_deleteArticleById = "article.deleteArticleById";
+//	public static final String ARTICLE_addArticle = "article.addArticle";
+//	public static final String ARTICLE_deleteArticleById = "article.deleteArticleById";
 	public static final String ARTICLE_updateArticle = "article.updateArticle";
 	public static final String ARTICLE_countArticlesByCriteria = "article.countArticlesByCriteria";
 	public static final String ARTICLE_findArticleByCriteria = "article.findArticlesByCriteria";
 	public static final String ARTICLE_findSubjectsByCriteria = "article.findSubjectsByCriteria";
-	public static final String ARTICLE_addTag = "article.addTag";
-	public static final String ARTICLE_findTagById = "article.findTagById";
-	public static final String ARTICLE_findAllTags = "article.findAllTags";
+
+//	public static final String ARTICLE_addTag = "article.addTag";
+//	public static final String ARTICLE_findTagById = "article.findTagById";
+//	public static final String ARTICLE_findAllTags = "article.findAllTags";
 	public static final String ARTICLE_addArticleTag = "article.addArticleTag";
-	public static final String ARTICLE_findArticleTagsByArticleId =  "article.findArticleTagsByArticleId";
+//	public static final String ARTICLE_findArticleTagsByArticleId =  "article.findArticleTagsByArticleId";
 	public static final String ARTICLE_findArticleById =  "article.findArticleById";
 	public static final String ARTICLE_tagsGroup =  "article.tagsGroup";
 	public static final String ARTICLE_countArticlesByTagId = "article.countArticlesByTagId";
@@ -22,8 +23,8 @@ public class MapperConstant {
 	public static final String ARTICLE_deleteArticleTagByArticleId = "article.deleteArticleTagByArticleId";
 	
 	// subject
-	public static final String ARTICLE_findSubjectById = "article.findSubjectById";
-	public static final String ARTICLE_findSubjectByArticleId = "article.findSubjectByArticleId";
+//	public static final String ARTICLE_findSubjectById = "article.findSubjectById";
+//	public static final String ARTICLE_findSubjectByArticleId = "article.findSubjectByArticleId";
 	
 	// clicks
 	public static final String ARTICLE_getClicks = "article.getClicks";

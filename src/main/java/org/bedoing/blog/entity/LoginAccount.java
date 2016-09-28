@@ -20,23 +20,23 @@ public class LoginAccount {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
-	@Column(name = "accountName", nullable = false)
+	@Column(nullable = false)
 	private String accountName;
 
-	@Column(name = "password", nullable = false)
+	@Column(nullable = false)
 	private String password;
 
 	@NotNull
 	private Integer role;
 
-	@Column(name = "mobilePhone")
+	@Column
 	private String mobilePhone;
 
 	private Integer sex;
 
 	private String nickname;
 
-	private String headimgurl;
+	private String headImgUrl;
 
 	private String country;
 
@@ -44,9 +44,9 @@ public class LoginAccount {
 
 	private String province;
 
-	@Column(name = "createTime", nullable = false)
+	@Column(nullable = false)
 	private Date createTime;
 
-	@Column(name = "status", nullable = false)
+	@Column(nullable = false)
 	private Integer status;
 }

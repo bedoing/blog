@@ -85,14 +85,14 @@ public class ArticleService implements IArticleService {
 	}
 
 	@Override
-	public int deleteArticleById(int articleId) {
+	public void deleteArticleById(int articleId) {
 		// TODO articleTag,clicks,comment,subject
 		deleteArticleTagByArticleId(articleId);
 		deleteClicksByArticleId(articleId);
 		commentService.deleteCommentsByArticleId(articleId);
 		deleteSubjectByArticleId(articleId);
 		
-		return myBatisDAO.delete(MapperConstant.ARTICLE_deleteArticleById, articleId);
+		articleRepository.delete(articleId);
 	}
 
 	@Override
@@ -341,7 +341,11 @@ public class ArticleService implements IArticleService {
 
 	@Override
 	public Article findArticleByTitle(String title) {
-		return myBatisDAO.get("article.findArticleByTitle", title);
+		if(StringUtils.isBlank(title)) {
+			// TODO
+			return null;
+		}
+		return articleRepository.findByTitle(title);
 	}
 
 	@Override

@@ -15,18 +15,17 @@ import javax.persistence.*;
 public class Dict {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "dictId")
 	private int dictId;
 
-	@Column(name = "dictType")
+	@Column
 	private String dictType;
 
-	@Column(name = "dictCode")
+	@Column
 	private String dictCode;
 
-	@Column(name = "dictKey")
+	@Column
 	private int dictKey;
 
-	@Column(name = "dictValue")
+	@Column
 	private String dictValue;
 }

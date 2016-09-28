@@ -12,17 +12,16 @@ import java.util.Date;
  */
 @Data
 @Entity
-@Table(name = "loginLog")
+@Table
 public class LoginLog {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "logId")
 	private int logId;
 
-	@Column(name = "loginAccount")
+	@Column
 	private int loginAccount;
 	private int log;
-	@Column(name = "oprTime")
+	@Column
 	private Date oprTime;
 	private String ip;
 	private String os;

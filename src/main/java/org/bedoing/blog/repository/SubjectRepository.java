@@ -10,5 +10,6 @@ import javax.transaction.Transactional;
  */
 @Transactional
 public interface SubjectRepository extends CrudRepository<Subject, Integer> {
-
+    Subject findByArticleId(String articleId);
+    void deleteByArticleId(String articleId);
 }

@@ -18,7 +18,7 @@ public class Clicks {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
-	@Column(name = "articleId", nullable = false)
+	@Column(nullable = false)
 	private int articleId;
 
 	@Column(nullable = false)
