@@ -7,10 +7,8 @@ import org.bedoing.blog.constant.Constant;
 import org.bedoing.blog.constant.MapperConstant;
 import org.bedoing.blog.entity.*;
 import org.bedoing.blog.mybatis.MyBatisDAO;
-import org.bedoing.blog.repository.ArticleRepository;
-import org.bedoing.blog.repository.TagRepository;
+import org.bedoing.blog.repository.*;
 import org.bedoing.blog.service.IArticleService;
-import org.bedoing.blog.service.ICommentService;
 import org.bedoing.blog.util.DateUtils;
 import org.bedoing.blog.vo.ArticleVO;
 import org.bedoing.blog.vo.TagsVO;
@@ -32,9 +30,13 @@ public class ArticleService implements IArticleService {
 	@Autowired
 	private ArticleRepository articleRepository;
 	@Autowired
-	private ICommentService commentService;
-	@Autowired
 	private TagRepository tagRepository;
+	@Autowired
+	private ArticleTagsRepository articleTagsRepository;
+	@Autowired
+	private ClicksRepository clicksRepository;
+	@Autowired
+	private SubjectRepository subjectRepository;
 
 	@Override
 	public int addArticle(ArticleVO articleVO) {
@@ -89,7 +91,6 @@ public class ArticleService implements IArticleService {
 		// TODO articleTag,clicks,comment,subject
 		deleteArticleTagByArticleId(articleId);
 		deleteClicksByArticleId(articleId);
-		commentService.deleteCommentsByArticleId(articleId);
 		deleteSubjectByArticleId(articleId);
 		
 		articleRepository.delete(articleId);
@@ -144,13 +145,13 @@ public class ArticleService implements IArticleService {
 
 	@Override
 	public String findTagById(int tagId) {
-		String tagName = myBatisDAO.get(MapperConstant.ARTICLE_findTagById, tagId);
-		return tagName;
+		Tag tag = tagRepository.findOne(tagId);
+		return tag == null? "":tag.getTagName();
 	}
 
 	@Override
 	public List<Tag> findAllTags() {
-		return myBatisDAO.getList(MapperConstant.ARTICLE_findAllTags);
+		return (List<Tag>) tagRepository.findAll();
 	}
 
 	@Override
@@ -162,14 +163,14 @@ public class ArticleService implements IArticleService {
 
 	@Override
 	public List<ArticleTags> findArticleTagsByArticleId(int articleId) {
-		return myBatisDAO.getList(MapperConstant.ARTICLE_findArticleTagsByArticleId, articleId);
+		return articleTagsRepository.findByArticleId(articleId);
 	}
 
 	@Override
 	public ArticleVO findArticleById(int articleId) {
 		ArticleVO vo = new ArticleVO();
 		vo.setArticleId(articleId);
-		Article a = myBatisDAO.get(MapperConstant.ARTICLE_findArticleById, articleId);
+		Article a = articleRepository.findOne(articleId);
 		if(a == null) {
 			return null;
 		}else{
@@ -311,12 +312,13 @@ public class ArticleService implements IArticleService {
 
 	@Override
 	public void deleteArticleTagByArticleId(int articleId) {
-		myBatisDAO.delete(MapperConstant.ARTICLE_deleteArticleTagByArticleId, articleId);
+		articleTagsRepository.deleteByArticleId(articleId);
 	}
 
 	@Override
 	public int getClicks(int articleId) {
-		return myBatisDAO.get(MapperConstant.ARTICLE_getClicks, articleId);
+		Clicks clicks = clicksRepository.findByArticleId(articleId);
+		return clicks == null? 0:clicks.getClicks();
 	}
 
 	@Override
@@ -326,17 +328,17 @@ public class ArticleService implements IArticleService {
 
 	@Override
 	public void addClicks(Clicks click) {
-		myBatisDAO.save(MapperConstant.ARTICLE_addClicks, click);
+		clicksRepository.save(click);
 	}
 
 	@Override
 	public Subject findSubjectById(int subjectId) {
-		return myBatisDAO.get(MapperConstant.ARTICLE_findSubjectById, subjectId);
+		return subjectRepository.findOne(subjectId);
 	}
 
 	@Override
 	public Subject findSubjectByArticleId(int articleId) {
-		return myBatisDAO.get(MapperConstant.ARTICLE_findSubjectByArticleId);
+		return subjectRepository.findByArticleId(articleId);
 	}
 
 	@Override
@@ -350,36 +352,34 @@ public class ArticleService implements IArticleService {
 
 	@Override
 	public void deleteClicksByArticleId(int articleId) {
-		myBatisDAO.delete("article.deleteClicksByArticleId", articleId);
+		clicksRepository.deleteByArticleId(articleId);
 	}
 
 	@Override
 	public List<Tag> findTagsByType(int tagType) {
 		List<Tag> result = new ArrayList<Tag>();
 		if(tagType == -1) {
-			result = myBatisDAO.getList("article.findAllTags");
+			result = (List<Tag>) tagRepository.findAll();
 		}else {
-			result = myBatisDAO.getList("article.findTagsByType", tagType);
+			result = tagRepository.findByTagType(tagType);
 		}
 		return result;
 	}
 
 	@Override
 	public void deleteSubjectByArticleId(int articleId) {
-		myBatisDAO.delete("deleteSubjectByArticleId", articleId);
+		subjectRepository.deleteByArticleId(articleId);
 	}
 
 	@Override
 	public int addSubject(Subject subject) {
-		myBatisDAO.save("addSubject", subject);
-		return subject.getSubjectId();
+		return subjectRepository.save(subject).getSubjectId();
 	}
 
 	@Override
 	public int updateSubject(Subject subject) {
-		myBatisDAO.update("updateSubject", subject);
 		
-		return subject.getArticleId();
+		return subjectRepository.save(subject).getArticleId();
 	}
 
 	@Override

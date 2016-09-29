@@ -10,5 +10,6 @@ import javax.transaction.Transactional;
  */
 @Transactional
 public interface ClicksRepository extends CrudRepository<Clicks, Integer> {
-
+    void deleteByArticleId(int articleId);
+    Clicks findByArticleId(int articleId);
 }

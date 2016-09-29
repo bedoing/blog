@@ -37,7 +37,7 @@ public class ArticleController extends BaseController {
 	@RequestMapping(value = "/list", method = {GET, POST}, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Map<String, Object> articleList(@RequestBody ArticleVO articleVO){
 		articleVO.setBeginRow((articleVO.getPageNo() - 1) * articleVO.getPageSize());
-		articleVO.setSortColumn("createTime");
+		articleVO.setSortColumn("create_time");
 		
 		// TODO
 		int total = articleService.countArticlesByCriteria(articleVO);
@@ -104,7 +104,7 @@ public class ArticleController extends BaseController {
 	public Map<String, Object> findArticlesByTagId(@RequestBody TagsVO tagsVO) {
 		tagsVO.setBeginRow((tagsVO.getPageNo() - 1) * tagsVO.getPageSize());
 		tagsVO.setTagId(TagsDict.getTagIdByName(tagsVO.getTagName()));
-		tagsVO.setSortColumn("createTime");
+		tagsVO.setSortColumn("create_time");
 		
 		int total = articleService.countArticlesByTagId(tagsVO);
 		List<ArticleVO> list = articleService.findArticlesByTagId(tagsVO);

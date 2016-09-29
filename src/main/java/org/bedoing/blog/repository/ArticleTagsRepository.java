@@ -12,6 +12,6 @@ import java.util.List;
  */
 @Transactional
 public interface ArticleTagsRepository extends CrudRepository<ArticleTags, Integer> {
-    List<ArticleTags> findByArticleId(String articleId);
-    void deleteByArticleId(String articleId);
+    List<ArticleTags> findByArticleId(int articleId);
+    void deleteByArticleId(int articleId);
 }

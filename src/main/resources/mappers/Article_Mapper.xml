@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">   
 <mapper namespace="article"> 
 	<resultMap type="org.bedoing.blog.vo.TagsVO" id="tagsMap">  
-		<result property="tagId" column="tagId"/>  
+		<result property="tagId" column="tag_id"/>
 		<result property="articleNum" column="articleNum"/>  
 	</resultMap> 
 	
@@ -20,7 +20,7 @@
 					title = #{title},
 				</if>
 				<if test="articleType != null &amp; articleType != ''">
-					articleType = #{articleType},
+					article_type = #{articleType},
 				</if>
 				<if test="summary != null &amp; summary != ''">
 					summary = #{summary},
@@ -30,44 +30,44 @@
 				</if>
 				
 				<if test="lastUpdBy != null &amp; lastUpdBy != ''">
-					lastUpdBy = #{lastUpdBy}
+					last_upd_by = #{lastUpdBy}
 				</if>
 				<if test="lastUpdTime != null &amp; lastUpdTime != ''">
-					lastUpdTime = #{lastUpdTime}
+					last_upd_time = #{lastUpdTime}
 				</if>
 			</set>
-		where articleId = #{articleId}
+		where article_id = #{articleId}
 	</update>
 	
 	<select id="countArticlesByCriteria" resultType="int" parameterType="org.bedoing.blog.vo.ArticleVO">
-		select count(articleId) from article
+		select count(article_id) from article
 		where 1 = 1
 			<if test="articleType != null &amp; articleType != '' &amp; articleType != -1">
-				and articleType = #{articleType }
+				and article_type = #{articleType }
 			</if>
 			<if test="articleId != null &amp; articleId != ''">
-				and articleId = #{articleId}
+				and article_id = #{articleId}
 			</if> 
 	</select>
 	
 	<select id="findArticlesByCriteria" resultType="article" parameterType="org.bedoing.blog.vo.ArticleVO">
-		select articleId, title, articleType, summary, createBy,createTime, lastUpdBy, lastUpdTime 
+		select article_id, title, article_type, summary, create_by,create_time, last_upd_by, last_upd_time
 		from article 
 		where 1 = 1
 			<if test="articleType != null &amp; articleType != '' &amp; articleType != -1">
-				and articleType = #{articleType }
+				and article_type = #{articleType }
 			</if>
 			<if test="articleId != null &amp; articleId != ''">
-				and articleId = #{articleId}
+				and article_id = #{articleId}
 			</if>
 		<include refid="_limitPart" />
 	</select>
 	
 	<select id="findArticlesOrderByClicks" resultType="article" parameterType="org.bedoing.blog.vo.ArticleVO">
-		select a.articleId, a.title, a.articleType, a.summary, a.createBy,a.createTime, a.lastUpdBy, a.lastUpdTime 
+		select a.article_id, a.title, a.article_type, a.summary, a.create_by,a.create_time, a.last_upd_by, a.last_upd_time
 		from article a
-		left join clicks c on a.articleId = c.articleId
-		where a.articleType = #{articleType }
+		left join clicks c on a.article_id = c.article_id
+		where a.article_type = #{articleType }
 		
 				
 		<include refid="_limitPart" />
@@ -78,70 +78,47 @@
 		update subject
 		set  
 			difficulty = #{difficulty},
-			timeLimit = #{timeLimit},
-			memoryLimit = #{memoryLimit},
-			otherLimit = #{otherLimit}
-		where articleId = #{articleId}
+			time_limit = #{timeLimit},
+			memory_limit = #{memoryLimit},
+			other_limit = #{otherLimit}
+		where article_id = #{articleId}
 	</update>
 		
 	<!-- tags -->
 	
 	<select id="tagsGroup" resultMap="tagsMap" parameterType="int">
-		select tagId, count(articleId) articleNum
+		select tag_id, count(article_id) articleNum
 		from article_tags
-		group by tagId
+		group by tag_id
 	</select>
 	
 	<select id="tagsGroupByTagType" resultMap="tagsMap" parameterType="int">
-		select t.tagId, count(at.articleId) articleNum
+		select t.tag_id, count(at.article_id) articleNum
 		from tag t, article_tags at
-		where t.tagType = #{tagType}
-			and t.tagId = at.tagId 
+		where t.tag_type = #{tagType}
+			and t.tag_id = at.tagId
 		
-		group by at.tagId
+		group by at.tag_id
 	</select>
 	
 	<select id="countArticlesByTagId" resultType="int" parameterType="org.bedoing.blog.vo.TagsVO">
-		select count(articleId) from article_tags where tagId = #{tagId }
+		select count(article_id) from article_tags where tag_id = #{tagId }
 	</select>
 	
 	<select id="findArticlesByTagId" resultType="article" parameterType="org.bedoing.blog.vo.TagsVO">
 		select *
 		from article
-		where articleId in (
-			select articleId 
-			from article_tags where tagId = #{tagId }
+		where article_id in (
+			select article_id
+			from article_tags where tag_id = #{tagId }
 		)
 		<include refid="_limitPart" />
-	</select>
-	<delete id="deleteArticleTagByArticleId" parameterType="int">
-		delete from article_tags where articleId = #{articleId }
-	</delete>
-	
-	<insert id="addClicks" parameterType="clicks" useGeneratedKeys="false">
-		insert into clicks 
-			(
-				articleId,
-				clicks
-			) 
-			values (
-				#{articleId},
-				#{clicks}
-			)
-	</insert>
-	
-	<delete id="deleteClicksByArticleId" parameterType="int">
-		delete from clicks where articleId = #{articleId}
-	</delete>
-	
-	<select id="getClicks" resultType="int" parameterType="int" >
-		select clicks from clicks where articleId = #{articleId }
 	</select>
 	
 	<update id="updateClicks" parameterType="clicks">
 		update clicks
 		set clicks = #{clicks } 
 			
-		where articleId = #{articleId}
+		where article_id = #{articleId}
 	</update>
 </mapper>  

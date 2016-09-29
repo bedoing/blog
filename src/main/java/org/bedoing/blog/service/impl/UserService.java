@@ -5,6 +5,8 @@ import org.bedoing.blog.constant.MapperConstant;
 import org.bedoing.blog.entity.LoginAccount;
 import org.bedoing.blog.entity.LoginLog;
 import org.bedoing.blog.mybatis.MyBatisDAO;
+import org.bedoing.blog.repository.LoginLogRepository;
+import org.bedoing.blog.repository.UserRepository;
 import org.bedoing.blog.security.EndecryptUtil;
 import org.bedoing.blog.service.IUserService;
 import org.bedoing.blog.util.DateUtils;
@@ -23,11 +25,15 @@ import java.util.List;
 public class UserService implements IUserService{
 	@Autowired
 	private MyBatisDAO myBatisDAO;
+	@Autowired
+	private UserRepository userRepository;
+	@Autowired
+	private LoginLogRepository loginLogRepository;
 	
 	@Override
 	public void saveLoginLog(LoginLog loginLog) {
 		loginLog.setOprTime(new Date());
-		myBatisDAO.save(MapperConstant.LOGINLOG_saveLoginLog, loginLog);
+		loginLogRepository.save(loginLog);
 	}
 	
 	@Override
@@ -46,8 +52,8 @@ public class UserService implements IUserService{
 		loginAccount.setProvince(user.getProvince());
 		loginAccount.setCreateTime(new Date());
 		loginAccount.setStatus(1);
-		
-		myBatisDAO.save(MapperConstant.LOGINACCOUNT_saveLoginAccount, loginAccount);
+
+		userRepository.save(loginAccount);
 	};
 	
 	@Override

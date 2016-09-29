@@ -11,5 +11,5 @@ import java.util.List;
  */
 @Transactional
 public interface TagRepository extends CrudRepository<Tag, Integer> {
-    List<Tag> findTagByType(String tagType);
+    List<Tag> findByTagType(int tagType);
 }
