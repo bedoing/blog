@@ -156,9 +156,9 @@ public class ArticleService implements IArticleService {
 
 	@Override
 	public int addArticleTag(ArticleTags articleTags) {
-		myBatisDAO.save(MapperConstant.ARTICLE_addArticleTag, articleTags);
+		ArticleTags at = articleTagsRepository.save(articleTags);
 		// TODO
-		return articleTags.getTagId();
+		return at.getTagId();
 	}
 
 	@Override
@@ -221,8 +221,7 @@ public class ArticleService implements IArticleService {
 		vo.setCreateTime(a.getCreateTime());
 		vo.setLastUpdBy(a.getLastUpdBy());
 		vo.setLastUpdTime(a.getLastUpdTime());
-		vo.setCreateTimeStr(DateUtils.toBeijinDate(a.getCreateTime(), Constant.YYYY_MM_DD));
-		vo.setLastUpdTimeStr(DateUtils.toBeijinDate(a.getLastUpdTime(), Constant.YYYY_MM_DD));
+//		vo.setCreateTimeStcountArticlesByCriteriatr(DateUtils.toBeijinDate(a.getLastUpdTime(), Constant.YYYY_MM_DD));
 		
 		List<ArticleTags> tags = findArticleTagsByArticleId(a.getArticleId());
 		if(a.getArticleType() == 2) {
@@ -260,8 +259,8 @@ public class ArticleService implements IArticleService {
 			vo.setCreateTime(a.getCreateTime());
 			vo.setLastUpdBy(a.getLastUpdBy());
 			vo.setLastUpdTime(a.getLastUpdTime());
-			vo.setCreateTimeStr(DateUtils.toBeijinDate(a.getCreateTime(), Constant.YYYY_MM_DD));
-			vo.setLastUpdTimeStr(DateUtils.toBeijinDate(a.getLastUpdTime(), Constant.YYYY_MM_DD));
+//			vo.setCreateTimeStr(DateUtils.toBeijinDate(a.getCreateTime(), Constant.YYYY_MM_DD));
+//			vo.setLastUpdTimeStr(DateUtils.toBeijinDate(a.getLastUpdTime(), Constant.YYYY_MM_DD));
 			
 			List<ArticleTags> tags = findArticleTagsByArticleId(a.getArticleId());
 			if(a.getArticleType() == 2) {

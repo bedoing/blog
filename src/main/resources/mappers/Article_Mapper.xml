@@ -51,7 +51,7 @@
 	</select>
 	
 	<select id="findArticlesByCriteria" resultType="article" parameterType="org.bedoing.blog.vo.ArticleVO">
-		select article_id, title, article_type, summary, create_by,create_time, last_upd_by, last_upd_time
+		select article_id articleId, title, article_type articleType, summary, create_by createBy,create_time createTime, last_upd_by lastUpdBy, last_upd_time lastUpdTime
 		from article 
 		where 1 = 1
 			<if test="articleType != null &amp; articleType != '' &amp; articleType != -1">
@@ -64,7 +64,7 @@
 	</select>
 	
 	<select id="findArticlesOrderByClicks" resultType="article" parameterType="org.bedoing.blog.vo.ArticleVO">
-		select a.article_id, a.title, a.article_type, a.summary, a.create_by,a.create_time, a.last_upd_by, a.last_upd_time
+		select a.article_id articleId, a.title, a.article_type articleType, a.summary, a.create_by createBy,a.create_time createTime, a.last_upd_by lastUpdBy, a.last_upd_time lastUpdTime
 		from article a
 		left join clicks c on a.article_id = c.article_id
 		where a.article_type = #{articleType }
@@ -96,7 +96,7 @@
 		select t.tag_id, count(at.article_id) articleNum
 		from tag t, article_tags at
 		where t.tag_type = #{tagType}
-			and t.tag_id = at.tagId
+			and t.tag_id = at.tag_id
 		
 		group by at.tag_id
 	</select>

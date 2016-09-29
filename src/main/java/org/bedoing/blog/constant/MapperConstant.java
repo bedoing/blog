@@ -8,7 +8,6 @@ public class MapperConstant {
 	public static final String ARTICLE_countArticlesByCriteria = "article.countArticlesByCriteria";
 	public static final String ARTICLE_findArticleByCriteria = "article.findArticlesByCriteria";
 
-	public static final String ARTICLE_addArticleTag = "article.addArticleTag";
 	public static final String ARTICLE_tagsGroup =  "article.tagsGroup";
 	public static final String ARTICLE_countArticlesByTagId = "article.countArticlesByTagId";
 	public static final String ARTICLE_findArticlesByTag = "article.findArticlesByTagId";

@@ -10,10 +10,11 @@
         $("#_listMng").empty();
         var table = $("#_articleListTable");
         table.empty();
+
         $.ajax({
             type: "post",
             dataType: "json",
-            url: PRE_URI_LIST + "/articleList",
+            url: "/article/list",
             data: {
                 "pageSize": 15
             },
@@ -35,7 +36,7 @@
         $.ajax({
             type: "post",
             dataType: "json",
-            url: PRE_URI_LIST + "/findArticlesByTag",
+            url: "/article/list/tag",
             data: {
                 "tagName": tagName
             },
