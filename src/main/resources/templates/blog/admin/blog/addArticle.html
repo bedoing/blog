@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:include="blog/admin/header :: header" th:with="titleName=新增记录" />
+<head th:include="blog/admin/header :: header" th:with="titleName=新增" />
 
 <body>
 <div th:include="blog/admin/nav :: nav" />
@@ -26,7 +26,7 @@
                             <li><a onclick="toggleSelect('_articleToggleBtn',1,'Article','_articleType')">Article</a></li>
                             <li><a onclick="toggleSelect('_articleToggleBtn',2, 'Subjtct','_articleType')">Subjtct</a></li>
                         </ul>
-                        <input id="_articleType" type="hidden" name="tagType"/>
+                        <input id="_articleType" type="hidden" name="tagType" />
                     </div>
                 </div>
                 <div class="col-md-2">

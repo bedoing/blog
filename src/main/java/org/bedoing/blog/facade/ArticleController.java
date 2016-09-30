@@ -140,7 +140,7 @@ public class ArticleController extends BaseController {
 	}
 
 	@RequestMapping(value = "/{articleId}", method = DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseVO deleteArticle(int articleId) {
+	public ResponseVO deleteArticle(@PathVariable int articleId) {
 		articleService.deleteArticleById(articleId);
 		ResponseVO res = new ResponseVO();
 		res.setRetMsg(Constant.SUCCESS);
@@ -157,8 +157,8 @@ public class ArticleController extends BaseController {
 		return res;
 	}
 
-	@RequestMapping(value = "/UpdateArticlePage")
-	public ModelAndView toUpdateArticle(int articleId) {
+	@RequestMapping(value = "/UpdateArticlePage/{articleId}")
+	public ModelAndView toUpdateArticle(@PathVariable int articleId) {
 		ModelAndView mv = new ModelAndView(UriConstant.ADMIN_BLOG_UPDATE_ARTICLE);
 		// TODO
 		ArticleVO a = articleService.findArticleById(articleId);

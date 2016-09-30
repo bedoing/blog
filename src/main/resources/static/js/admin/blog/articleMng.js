@@ -11,20 +11,11 @@
         var table = $("#_articleListTable");
         table.empty();
 
-        $.ajax({
-            type: "post",
-            dataType: "json",
-            url: "/article/list",
-            data: {
-                "pageSize": 15
-            },
-            success: function(res) {
-
-                for (var i = 0; i < res.result.length; i++) {
-                    var a = res.result[i];
-                    table.append(articleTr(a, i + 1));
-                };
-            }
+        GETWithBody("/article/list", {"pageSize": 15}, function(data) {
+            for (var i = 0; i < data.result.length; i++) {
+                var a = data.result[i];
+                table.append(articleTr(a, i + 1));
+            };
         });
     }
 
@@ -33,19 +24,12 @@
         $("#_listMng").text(tagName);
         var table = $("#_articleListTable");
         table.empty();
-        $.ajax({
-            type: "post",
-            dataType: "json",
-            url: "/article/list/tag",
-            data: {
-                "tagName": tagName
-            },
-            success: function(res) {
-                for (var i = 0; i < res.result.length; i++) {
-                    var a = res.result[i];
-                    table.append(articleTr(a, i + 1));
-                };
-            }
+
+        GETWithBody("/article/list/tag", {"tagName": tagName}, function(data) {
+            for (var i = 0; i < data.result.length; i++) {
+                var a = data.result[i];
+                table.append(articleTr(a, i + 1));
+            };
         });
     }
 
@@ -58,7 +42,7 @@
                         '</td>' +
                         '<td>' +
                             '<button type="button" class="btn btn-link pull-left">' +
-                                '<a target="_blank" href="' + PRE_URI_ARCHIVES  + article.articleId + '">' + article.title + '</a>' +
+                                '<a target="_blank" href="' + "/article/"  + article.articleId + '">' + article.title + '</a>' +
                             '</button>' +
                         '</td>' +
                         '<td>' +
@@ -84,7 +68,15 @@
             return;
         }
 
-        $.ajax({
+        DELETE("/article/" + articleId, function(data) {
+            if (selectedTagName == "") {
+                initPage();
+            } else {
+                mngTagClick(null, selectedTagName);
+            }
+            $('#_deleteAlertModal').modal('hide')
+        });
+        /*$.ajax({
             url: PRE_URI_AA + "/deleteArticle",
             data: {
                 "articleId": articleId
@@ -97,9 +89,9 @@
                 }
                 $('#_deleteAlertModal').modal('hide')
             }
-        });
+        });*/
     }
 
     function updateArticle(articleId) {
-        window.location = PRE_URI_AA + "/UpdateArticlePage?articleId=" + articleId;
+        window.location = "/article/UpdateArticlePage/" + articleId;
     }

@@ -13,8 +13,10 @@ var addArticle = function(){
 			"content": UE.getEditor('_articleEditor').getContent()
 		};
 
+        POST("/article", article, function(data) {
 
-		$.ajax({
+        });
+		/*$.ajax({
 			// beforeSend:function(){$('.table').html("正在加载数据，请稍候……");},
 			type: "post",
             dataType: "json",
@@ -23,7 +25,7 @@ var addArticle = function(){
 			success: function(res){
 				
 			}
-		});
+		});*/
 	});
 }
 
