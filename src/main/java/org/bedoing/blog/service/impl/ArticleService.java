@@ -254,7 +254,7 @@ public class ArticleService implements IArticleService {
 			vo.setTitle(a.getTitle());
 			vo.setArticleType(a.getArticleType());
 			vo.setSummary(a.getSummary());
-			vo.setContent(a.getContent());
+//			vo.setContent(a.getContent());
 			vo.setCreateBy(a.getCreateBy());
 			vo.setCreateTime(a.getCreateTime());
 			vo.setLastUpdBy(a.getLastUpdBy());

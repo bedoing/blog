@@ -57,7 +57,7 @@
             <div class="row">
                 <script id="_articleEditor" type="text/plain" style="width:100%;height:500px;"></script>
             </div>
-            <div id="_tempContent" style="display:none;">${article.content}</div>
+            <div id="_tempContent" style="display:none;" th:text="${article.content}"></div>
             <!-- content ends -->
         </div>
     </div>

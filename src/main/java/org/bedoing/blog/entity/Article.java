@@ -22,6 +22,8 @@ public class Article {
 	private String summary;
 
 	@NotNull
+	@Lob
+	@Basic(fetch=FetchType.LAZY)
 	private String content;
 
 	@Column(nullable = false, length = 32)
