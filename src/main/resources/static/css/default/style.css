@@ -81,6 +81,33 @@
     /*background-color: #0096E0;*/
     background-color: #46BA32;
 }
+.label-nav-custom {
+    cursor: pointer;
+    background-color: white;
+    color: #555555;
+    padding: 5px 10px;
+    border: 1px solid #d9d9d9;
+    border-radius: 14px;
+    box-sizing: border-box;
+    font-family: -apple-system, "Helvetica Neue", Arial, "PingFang SC", "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 1.5;
+    float: left;
+}
+.label-nav-custom:hover {
+
+    /*background-color: #0096E0;*/
+    /*background-color: #46BA32;*/
+    color: black;
+    border-color: #ccc;
+}
+.label-nav-custom:active {
+    color: white;
+    border-color: #46BA32;
+    background: #46BA32;
+}
+
 .page-title-custom {
     margin: 5px 0 0 0;
     display: none;
