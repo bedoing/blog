@@ -6,9 +6,11 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.bedoing.blog.constant.Constant;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+//@Component
 public class LoginInterceptor implements HandlerInterceptor{
 	private static final Logger log = Logger.getLogger(LoginInterceptor.class);
 	

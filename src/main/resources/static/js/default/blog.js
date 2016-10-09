@@ -45,6 +45,7 @@ function more(url, paramObj, targetDiv, style, callback){
 }
 
 function initNewsContent(newsObj, idx, style){
+
 	var divVal;
 	if(style == 'Y'){
 		divVal = '<div class="row-fluid card-status-custom well-custom"><div class="span12"><h3><a href="' + "/article/"  + newsObj['articleId'] +'">';
@@ -114,7 +115,7 @@ function listTitleContent(newsObj) {
     return divVal;
 }
 
-function myTags(tagType) {
+/*function myTags(tagType) {
     var myTags = echarts.init(document.getElementById('_myTags'));
 
     var option = {
@@ -179,10 +180,10 @@ function myTags(tagType) {
                 myTags.clear();
             }
             myTags.setOption(option); 
-            /*myTags.on(echarts.config.EVENT.DBLCLICK, dbClickTag);*/
+            *//*myTags.on(echarts.config.EVENT.DBLCLICK, dbClickTag);*//*
             myTags.on("click", clickTag);
     });    
-}
+}*/
 
 function refreshData(tagType, callback) {
     GET("/tag/group/", tagType, function(res) {
@@ -190,11 +191,23 @@ function refreshData(tagType, callback) {
     });
 }
 
+var tagClick = function(tagId, tagName) {
+    var selected = $("#tagId_" + tagId).attr("selected");
+
+    if(selected) {
+        return;
+    }else {
+        $("#_myTags span").removeAttr("selected");
+        $("#tagId_" + tagId).attr("selected", "selected");
+    }
+    clickTag(tagName);
+}
+
 /*function dbClickTag(param) {
         window.location = PRE_URI_TAG + "/" + param.name;
 }*/
 
-function clickTag(param) {
+function clickTag(tagName) {
 
         $("#_news_content").empty();
         var indexMore = $("button[id=index-more]"); 
@@ -203,7 +216,7 @@ function clickTag(param) {
         indexMore.attr("disabled", "true");
         indexMore.text("正在加载");
         var newsVo = {
-            "tagName" : param.name
+            "tagName" : tagName
         };
         
         more("/article/list/tag", newsVo, $("#_news_content"), "Y", function(flag){

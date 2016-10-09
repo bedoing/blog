@@ -17,7 +17,16 @@ $(document).ready(function(){
         });
         listTitle("/article/hot", articleVO, '_ranking');
 
-        myTags(2);
+//        myTags(2);
+
+        refreshData(1, function(data) {
+                var tagDiv = $("#_myTags").empty();
+
+                console.log(data)
+                data.forEach(function(d) {
+                    tagDiv.append('<span class="label label-info label-nav-custom" onClick="tagClick(' + d.tagId + ',\'' + d.tagName + '\')" id="tagId_' + d.tagId + '">' + d.tagName + '  <span class="badge">' + d.articleNum + '</span></span>')
+                });
+            });
 
     $("button[id=index-more]").click(function(){
             var newsContent = $("div[id=_news_content]");
@@ -175,77 +184,17 @@ function listTitleContent(newsObj) {
     return divVal;
 }
 
-function myTags(tagType) {
-    var myTags = echarts.init(document.getElementById('_myTags'));
-    /*var names;
-    var values;*/
-    
-    var option = {
-        calculable: false,
-        grid: {
-            borderWidth: 0,
-            y: 80,
-            y2: 60
-        },
-        xAxis: [
-            {
-                type: 'category',
-                show: false,
-                data: []
-            }
-        ],
-        yAxis: [
-            {
-                type: 'value',
-                show: false
-            }
-        ],
-        series: [
-            {
-                name: '标签统计',
-                type: 'bar',
-                itemStyle: {
-                    normal: {
-                        barBorderRadius: 5,
-                        color: function(params) {
-                            var colorList = [
-                              '#C1232B','#B5C334','#FCCE10','#E87C25','#27727B',
-                               '#FE8463','#9BCA63','#FAD860','#F3A43B','#60C0DD',
-                               '#D7504B','#C6E579','#F4E001','#F0805A','#26C0C0'
-                            ];
-                            return colorList[params.dataIndex]
-                        },
-                        label: {
-                            show: true,
-                            position: 'top',
-                            formatter: '{b}: {c}'
-                        }
-                    },
-                    emphasis: {
-                        barBorderRadius: 0,
-                        // color: '#26C0C0',
-                        barBorderWidth: 1,
-                        barBorderColor: '#FFF'
-                    }
-                },
-                data: [],
-            }
-        ]
-    };
-
-    refreshData(tagType, function(res) {
-            option.xAxis[0].data = res.tagNames;
-            option.series[0].data = res.counts;
-
-            //加载数据
-            if(myTags) {
-                myTags.clear();
-            }
-            myTags.setOption(option); 
-
-            /*myTags.on(echarts.config.EVENT.DBLCLICK, dbClickTag);*/
-            myTags.on("click", clickTag);
-    });    
+var tagClick = function(tagId, tagName) {
+    console.log(tagId)
+    var selected = $("#tagId_" + tagId).attr("selected");
+    console.log(selected)
+    if(selected) {
+        return;
+    }else {
+        $("#_myTags span").removeAttr("selected");
+        $("#tagId_" + tagId).attr("selected", "selected");
+    }
+    clickTag(tagName);
 }
 
 function refreshData(tagType, callback) {
@@ -269,7 +218,7 @@ function refreshData(tagType, callback) {
         window.location = PRE_URI_TAG + "/" + param.name;
 }*/
 
-function clickTag(param) {
+function clickTag(tagName) {
 
         $("#_news_content").empty();
         var indexMore = $("button[id=index-more]"); 
@@ -278,7 +227,7 @@ function clickTag(param) {
         indexMore.attr("disabled", "true");
         indexMore.text("正在加载");
         var newsVo = {
-            "tagName" : param.name
+            "tagName" : tagName
         };
         
         more("/article/list/tag", newsVo, $("#_news_content"), "Y", function(flag){

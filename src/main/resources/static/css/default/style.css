@@ -39,7 +39,8 @@
 /* echart */
 .custom-top-tagsChart {
     width: 100%;
-    height: 240px
+    /*height: 240px*/
+    margin-bottom: 60px;
 }
 .input-group {
     padding: 15px 5px 0px 0px;
@@ -94,6 +95,7 @@
     font-weight: normal;
     line-height: 1.5;
     float: left;
+    margin-right: 10px;
 }
 .label-nav-custom:hover {
 
@@ -111,7 +113,7 @@ span[selected]:hover {
     color: white;
     border-color: #46BA32;
 }
-#tagsHeader .badge {
+#_myTags .badge {
     color: #555555;
     background-color: white;
     border-left: 1px solid #d9d9d9;

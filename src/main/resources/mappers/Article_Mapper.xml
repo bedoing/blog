@@ -4,7 +4,7 @@
 	<resultMap type="org.bedoing.blog.vo.TagsVO" id="tagsMap">  
 		<result property="tagId" column="tag_id"/>
 		<result property="articleNum" column="articleNum"/>  
-	</resultMap> 
+	</resultMap>
 	
 	<sql id="_limitPart">
 		<if test="sortColumn != null &amp; sortColumn != ''">
@@ -106,7 +106,7 @@
 	</select>
 	
 	<select id="findArticlesByTagId" resultType="article" parameterType="org.bedoing.blog.vo.TagsVO">
-		select *
+		select article_id articleId, title, article_type articleType, summary, create_by createBy,create_time createTime, last_upd_by lastUpdBy, last_upd_time lastUpdTime
 		from article
 		where article_id in (
 			select article_id

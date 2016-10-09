@@ -17,7 +17,15 @@ $().ready(function(){
     });
     listTitle("/article/hot", articleVO, '_ranking');
 
-    myTags(1);
+//    myTags(1);
+    refreshData(1, function(data) {
+        var tagDiv = $("#_myTags").empty();
+
+        console.log(data)
+        data.forEach(function(d) {
+            tagDiv.append('<span class="label label-info label-nav-custom" onClick="tagClick(' + d.tagId + ',\'' + d.tagName + '\')" id="tagId_' + d.tagId + '">' + d.tagName + '  <span class="badge">' + d.articleNum + '</span></span>')
+        });
+    });
 });
 
 var initTitle = function(){
