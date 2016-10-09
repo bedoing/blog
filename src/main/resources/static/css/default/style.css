@@ -102,11 +102,34 @@
     color: black;
     border-color: #ccc;
 }
-.label-nav-custom:active {
+span[selected] {
     color: white;
     border-color: #46BA32;
     background: #46BA32;
 }
+span[selected]:hover {
+    color: white;
+    border-color: #46BA32;
+}
+#tagsHeader .badge {
+    color: #555555;
+    background-color: white;
+    border-left: 1px solid #d9d9d9;
+    border-right: 1px solid #d9d9d9;
+    font-size: 10px;
+    font-weight: normal;
+    padding: 2px 4px;
+}
+span[selected] .badge {
+    color: #46BA32 !important;
+    background-color: white;
+    border: 0 !important;
+}
+/*.label-nav-custom:active {
+    color: white;
+    border-color: #46BA32;
+    background: #46BA32;
+}*/
 
 .page-title-custom {
     margin: 5px 0 0 0;

@@ -3,24 +3,33 @@
 <head>
     <link rel="stylesheet" type="text/css" href="../../../static/bootstrap 3.3.5/css/bootstrap.css"/>
     <link rel="stylesheet" type="text/css" href="../../../static/css/default/style.css"/>
-    <style>
-        #tagsHeader span {
-
-        }
-    </style>
 </head>
 
 <body>
 <div class="col-md-1"></div>
 <div class="col-md-10" id="tagsHeader">
-    <span class="label label-info label-nav-custom" onClick="" id="tagId">TagName 2</span>
-    <span class="label label-info label-nav-custom" onClick="" id="tagId2">TagName 10</span>
-    <span class="label label-info label-nav-custom" onClick="" id="tagId3">TagName 30</span>
-    <span class="label label-info label-nav-custom" onClick="" id="tagId4">TagName 100</span>
-    <span class="label label-info label-nav-custom" onClick="" id="tagId5">TagName 150</span>
+    <span class="label label-info label-nav-custom" onClick="tagClick('tagId')" id="tagId_tagId" selected>TagName <span class="badge">2</span></span>
+    <span class="label label-info label-nav-custom" onClick="tagClick('tagId2')" id="tagId_tagId2">TagName <span class="badge">10</span></span>
+    <span class="label label-info label-nav-custom" onClick="tagClick('tagId3')" id="tagId_tagId3">TagName <span class="badge">30</span></span>
+    <span class="label label-info label-nav-custom" onClick="tagClick('tagId4')" id="tagId_tagId4">TagName <span class="badge">100</span></span>
+    <span class="label label-info label-nav-custom" onClick="tagClick('tagId5')" id="tagId_tagId5">TagName <span class="badge">150</span></span>
 </div>
 <div class="col-md-1"></div>
 </body>
 <script src="../../../static/js/jquery-1.11.3.min.js"></script>
 <script src="../../../static/bootstrap 3.3.5/js/bootstrap.js"></script>
+
+<script>
+    var tagClick = function(tagId) {
+        console.log(tagId)
+        var selected = $("#tagId_" + tagId).attr("selected");
+        console.log(selected)
+        if(selected) {
+            return;
+        }else {
+            $("#tagsHeader span").removeAttr("selected");
+            $("#tagId_" + tagId).attr("selected", "selected");
+        }
+    }
+</script>
 </html>
