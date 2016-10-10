@@ -37,7 +37,7 @@ $().ready(function(){
         });*/
 
         $('.table').html("正在保存，请稍候……")
-        POST("/article", article, function(data) {
+        POST("/article/admin", article, function(data) {
             alert(data.retMsg);
             resetArticlePage("mngTagClick");
         });
@@ -51,7 +51,7 @@ $().ready(function(){
         tag.tagName = tagName;
         tag.tagType = tagType;
 
-        POST("/tag/add", tag, function(data) {
+        POST("/tag/admin/add", tag, function(data) {
             if(data.retMsg == "success") {
                 initLabel($("#_newTagBtn").attr("tagFun"));
                 $('#_tagModal').modal('hide')
@@ -130,30 +130,6 @@ function initLabel(funName){
             }
         };
     })
-
-    /*$.ajax({
-            type: "GET",
-            dataType: "json",
-            url: "/tags/-1",
-            success: function(res){
-                for (var i = 0; i < res.length; i++) {
-
-                    if(res[i].tagType == 1) {
-                        $("#_labelGroup").append('<div class="btnLabel" ' + 'id="' + res[i].tagId + '"' + 'onClick="' + funName + '(' + res[i].tagId + ', \'' + res[i].tagName + '\')">' + res[i].tagName + '</div>');
-                    }else {
-                        $("#_labelGroup2").append('<div class="btnLabel" ' + 'id="' + res[i].tagId + '"' + 'onClick="' + funName + '(' + res[i].tagId + ', \'' + res[i].tagName + '\')">' + res[i].tagName + '</div>');
-                    }
-                };
-
-                var tagList = tagIdStr.split(",");
-                for (var i = 0; i < tagList.length; i++) {
-                    var tagId = tagList[i];
-                    if(tagId != "") {
-                        tagCss(tagId, true);
-                    }
-                };
-            }
-        });*/
 }
 
 function tagClick(tagId) {

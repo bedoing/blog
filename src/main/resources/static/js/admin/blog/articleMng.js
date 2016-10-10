@@ -68,7 +68,7 @@
             return;
         }
 
-        DELETE("/article/" + articleId, function(data) {
+        DELETE("/article/admin/" + articleId, function(data) {
             if (selectedTagName == "") {
                 initPage();
             } else {
@@ -93,5 +93,5 @@
     }
 
     function updateArticle(articleId) {
-        window.location = "/article/UpdateArticlePage/" + articleId;
+        window.location = "/article/admin/updateArticlePage/" + articleId;
     }

@@ -24,7 +24,7 @@ var ue;
                 "content": content
             };
 
-            PUT("/article", article, function(data) {
+            PUT("/article/admin", article, function(data) {
                 alert(res.retMsg);
             });
         });

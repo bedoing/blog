@@ -67,10 +67,10 @@ public class UserController extends BaseController {
 			/*return new ModelAndView(UriConstant.ADMIN_LOGIN).addObject(Constant.MSG, "不存在账号或密码错误")
 					.addObject("loginAccount", loginAccount)
 					.addObject("password", loginAccount.getPassword());*/
+		}else {
+			setSessionAttribute(Constant.SESSION_USER, user, request);
 		}
-		
-		setSessionAttribute(Constant.SESSION_USER, user, request);
-		
+
 //		return new ModelAndView(UriConstant.ADMIN_INDEX);
 		ResponseVO res = new ResponseVO();
 		res.setRetData(returnUrl);

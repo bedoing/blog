@@ -19,13 +19,13 @@ import com.alibaba.druid.pool.DruidDataSourceFactory;
 //@MapperScan(basePackages="org.bedoing.blog.entity")
 public class MyBatisConfig {
 
-    @Autowired
+    /*@Autowired
     private Environment env;
 
-    /**
+    *//**
      * 创建数据源
      * @Primary 该注解表示在同一个接口有多个实现类可以注入的时候，默认选择哪一个，而不是让@autowire注解报错
-     */
+     *//*
     @Bean
     //@Primary
     public DataSource getDataSource() throws Exception{
@@ -46,6 +46,6 @@ public class MyBatisConfig {
         fb.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(env.getProperty("mybatis.mapperLocations")));//指定xml文件位置
 
         return fb.getObject();
-    }
+    }*/
 
 }

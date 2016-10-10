@@ -120,7 +120,7 @@ public class ArticleController extends BaseController {
 
 
 	/******************* admin *********************/
-	@RequestMapping(method = POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/admin", method = POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseVO addArticle(@RequestBody ArticleVO article) {
 		log.info(JSON.toJSONString(article));
 		ResponseVO res = new ResponseVO();
@@ -139,7 +139,7 @@ public class ArticleController extends BaseController {
 		return res;
 	}
 
-	@RequestMapping(value = "/{articleId}", method = DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/admin/{articleId}", method = DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseVO deleteArticle(@PathVariable int articleId) {
 		articleService.deleteArticleById(articleId);
 		ResponseVO res = new ResponseVO();
@@ -148,7 +148,7 @@ public class ArticleController extends BaseController {
 		return res;
 	}
 
-	@RequestMapping(method = PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/admin", method = PUT, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseVO updateArticle(@RequestBody ArticleVO article) {
 		articleService.updateArticle(article);
 		ResponseVO res = new ResponseVO();
@@ -157,8 +157,8 @@ public class ArticleController extends BaseController {
 		return res;
 	}
 
-	@RequestMapping(value = "/UpdateArticlePage/{articleId}")
-	public ModelAndView toUpdateArticle(@PathVariable int articleId) {
+	@RequestMapping(value = "/admin/updateArticlePage/{articleId}")
+	public ModelAndView updateArticlePage(@PathVariable int articleId) {
 		ModelAndView mv = new ModelAndView(UriConstant.ADMIN_BLOG_UPDATE_ARTICLE);
 		// TODO
 		ArticleVO a = articleService.findArticleById(articleId);

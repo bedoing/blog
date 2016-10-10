@@ -26,8 +26,7 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class DateUtils {
 
-    private static SimpleDateFormat dtf = new SimpleDateFormat(
-            "yyyy-MM-dd HH:mm:ss");
+    private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     /**
      * 根据当前时间返回一个形式为'yyyy-MM-dd-HH-mm-ss'的字符串
@@ -351,7 +350,7 @@ public class DateUtils {
      */
     public static String getNowDateTime() {
         Date datetime = new Date();
-        return dtf.format(datetime);
+        return sdf.format(datetime);
     }
 
     /**

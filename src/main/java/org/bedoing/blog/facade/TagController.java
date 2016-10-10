@@ -90,7 +90,7 @@ public class TagController extends BaseController {
         return result;
     }
 
-    @RequestMapping(value = "/add", method = POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/admin/add", method = POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseVO addNewTag(@RequestBody Tag tag) {
         ResponseVO vo = new ResponseVO();
         String msg = "";

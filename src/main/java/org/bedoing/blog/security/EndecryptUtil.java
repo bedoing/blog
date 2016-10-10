@@ -22,4 +22,5 @@ public class EndecryptUtil {
 		Endecrypt decrypt = new Endecrypt();
 		return decrypt.get3DESDecrypt(oldStr, SPKEY);
 	}
+
 }

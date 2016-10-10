@@ -26,11 +26,6 @@ public class NavController extends BaseController {
 		return new ModelAndView(UriConstant.DEFAULT_DEFAULT);
 	}
 
-	@RequestMapping(value = "/portfolio")
-	public ModelAndView toPortfolio() {
-		return new ModelAndView(UriConstant.DEFAULT_PORTFOLIO);
-	}
-
 	@RequestMapping(value = "/articles")
 	public ModelAndView toBlog() {
 		return new ModelAndView(UriConstant.DEFAULT_ARTICLES);
@@ -41,19 +36,9 @@ public class NavController extends BaseController {
 		return new ModelAndView("blog/default/subject");
 	}
 
-	@RequestMapping(value = "/services")
-	public ModelAndView toServices() {
-		return new ModelAndView(UriConstant.DEFAULT_SERVICES);
-	}
-
 	@RequestMapping(value = "/about")
 	public ModelAndView toAbout() {
 		return new ModelAndView(UriConstant.DEFAULT_ABOUT);
-	}
-
-	@RequestMapping(value = "/contact")
-	public ModelAndView toContact() {
-		return new ModelAndView(UriConstant.DEFAULT_CONTACT);
 	}
 
 	@RequestMapping(value = "/registe")
@@ -80,14 +65,6 @@ public class NavController extends BaseController {
 		return new ModelAndView(UriConstant.DEFAULT_BLOG_ARTICLE_BY_TAG).addObject("tagName", tagName);
 	}
 
-	// TODO
-	@RequestMapping(value = "/comment")
-	public ModelAndView toComment() {
-		ModelAndView mv = new ModelAndView(UriConstant.DEFAULT_COMMENT);
-
-		return mv;
-	}
-
 
 	/******************* admin ********************/
 	@RequestMapping(value = "/admin/index")
@@ -106,5 +83,4 @@ public class NavController extends BaseController {
 
 		return mv;
 	}
-
 }

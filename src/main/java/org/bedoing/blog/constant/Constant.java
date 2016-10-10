@@ -21,11 +21,9 @@ public class Constant {
 	public static final String VER_CODE = "verCode";
 	
 	/*1-登录
-	2-主动退出
-	3-被动退出*/
+	2-主动退出*/
 	public static final int LOGIN_TYPE_1 = 1;
 	public static final int LOGIN_TYPE_2 = 2;
-	public static final int LOGIN_TYPE_3 = 3;
 	
 	public static final String YYYY_MM_DD = "yyyy-MM-dd";
 }

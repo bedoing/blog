@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-//@Component
+@Component
 public class LoginInterceptor implements HandlerInterceptor{
 	private static final Logger log = Logger.getLogger(LoginInterceptor.class);
 	
@@ -20,11 +20,11 @@ public class LoginInterceptor implements HandlerInterceptor{
 		
 		String uriStr = request.getRequestURI();
 		log.debug(String.format("请求URI: %s ", uriStr));
-		if(uriStr.indexOf("/admin/") != -1) {
+		if(uriStr.indexOf("/admin") != -1) {
 			Object obj = session.getAttribute(Constant.SESSION_USER);
 			if(obj == null) {
 				request.setAttribute(Constant.MSG, "登入账号过期，请重新登入！");
-				request.getRequestDispatcher("/app/place/login").forward(request, response);
+				request.getRequestDispatcher("/login").forward(request, response);
 				
 				return false;
 		    }
