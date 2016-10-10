@@ -17,6 +17,11 @@ body {
     font-size: 14px;
 }
 
+blockquote {
+    font-size: 16px;
+    color: #888;
+}
+
 .violet { color: #9d426b; }
 
 a {

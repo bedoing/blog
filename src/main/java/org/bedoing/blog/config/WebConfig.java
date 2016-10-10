@@ -15,6 +15,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     private LoginInterceptor loginInterceptor;
 
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(loginInterceptor);
+        registry.addInterceptor(loginInterceptor)/*.addPathPatterns("/admin*//**")*/;
     }
 }
