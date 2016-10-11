@@ -3,6 +3,7 @@ package org.bedoing.blog.facade;
 import org.bedoing.blog.constant.UriConstant;
 import org.bedoing.blog.entity.LoginAccount;
 import org.springframework.http.MediaType;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,12 +48,16 @@ public class NavController extends BaseController {
 	}
 
 	@RequestMapping(value = "/login")
-	public ModelAndView toLogin(HttpServletRequest request) {
+	public ModelAndView toLogin(Model model, HttpServletRequest request) {
 		LoginAccount user = getUserInfo(request);
+		ModelAndView mv;
 		if (null != user) {
-			return new ModelAndView(UriConstant.ADMIN_INDEX);
+			mv = new ModelAndView(UriConstant.ADMIN_INDEX);
+		}else {
+			model.addAttribute("loginAccount", new LoginAccount());
+			mv = new ModelAndView(UriConstant.ADMIN_LOGIN);
 		}
-		return new ModelAndView(UriConstant.ADMIN_LOGIN);
+		return mv;
 	}
 
 	@RequestMapping(value = "/articles/tag={tagName}", method = GET)

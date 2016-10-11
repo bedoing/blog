@@ -1,5 +1,5 @@
 $().ready(function() {
-    loginMsg('${msg}');
+    /*loginMsg('${msg}');
 
     $("#signIn").on("click", function() {
         // TODO
@@ -18,5 +18,5 @@ $().ready(function() {
             console.log(data.retData)
             window.location = document.location.origin + data.retData;
         });
-    })
+    })*/
 });

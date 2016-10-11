@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-@Component
+//@Component
 public class LoginInterceptor implements HandlerInterceptor{
 	private static final Logger log = Logger.getLogger(LoginInterceptor.class);
 	

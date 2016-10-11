@@ -43,9 +43,8 @@ public class UserController extends BaseController {
 	@Autowired
 	private UserRepository userRepository;
 	
-	@RequestMapping(value = "/login", method = POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseVO userLogin(@RequestBody LoginAccount loginAccount, HttpServletRequest request) {
-		String returnUrl = "/admin/index";
+	@RequestMapping(value = "/login", method = POST)
+	public ModelAndView userLogin(@ModelAttribute LoginAccount loginAccount, HttpServletRequest request) {
 		String msg = "";
 		if(StringUtils.isBlank(loginAccount.getAccountName())) {
 			msg = "登陆账号不能为空      ";
@@ -55,26 +54,23 @@ public class UserController extends BaseController {
 		}
 		
 		if(StringUtils.isNotBlank(msg)) {
-			returnUrl = "/login";
-			/*return new ModelAndView(UriConstant.ADMIN_LOGIN).addObject(Constant.MSG, msg)
+			return new ModelAndView(UriConstant.ADMIN_LOGIN)
+					.addObject(Constant.MSG, msg)
 					.addObject("loginAccount", loginAccount)
-					.addObject("password", loginAccount.getPassword());*/
+					.addObject("password", loginAccount.getPassword());
 		}
 		
 		LoginAccount user = userRepository.findByAccountName(loginAccount.getAccountName());
 		if(null == user || !user.getPassword().equals(EndecryptUtil.encrypt(loginAccount.getPassword()))) {
-			returnUrl = "/login";
-			/*return new ModelAndView(UriConstant.ADMIN_LOGIN).addObject(Constant.MSG, "不存在账号或密码错误")
+			return new ModelAndView(UriConstant.ADMIN_LOGIN)
+					.addObject(Constant.MSG, "不存在账号或密码错误")
 					.addObject("loginAccount", loginAccount)
-					.addObject("password", loginAccount.getPassword());*/
+					.addObject("password", loginAccount.getPassword());
 		}else {
 			setSessionAttribute(Constant.SESSION_USER, user, request);
 		}
 
-//		return new ModelAndView(UriConstant.ADMIN_INDEX);
-		ResponseVO res = new ResponseVO();
-		res.setRetData(returnUrl);
-		return res;
+		return new ModelAndView(UriConstant.ADMIN_INDEX);
 	}
 	
 	@RequestMapping(value = "/logout", method = {GET, POST}, produces = MediaType.APPLICATION_JSON_VALUE)
