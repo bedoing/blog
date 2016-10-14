@@ -16,6 +16,6 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 //    private LoginInterceptor loginInterceptor;
 
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LoginInterceptor());
+//        registry.addInterceptor(new LoginInterceptor());
     }
 }

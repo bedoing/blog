@@ -1,6 +1,7 @@
 package org.bedoing.blog.facade;
 
 import com.alibaba.fastjson.JSON;
+import io.swagger.annotations.Api;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.bedoing.blog.commons.MapFactory;
@@ -26,6 +27,7 @@ import java.util.Map;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
+@Api("Artilce Controller")
 @RestController
 @RequestMapping("/article")
 public class ArticleController extends BaseController {
