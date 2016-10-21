@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="blog/admin/header :: header" th:with="titleName=Login" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/admin/sign.css}"/>
+<body>
+
+<div class="container">
+    <form class="form-signin" th:action="@{/user/login}" th:object="${loginAccount}" method="post">
+        <div th:if="${msg} != null and ${msg} != ''">
+            <div id="_alertMsg" class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+                <strong th:text="${msg}"></strong>
+            </div>
+        </div>
+
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label class="sr-only">Email address</label>
+        <input name="accountName" id="accountName" th:value="${loginAccount}" type="text" th:field="*{accountName}" class="form-control" placeholder="用户名"/>
+        <label class="sr-only">Password</label>
+        <input name="password" id="password" th:value="${password}" type="password" th:field="*{password}" class="form-control" placeholder="密码"/>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" th:value="remember-me" /> Remember me
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" id="signIn">Sign in</button>
+    </form>
+</div>
+
+<script th:src="@{/js/admin/userMng.js}"></script>
+<script th:src="@{/js/admin/login.js}"></script>
+</body>
+</html>

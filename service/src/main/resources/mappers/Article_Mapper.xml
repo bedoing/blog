@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">   
+<mapper namespace="article"> 
+	<resultMap type="org.bedoing.vo.TagsVO" id="tagsMap">
+		<result property="tagId" column="tag_id"/>
+		<result property="tagName" column="tag_name"/>
+		<result property="articleNum" column="articleNum"/>  
+	</resultMap>
+	
+	<sql id="_limitPart">
+		<if test="sortColumn != null &amp; sortColumn != ''">
+			order by ${sortColumn } ${sortMode }
+		</if>
+		limit #{beginRow }, #{pageSize }
+	</sql>
+	
+	<update id="updateArticle" parameterType="article">
+		update article 
+			<set>
+				<if test="title != null &amp; title != ''">
+					title = #{title},
+				</if>
+				<if test="articleType != null &amp; articleType != ''">
+					article_type = #{articleType},
+				</if>
+				<if test="summary != null &amp; summary != ''">
+					summary = #{summary},
+				</if>
+				<if test="content != null &amp; content != ''">
+					content = #{content},
+				</if>
+				
+				<if test="lastUpdBy != null &amp; lastUpdBy != ''">
+					last_upd_by = #{lastUpdBy}
+				</if>
+				<if test="lastUpdTime != null &amp; lastUpdTime != ''">
+					last_upd_time = #{lastUpdTime}
+				</if>
+			</set>
+		where article_id = #{articleId}
+	</update>
+	
+	<select id="countArticlesByCriteria" resultType="int" parameterType="org.bedoing.vo.ArticleVO">
+		select count(article_id) from article
+		where 1 = 1
+			<if test="articleType != null &amp; articleType != '' &amp; articleType != -1">
+				and article_type = #{articleType }
+			</if>
+			<if test="articleId != null &amp; articleId != ''">
+				and article_id = #{articleId}
+			</if> 
+	</select>
+	
+	<select id="findArticlesByCriteria" resultType="article" parameterType="org.bedoing.vo.ArticleVO">
+		select article_id articleId, title, article_type articleType, summary, create_by createBy,create_time createTime, last_upd_by lastUpdBy, last_upd_time lastUpdTime
+		from article 
+		where 1 = 1
+			<if test="articleType != null &amp; articleType != '' &amp; articleType != -1">
+				and article_type = #{articleType }
+			</if>
+			<if test="articleId != null &amp; articleId != ''">
+				and article_id = #{articleId}
+			</if>
+		<include refid="_limitPart" />
+	</select>
+	
+	<select id="findArticlesOrderByClicks" resultType="article" parameterType="org.bedoing.vo.ArticleVO">
+		select a.article_id articleId, a.title, a.article_type articleType, a.summary, a.create_by createBy,a.create_time createTime, a.last_upd_by lastUpdBy, a.last_upd_time lastUpdTime
+		from article a
+		left join clicks c on a.article_id = c.article_id
+		where a.article_type = #{articleType }
+		
+				
+		<include refid="_limitPart" />
+	</select>
+	
+	<!-- subject -->
+	<update id="updateSubject" parameterType="subject">
+		update subject
+		set  
+			difficulty = #{difficulty},
+			time_limit = #{timeLimit},
+			memory_limit = #{memoryLimit},
+			other_limit = #{otherLimit}
+		where article_id = #{articleId}
+	</update>
+		
+	<!-- tags -->
+	
+	<select id="tagsGroup" resultMap="tagsMap" parameterType="int">
+		select tag_id, count(article_id) articleNum
+		from article_tags
+		group by tag_id
+	</select>
+	
+	<select id="tagsGroupByTagType" resultMap="tagsMap" parameterType="int">
+		select t.tag_id, t.tag_name, count(at.article_id) articleNum
+		from tag t, article_tags at
+		where t.tag_type = #{tagType}
+			and t.tag_id = at.tag_id
+		
+		group by at.tag_id
+	</select>
+	
+	<select id="countArticlesByTagId" resultType="int" parameterType="org.bedoing.vo.TagsVO">
+		select count(article_id) from article_tags where tag_id = #{tagId }
+	</select>
+	
+	<select id="findArticlesByTagId" resultType="article" parameterType="org.bedoing.vo.TagsVO">
+		select article_id articleId, title, article_type articleType, summary, create_by createBy,create_time createTime, last_upd_by lastUpdBy, last_upd_time lastUpdTime
+		from article
+		where article_id in (
+			select article_id
+			from article_tags where tag_id = #{tagId }
+		)
+		<include refid="_limitPart" />
+	</select>
+	
+	<update id="updateClicks" parameterType="clicks">
+		update clicks
+		set clicks = #{clicks } 
+			
+		where article_id = #{articleId}
+	</update>
+</mapper>  

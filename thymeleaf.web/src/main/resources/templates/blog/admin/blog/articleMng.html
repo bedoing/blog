@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="blog/admin/header :: header" th:with="titleName=文章管理" />
+
+<body>
+<div th:include="blog/admin/nav :: nav" />
+
+<div class="container">
+    <div class="row">
+        <div id="content" class="col-md-12">
+            <div class="row well">
+                <div class="col-md-6">
+                    <div class="label-group" id="_labelGroup"></div>
+                </div>
+                <div class="col-md-6">
+                    <div class="label-group" id="_labelGroup2"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">
+                        <a onclick="initPage()">
+                            <i class="glyphicon glyphicon-list"></i> 文章列表 /
+                        </a>
+                        <span id="_listMng"></span>
+                    </div>
+
+                    <!-- Table -->
+                    <table id="_articleListTable" class="table table-hover">
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="_deleteAlertModal" tabindex="-1" role="dialog" aria-labelledby="_deleteAlertModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <!-- modal begin -->
+                <div class="alert alert-danger">
+                    <strong>警告！</strong>确定删除文章?
+                </div>
+                <button type="button" class="btn btn-danger" tagFun="tagClick" onclick="deleteArticle();">继续删除</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <!-- modal end -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:include="blog/admin/footer :: copy"></footer>
+<script th:src="@{/js/admin/blog/publish.js}"></script>
+<script th:src="@{/js/common.js}"></script>
+<script th:src="@{/js/admin/blog/articleMng.js}"></script>
+<script th:src="@{/js/ueditor/ueditor.config.js}"></script>
+<script th:src="@{/js/ueditor/ueditor.all.min.js}"> </script>
+<script th:src="@{/js/ueditor/lang/zh-cn/zh-cn.js}"></script>
+</body>
+</html>
