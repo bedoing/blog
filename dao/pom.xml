@@ -10,12 +10,12 @@
    	</parent>
 
 	<groupId>org.bedoing</groupId>
-	<artifactId>service</artifactId>
+	<artifactId>dao</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>service</name>
-	<description>service project for Bedoing</description>
+	<name>dao</name>
+	<description>dao project for Bedoing</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -28,10 +28,6 @@
 		<cxf.version>3.1.7</cxf.version>
 		<fastjson.version>1.2.18</fastjson.version>
 	</properties>
-
-	<!--<modules>
-		<module>dao</module>
-	</modules>-->
 
 	<dependencies>
 		<dependency>
@@ -96,12 +92,6 @@
 			<artifactId>druid</artifactId>
 			<version>1.0.25</version>
 		</dependency>-->
-
-		<dependency>
-			<groupId>org.bedoing</groupId>
-			<artifactId>dao</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
 	</dependencies>
 
 	<build>

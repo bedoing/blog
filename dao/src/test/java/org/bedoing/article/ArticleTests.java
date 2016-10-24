@@ -2,8 +2,6 @@ package org.bedoing.article;
 
 import org.bedoing.entity.Article;
 import org.bedoing.repository.ArticleRepository;
-import org.bedoing.service.impl.ArticleService;
-import org.bedoing.vo.ArticleVO;
 import org.hamcrest.Matchers;
 import org.junit.*;
 import org.junit.runner.*;
@@ -24,7 +22,7 @@ public class ArticleTests {
     private TestEntityManager entityManager;
 
     @Autowired
-    private ArticleService articleService;
+    private ArticleRepository articleRepository;
 
     @Before
     public void setUp() {
@@ -33,11 +31,11 @@ public class ArticleTests {
 
     @Test
     public void testExample() throws Exception {
-        ArticleVO a = articleService.findArticleById(1);
+        Article a = articleRepository.findOne(1);
 
         System.out.println(a);
 
-        Assert.assertEquals(a.getTitle(), "for title");
+        Assert.assertEquals(a.getTitle(), "编译原理：求First集和Follow集");
         Assert.assertEquals(a.getArticleType(), 1);
     }
 
