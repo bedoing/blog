@@ -1,4 +1,4 @@
-package org.bedoing;
+package org.bedoing.daoapplication;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

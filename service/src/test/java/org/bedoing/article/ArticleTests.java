@@ -20,8 +20,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
 public class ArticleTests {
-    @Autowired
-    private TestEntityManager entityManager;
+//    @Autowired
+//    private TestEntityManager entityManager;
 
     @Autowired
     private ArticleService articleService;

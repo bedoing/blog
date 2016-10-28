@@ -1,4 +1,4 @@
-package org.bedoing;
+package org.bedoing.serviceapplication;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
