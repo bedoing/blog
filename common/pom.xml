@@ -10,7 +10,7 @@
 		<relativePath>../parent/</relativePath>
 	</parent>
 
-	<artifactId>service</artifactId>
+	<artifactId>common</artifactId>
 	<version>2.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
@@ -24,15 +24,6 @@
 	</properties>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.bedoing</groupId>
-			<artifactId>common</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.bedoing</groupId>
-			<artifactId>dao</artifactId>
-			<version>${dao.version}</version>
-		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

@@ -29,6 +29,11 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>org.bedoing</groupId>
+			<artifactId>common</artifactId>
+			<version>2.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>

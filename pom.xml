@@ -21,6 +21,7 @@
 	<inceptionYear>2016</inceptionYear>
 
     <modules>
+        <module>common</module>
         <module>dao</module>
         <module>service</module>
         <module>facade</module>
