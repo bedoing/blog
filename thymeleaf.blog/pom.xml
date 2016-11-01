@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.bedoing</groupId>
         <artifactId>parent</artifactId>
-        <version>2.0</version>
+        <version>2.0-SNAPSHOT</version>
         <relativePath>../parent/</relativePath>
     </parent>
 
@@ -62,7 +62,21 @@
             <artifactId>websocket-servlet</artifactId>
             <version>${jetty.version}</version>
         </dependency>-->
-
+        <dependency>
+            <groupId>org.bedoing</groupId>
+            <artifactId>common</artifactId>
+            <version>2.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.bedoing</groupId>
+            <artifactId>dao</artifactId>
+            <version>2.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.bedoing</groupId>
+            <artifactId>service</artifactId>
+            <version>2.0-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>

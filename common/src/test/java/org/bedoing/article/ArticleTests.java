@@ -1,13 +1,9 @@
 package org.bedoing.article;
 
 import org.bedoing.commonapplication.CommonApplication;
-import org.bedoing.entity.Article;
-import org.bedoing.repository.ArticleRepository;
-import org.bedoing.service.impl.ArticleService;
-import org.bedoing.vo.ArticleVO;
-import org.junit.*;
-import org.junit.runner.*;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,8 +21,6 @@ public class ArticleTests {
 //    @Autowired
 //    private TestEntityManager entityManager;
 
-    @Autowired
-    private ArticleService articleService;
 
     @Before
     public void setUp() {
@@ -35,22 +29,8 @@ public class ArticleTests {
 
     @Test
     public void testExample() throws Exception {
-        ArticleVO a = articleService.findArticleById(1);
 
-        System.out.println(a);
-
-        Assert.assertEquals(a.getTitle(), "for title");
-        Assert.assertEquals(a.getArticleType(), 1);
     }
 
-    private Article getDefaultArticle() {
-        Article a = new Article();
-        a.setArticleId(999);
-        a.setTitle("for test title");
-        a.setArticleType(1);
-        a.setSummary("summary ***");
-        a.setContent("content ............");
 
-        return a;
-    }
 }

@@ -1,8 +1,6 @@
 package org.bedoing.vo;
 
 import lombok.Data;
-import org.bedoing.entity.Subject;
-import org.bedoing.entity.Tag;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +24,6 @@ public class ArticleVO extends BaseVO{
 	private String tags;
 	private int clicks;
 	
-	private List<Tag> tagList = new ArrayList<Tag>();
-	Subject subject = new Subject();
+	private List<TagsVO> tagList = new ArrayList<TagsVO>();
+	SubjectVO subject = new SubjectVO();
 }

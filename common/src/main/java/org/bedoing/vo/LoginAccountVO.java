@@ -1,7 +1,8 @@
 package org.bedoing.vo;
 
 import lombok.Data;
-import org.bedoing.entity.LoginAccount;
+
+import java.util.Date;
 
 /**
  * 
@@ -9,7 +10,7 @@ import org.bedoing.entity.LoginAccount;
  *
  */
 @Data
-public class LoginAccountVO extends LoginAccount {
+public class LoginAccountVO {
 
 	private String roleStr;
 	private String sexStr;
@@ -18,4 +19,31 @@ public class LoginAccountVO extends LoginAccount {
 //	private String province;
 	private String createTimeStr;
 	private String statusStr;
+
+	// *****************
+	private int id;
+
+	private String accountName;
+
+	private String password;
+
+	private Integer role;
+
+	private String mobilePhone;
+
+	private Integer sex;
+
+	private String nickname;
+
+	private String headImgUrl;
+
+	private String country;
+
+	private String city;
+
+	private String province;
+
+	private Date createTime;
+
+	private Integer status;
 }
