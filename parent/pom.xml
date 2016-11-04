@@ -21,7 +21,6 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-		<mybatis.version>1.1.1</mybatis.version>
 		<commons.lang.version>3.4</commons.lang.version>
 		<guava.version>19.0</guava.version>
 		<lombok.version>1.16.8</lombok.version>
@@ -153,10 +152,10 @@
 					</configuration>
 				</plugin>
 
-				<plugin>
+				<!--<plugin>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-maven-plugin</artifactId>
-				</plugin>
+				</plugin>-->
 			</plugins>
 		</pluginManagement>
 	</build>

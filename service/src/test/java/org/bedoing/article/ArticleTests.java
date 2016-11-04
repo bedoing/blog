@@ -1,5 +1,6 @@
 package org.bedoing.article;
 
+import org.bedoing.ServiceBoot;
 import org.bedoing.entity.Article;
 import org.bedoing.service.impl.ArticleService;
 import org.bedoing.vo.ArticleVO;
@@ -18,7 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
 //@ComponentScan("org.bedoing")
-@SpringBootTest(classes = org.bedoing.commonapplication.ServiceApplication.class)
+@SpringBootTest(classes = ServiceBoot.class)
 public class ArticleTests {
 //    @Autowired
 //    private TestEntityManager entityManager;

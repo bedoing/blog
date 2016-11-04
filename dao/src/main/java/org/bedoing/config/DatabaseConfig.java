@@ -13,7 +13,7 @@ import org.springframework.core.env.Environment;
 import javax.sql.DataSource;
 
 @Configuration
-@PropertySource({"classpath:application.yml"})
+@PropertySource({"classpath:application-dev.yml"})
 //@PropertySource({"classpath:application.properties"})
 public class DatabaseConfig {
     private Logger logger = LoggerFactory.getLogger(getClass());

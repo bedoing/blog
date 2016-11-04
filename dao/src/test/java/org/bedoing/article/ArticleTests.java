@@ -1,8 +1,8 @@
 package org.bedoing.article;
 
+import org.bedoing.DaoBoot;
 import org.bedoing.entity.Article;
 import org.bedoing.repository.ArticleRepository;
-import org.hamcrest.Matchers;
 import org.junit.*;
 import org.junit.runner.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
-@SpringBootTest(classes = org.bedoing.daoapplication.DaoApplication.class)
+@SpringBootTest(classes = DaoBoot.class)
 public class ArticleTests {
     @Autowired
     private TestEntityManager entityManager;

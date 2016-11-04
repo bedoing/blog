@@ -8,7 +8,7 @@
         <groupId>org.bedoing</groupId>
         <artifactId>parent</artifactId>
         <version>2.0-SNAPSHOT</version>
-        <relativePath>../parent/</relativePath>
+        <relativePath>../parent/pom.xml</relativePath>
     </parent>
 
     <!--<groupId>org.bedoing</groupId>-->
@@ -56,9 +56,19 @@
             <version>2.0-SNAPSHOT</version>
         </dependency>
         <dependency>
+            <groupId>org.bedoing</groupId>
+            <artifactId>dao</artifactId>
+            <version>2.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.bedoing</groupId>
+            <artifactId>service</artifactId>
+            <version>2.0-SNAPSHOT</version>
+        </dependency>
+        <!--<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -106,11 +116,6 @@
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-rest-hal-browser</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>1.1.1</version>
-        </dependency>
         <!--<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
@@ -128,12 +133,6 @@
         </dependency>
 
         <dependency>
-            <groupId>javax.websocket</groupId>
-            <artifactId>javax.websocket-api</artifactId>
-            <version>1.1</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>swagger-ui</artifactId>
             <version>2.1.0</version>
@@ -148,20 +147,6 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.5.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.eclipse.jetty.websocket</groupId>
-            <artifactId>websocket-client</artifactId>
-            <version>${jetty.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.eclipse.jetty.websocket</groupId>
-            <artifactId>javax-websocket-server-impl</artifactId>
-            <version>${jetty.version}</version>
-            <scope>test</scope>
         </dependency>
 
         <!-- http://mvnrepository.com/artifact/org.ehcache/ehcache -->
@@ -215,13 +200,13 @@
 
     <build>
         <plugins>
-            <plugin>
+            <!--<plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <fork>true</fork>
                 </configuration>
-            </plugin>
+            </plugin>-->
         </plugins>
     </build>
 </project>
