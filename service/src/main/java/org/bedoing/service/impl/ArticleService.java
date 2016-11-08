@@ -221,7 +221,9 @@ public class ArticleService implements IArticleService {
 		if(a.getArticleType() == 2) {
 			// subject
 			Subject s = findSubjectByArticleId(a.getArticleId());
-			vo.setSubject(s);
+
+			// TODO
+//			vo.setSubject(s);
 		}
 		
 		String tagIdStr = "";
@@ -235,8 +237,9 @@ public class ArticleService implements IArticleService {
 			// TODO
 			Tag tag = tagRepository.findOne(t.getTagId());
 			t.setTagName(tag == null? "NULL":tag.getTagName());
-			
-			vo.getTagList().add(t);
+
+			// TODO
+//			vo.getTagList().add(t);
 		}
 		return vo;
 	}
@@ -262,7 +265,8 @@ public class ArticleService implements IArticleService {
 			if(a.getArticleType() == 2) {
 				// subject
 				Subject s = findSubjectByArticleId(a.getArticleId());
-				vo.setSubject(s);
+				// TODO
+//				vo.setSubject(s);
 			}
 			
 			String tagIdStr = "";
@@ -276,8 +280,9 @@ public class ArticleService implements IArticleService {
 				// TODO
 				Tag tag = tagRepository.findOne(t.getTagId());
 				t.setTagName(tag == null? "NULL":tag.getTagName());
-				
-				vo.getTagList().add(t);
+
+				// TODO
+//				vo.getTagList().add(t);
 			}
 			
 			result.add(vo);

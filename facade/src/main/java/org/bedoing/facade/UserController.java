@@ -81,7 +81,7 @@ public class UserController extends BaseController {
 		}
 		try {
 			request.getRequestDispatcher("/app/place/login").forward(request, response);
-		} catch (ServletException | IOException e) {
+		} catch (Exception e) {
 			log.error(e);
 		}
 	}

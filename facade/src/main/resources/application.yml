@@ -1,17 +1,2 @@
 server:
   port: 8090
-#spring:
-#    profiles.active: local
-#    port: 8088
-#    jpa:
-#        hibernate.ddl-auto: none
-#        show-sql: true
-#        properties.hibernate.enable_lazy_load_no_trans: true
-#    freemarker.suffix: .html
-#
-#cxf:
-#    path: /services
-#    basepath: /services
-#    servlet.init:
-#        service-list-path: /info
-

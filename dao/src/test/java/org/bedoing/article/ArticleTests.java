@@ -1,5 +1,6 @@
 package org.bedoing.article;
 
+import com.google.common.collect.Lists;
 import org.bedoing.DaoBoot;
 import org.bedoing.entity.Article;
 import org.bedoing.repository.ArticleRepository;
@@ -28,6 +29,11 @@ public class ArticleTests {
 
     @Before
     public void setUp() {
+
+    }
+
+    @Test
+    public void test() {
 
     }
 

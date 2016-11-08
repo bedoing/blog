@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 /**
  * Created by ken on 10/10/2016.
  */
-@Configuration
+//@Configuration
 public class MvcConfig extends WebMvcConfigurerAdapter {
 //    @Autowired
 //    private LoginInterceptor loginInterceptor;

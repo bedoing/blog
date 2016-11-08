@@ -93,7 +93,7 @@
 	<!--</dependencyManagement>-->
 
 	<build>
-		<pluginManagement>
+		<!--<pluginManagement>-->
 			<plugins>
 				<!--<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -157,7 +157,7 @@
 					<artifactId>spring-boot-maven-plugin</artifactId>
 				</plugin>-->
 			</plugins>
-		</pluginManagement>
+		<!--</pluginManagement>-->
 	</build>
 
 	<profiles>

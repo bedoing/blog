@@ -16,7 +16,7 @@ import java.util.List;
  * @author Ken
  *
  */
-@Component
+//@Component
 public class SystemListenerProcessor implements ApplicationListener<ContextRefreshedEvent> {
 	private static final Logger log = Logger.getLogger(SystemListenerProcessor.class); 
 	
