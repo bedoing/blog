@@ -1,5 +1,6 @@
 package org.bedoing.handler;
 
+import org.apache.log4j.Logger;
 import org.bedoing.vo.ResponseVO;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -12,10 +13,13 @@ import javax.servlet.http.HttpServletRequest;
  */
 @ControllerAdvice
 public class GlobalExceptionHandler {
+    private static final Logger log = Logger.getLogger(GlobalExceptionHandler.class);
     public static final String DEFAULT_ERROR_VIEW = "error";
 
     @ExceptionHandler
-    public ModelAndView defaultErrorHandler(HttpServletRequest request, Exception e) throws Exception {
+    public ModelAndView defaultErrorHandler(HttpServletRequest request, Exception e){
+        log.error("global exception.", e);
+
         ResponseVO res = new ResponseVO();
         res.setRetMsg(e.getMessage());
         res.setErrNum("");

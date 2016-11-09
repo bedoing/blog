@@ -34,7 +34,7 @@ public class ArticleController extends BaseController {
 	@Resource
 	private IArticleService articleService;
 	
-	@RequestMapping(value = "/list", method = {GET, POST}, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/list", method = POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Map<String, Object> articleList(@RequestBody ArticleVO articleVO){
 		articleVO.setBeginRow((articleVO.getPageNo() - 1) * articleVO.getPageSize());
 		articleVO.setSortColumn("create_time");

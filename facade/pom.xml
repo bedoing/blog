@@ -19,8 +19,9 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<common.version>2.0-SNAPSHOT</common.version>
+		<serivice.version>2.0-SNAPSHOT</serivice.version>
 		<dao.version>2.0-SNAPSHOT</dao.version>
-		<commons.lang.version>3.4</commons.lang.version>
 		<commons.beanutils.version>1.9.2</commons.beanutils.version>
 	</properties>
 
@@ -51,7 +52,7 @@
 		<dependency>
 			<groupId>org.bedoing</groupId>
 			<artifactId>common</artifactId>
-			<version>2.0-SNAPSHOT</version>
+			<version>${common.version}</version>
 		</dependency>
 		<!--<dependency>
             <groupId>org.bedoing</groupId>
@@ -61,7 +62,7 @@
 		<dependency>
 			<groupId>org.bedoing</groupId>
 			<artifactId>service</artifactId>
-			<version>2.0-SNAPSHOT</version>
+			<version>${serivice.version}</version>
 		</dependency>
 
 		<dependency>
@@ -142,4 +143,16 @@
 		</dependency>
 	</dependencies>
 
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
 </project>

@@ -10,7 +10,6 @@
 		<relativePath>../parent/pom.xml</relativePath>
    	</parent>
 
-	<!--<groupId>org.bedoing</groupId>-->
 	<artifactId>dao</artifactId>
 	<version>2.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
@@ -20,10 +19,8 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<common.version>2.0-SNAPSHOT</common.version>
 		<mybatis.version>1.1.1</mybatis.version>
-        <cxf.version>3.1.7</cxf.version>
-		<commons.lang.version>3.4</commons.lang.version>
-		<guava.version>19.0</guava.version>
 		<fastjson.version>1.2.18</fastjson.version>
 	</properties>
 
@@ -31,7 +28,7 @@
 		<dependency>
 			<groupId>org.bedoing</groupId>
 			<artifactId>common</artifactId>
-			<version>2.0-SNAPSHOT</version>
+			<version>${common.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -53,54 +50,23 @@
 			<scope>runtime</scope>
 		</dependency>
 
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-spring-boot-starter-jaxrs</artifactId>
-            <version>${cxf.version}</version>
-        </dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>${commons.lang.version}</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>${guava.version}</version>
-		</dependency>
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
 			<version>${fastjson.version}</version>
 		</dependency>
-
-		<!--test-->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
 
-	<!--<build>
+	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-enforcer-plugin</artifactId>
 			</plugin>
 		</plugins>
-	</build>-->
-
-
+	</build>
 </project>
