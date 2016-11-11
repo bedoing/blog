@@ -85,9 +85,9 @@
 						</goals>
 						<configuration>
 							<rules>
-								<requireMavenVersion>
+								<!--<requireMavenVersion>
 									<version>3.3.9</version>
-								</requireMavenVersion>
+								</requireMavenVersion>-->
 								<requireJavaVersion>
 									<version>1.8</version>
 								</requireJavaVersion>
