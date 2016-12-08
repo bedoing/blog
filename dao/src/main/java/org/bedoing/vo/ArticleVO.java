@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 public class ArticleVO extends BaseVO{
 
-	private int articleId;
+	private Integer articleId;
 	private String title;
 	private int articleType; // 1.article  2.subject
 	private String summary;

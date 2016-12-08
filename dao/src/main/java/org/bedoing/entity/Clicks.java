@@ -15,10 +15,10 @@ import javax.persistence.*;
 public class Clicks {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private Integer id;
 
 	@Column(nullable = false)
-	private int articleId;
+	private Integer articleId;
 
 	@Column(nullable = false)
 	private int clicks;

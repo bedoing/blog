@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class Dict {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int dictId;
+	private Integer dictId;
 
 	@Column
 	private String dictType;

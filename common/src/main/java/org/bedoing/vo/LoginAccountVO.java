@@ -21,7 +21,7 @@ public class LoginAccountVO {
 	private String statusStr;
 
 	// *****************
-	private int id;
+	private Integer id;
 
 	private String accountName;
 

@@ -17,7 +17,7 @@ import java.util.Date;
 public class LoginAccount {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private Integer id;
 
 	@Column(nullable = false)
 	private String accountName;

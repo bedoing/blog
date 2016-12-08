@@ -16,7 +16,7 @@ import java.util.Date;
 public class LoginLog {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int logId;
+	private Integer logId;
 
 	@Column
 	private int loginAccount;

@@ -8,9 +8,9 @@ import lombok.Data;
 @Data
 public class SubjectVO {
 
-    private int subjectId;
+    private Integer subjectId;
 
-    private int articleId;
+    private Integer articleId;
 
     private int difficulty;
 

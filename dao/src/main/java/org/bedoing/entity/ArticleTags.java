@@ -15,13 +15,13 @@ import javax.persistence.*;
 public class ArticleTags {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private Integer id;
 
 	@Column(nullable = false)
-	private int articleId;
+	private Integer articleId;
 
 	@Column(nullable = false)
-	private int tagId;
+	private Integer tagId;
 	
 	public ArticleTags() {}
 	

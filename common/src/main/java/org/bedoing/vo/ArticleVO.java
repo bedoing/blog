@@ -1,5 +1,6 @@
 package org.bedoing.vo;
 
+import com.google.common.collect.Lists;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ import java.util.List;
 @Data
 public class ArticleVO extends BaseVO{
 
-	private int articleId;
+	private Integer articleId;
 	private String title;
 	private int articleType; // 1.article  2.subject
 	private String summary;
@@ -18,12 +19,8 @@ public class ArticleVO extends BaseVO{
 	private String lastUpdBy;
 	private long lastUpdTime;
 	
-	private String createTimeStr;
-	private String lastUpdTimeStr;
-	
-	private String tags;
+	private String tags; // tagId String
 	private int clicks;
 	
-	private List<TagsVO> tagList = new ArrayList<TagsVO>();
-	SubjectVO subject = new SubjectVO();
+	private List<TagsVO> tagList = Lists.newArrayList();
 }

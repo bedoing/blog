@@ -6,7 +6,7 @@ import lombok.Data;
 public class TagsVO extends BaseVO {
 
 	private int articleNum;
-	private int tagId;
+	private Integer tagId;
 	private String tagName;
 	private int tagType;
 }

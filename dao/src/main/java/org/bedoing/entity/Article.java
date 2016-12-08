@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 public class Article {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int articleId;
+	private Integer articleId;
 
 	private String title;
 

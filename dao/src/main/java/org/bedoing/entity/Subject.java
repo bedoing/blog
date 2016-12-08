@@ -11,15 +11,15 @@ import javax.validation.constraints.NotNull;
  *
  */
 @Data
-@Entity
-@Table
+//@Entity
+//@Table
 public class Subject {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int subjectId;
+	private Integer subjectId;
 
 	@Column
-	private int articleId;
+	private Integer articleId;
 
 	@NotNull
 	private int difficulty;
