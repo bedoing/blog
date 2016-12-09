@@ -1,9 +1,15 @@
 package org.bedoing.service.utils;
 
 import org.bedoing.entity.Article;
+import org.bedoing.entity.LoginAccount;
 import org.bedoing.entity.Tag;
+import org.bedoing.security.EndecryptUtil;
 import org.bedoing.vo.ArticleVO;
+import org.bedoing.vo.LoginAccountVO;
 import org.bedoing.vo.TagsVO;
+import org.bedoing.vo.UserRegVO;
+
+import java.util.Date;
 
 public class Convertor {
 
@@ -35,22 +41,23 @@ public class Convertor {
         return a;
     }
 
-    public static Tag tagVo2Po(TagsVO vo) {
-        Tag tag = new Tag();
-        tag.setTagId(vo.getTagId());
-        tag.setTagName(vo.getTagName());
-        tag.setTagType(vo.getTagType());
+    public static LoginAccount userRegVo2Po(UserRegVO vo) {
+        LoginAccount loginAccount = new LoginAccount();
 
-        return tag;
-    }
+        loginAccount.setAccountName(vo.getLoginAccount());
+        loginAccount.setPassword(EndecryptUtil.decrypt(vo.getPassword()));
+        loginAccount.setRole(vo.getRole());
+        loginAccount.setMobilePhone(vo.getMobilePhone());
+        loginAccount.setSex(vo.getSex());
+        loginAccount.setNickname(vo.getNickname());
+        loginAccount.setHeadImgUrl(vo.getHeadimgurl());
+        loginAccount.setCountry(vo.getCountry());
+        loginAccount.setCity(vo.getCity());
+        loginAccount.setProvince(vo.getProvince());
+        loginAccount.setCreateTime(vo.getCreateTime());
+        loginAccount.setStatus(vo.getStatus());
 
-    public static TagsVO tagPo2Vo(Tag tag) {
-        TagsVO vo = new TagsVO();
-        vo.setTagId(tag.getTagId());
-        vo.setTagName(tag.getTagName());
-        vo.setTagType(tag.getTagId());
-
-        return vo;
+        return loginAccount;
     }
 
     private Convertor(){}

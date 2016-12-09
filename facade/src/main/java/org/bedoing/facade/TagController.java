@@ -6,20 +6,24 @@ import org.apache.log4j.Logger;
 import org.bedoing.commons.TagsDict;
 import org.bedoing.constant.Constant;
 import org.bedoing.entity.Tag;
-import org.bedoing.service.IArticleService;
+import org.bedoing.service.ITagService;
 import org.bedoing.vo.ResponseVO;
 import org.bedoing.vo.TagsVO;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 /**
- * Created by Administrator on 2016/9/19.
+ * Created by ken on 2016/9/19.
  */
 @RestController
 @RequestMapping("/tag")
@@ -27,11 +31,11 @@ public class TagController extends BaseController {
     private static final Logger log = Logger.getLogger(TagController.class);
 
     @Resource
-    private IArticleService articleService;
+    private ITagService tagService;
 
     @RequestMapping(value = "/group/{tagType}", method = GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<TagsVO> tagsGroup(@PathVariable int tagType){
-        List<TagsVO> result = articleService.tagsGroup(tagType);
+        List<TagsVO> result = tagService.tagsGroup(tagType);
         log.info(JSON.toJSONString(result));
 
         return result;
@@ -57,7 +61,7 @@ public class TagController extends BaseController {
 
     @RequestMapping(value = "/list", method = GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<TagsVO> allTags(){
-        List<Tag> list = articleService.findTagsByType(-1);
+        List<Tag> list = tagService.findTagsByType(-1);
         List<TagsVO> result = new ArrayList<TagsVO>();
         for (Tag t : list) {
             TagsVO vo = new TagsVO();
@@ -73,7 +77,7 @@ public class TagController extends BaseController {
 
     @RequestMapping(value = "/tags/{type}", method = GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<TagsVO> getTags(@PathVariable int type){
-        List<Tag> list = articleService.findTagsByType(type);
+        List<Tag> list = tagService.findTagsByType(type);
         List<TagsVO> result = new ArrayList<TagsVO>();
         for (Tag t : list) {
             TagsVO vo = new TagsVO();
@@ -104,16 +108,11 @@ public class TagController extends BaseController {
             if(TagsDict.getTagIdByName(tag.getTagName()) != -1) {
                 msg = "已存在标签";
             }else {
-                Tag t = new Tag();
-                t.setTagName(tag.getTagName());
-                t.setTagType(tag.getTagType());
-                int tagId = articleService.addTag(t);
-                // TODO save error
-                if(tagId != -1) {
-                    TagsDict.tagsDict.put(tagId, tag.getTagName());
+                Tag dbTag = tagService.saveTag(new Tag(tag.getTagName(), tag.getTagType()));
 
-                    msg = Constant.SUCCESS;
-                }
+                TagsDict.tagsDict.put(dbTag.getTagId(), tag.getTagName());
+
+                msg = Constant.SUCCESS;
             }
         }
         vo.setRetMsg(msg);

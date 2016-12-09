@@ -52,11 +52,14 @@ public class ValidateUtils {
     }
 
     public static void recordNotExistException(String objectName, String... key) {
-
-        String description = String.format(ErrorDescriptionConstant.RECORD_NOT_EXIST, objectName,
-                StringUtils.join(key, ","));
+        String description = String.format(ErrorDescriptionConstant.RECORD_NOT_EXIST, objectName, StringUtils.join(key, ","));
         ErrorDetail errorDetail = new ErrorDetail(ServiceErrorCode.not_found.name(), description);
         throw new ServiceException(Status.NOT_FOUND, errorDetail);
+    }
+
+    public static void recordAlreadyExistException(String objectName, String... key) {
+        String description = String.format(ErrorDescriptionConstant.RECORD_ALREADY_EXIST, objectName, StringUtils.join(key, ","));
+        throw new ServiceException(Status.CONFLICT, new ErrorDetail(ServiceErrorCode.invalid_request.name(), description));
     }
 
     private ValidateUtils(){}

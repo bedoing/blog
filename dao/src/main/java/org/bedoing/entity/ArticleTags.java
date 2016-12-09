@@ -25,7 +25,7 @@ public class ArticleTags {
 	
 	public ArticleTags() {}
 	
-	public ArticleTags(int articleId, int tagId) {
+	public ArticleTags(Integer articleId, Integer tagId) {
 		this.articleId = articleId;
 		this.tagId = tagId;
 	}

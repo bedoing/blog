@@ -32,7 +32,7 @@ public class SearchController extends BaseController {
         ModelAndView mv = new ModelAndView(UriConstant.DEFAULT_SEARCH);
         mv.addObject("keywords", content);
 
-        List<ArticleVO> list = articleService.findArticlesByCriteria(new ArticleVO());
+        List<ArticleVO> list = articleService.findSimpleArticlesByCriteria(new ArticleVO());
 
         mv.addObject("list", list);
 

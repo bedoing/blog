@@ -9,6 +9,7 @@ import org.bedoing.constant.Constant;
 import org.bedoing.constant.UriConstant;
 import org.bedoing.entity.Clicks;
 import org.bedoing.service.IArticleService;
+import org.bedoing.service.IClicksService;
 import org.bedoing.util.DateUtils;
 import org.bedoing.vo.ArticleVO;
 import org.bedoing.vo.ResponseVO;
@@ -33,6 +34,8 @@ public class ArticleController extends BaseController {
 	
 	@Resource
 	private IArticleService articleService;
+	@Resource
+	private IClicksService clicksService;
 	
 	@RequestMapping(value = "/list", method = POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Map<String, Object> articleList(@RequestBody ArticleVO articleVO){
@@ -41,7 +44,7 @@ public class ArticleController extends BaseController {
 		
 		// TODO
 		int total = articleService.countArticlesByCriteria(articleVO);
-		List<ArticleVO> list = articleService.findArticlesByCriteria(articleVO);
+		List<ArticleVO> list = articleService.findSimpleArticlesByCriteria(articleVO);
 		log.info("total: " + total + ", " + "list.size(): " + list.size());
 		log.info(JSON.toJSONString(list));
 		
@@ -89,11 +92,11 @@ public class ArticleController extends BaseController {
 	public ModelAndView articleContent(@PathVariable int articleId){
 		ModelAndView mv = new ModelAndView(UriConstant.DEFAULT_ARTICLE_CONTENT);
 		ArticleVO article = articleService.findArticleById(articleId);
-		int click = articleService.getClicks(article.getArticleId());
+		int click = clicksService.getClicks(article.getArticleId());
 		Clicks c = new Clicks();
 		c.setArticleId(article.getArticleId());
 		c.setClicks(++click);
-		articleService.updateClicks(c);
+		clicksService.updateClicks(c);
 		article.setClicks(click);
 		mv.addObject("article", article);
 		

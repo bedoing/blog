@@ -40,7 +40,6 @@ public class ClicksService implements IClicksService {
 	@Override
 	public Clicks saveClicks(Clicks click) {
 		ValidateUtils.validateObject(TableAttrConstant.CLICKS, click);
-		ValidateUtils.validateArticleId(click.getArticleId());
 		return clicksRepository.save(click);
 	}
 

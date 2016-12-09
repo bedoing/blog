@@ -8,23 +8,28 @@ import java.util.List;
 
 public interface IArticleService {
 
-	// article
 	Article addArticle(ArticleVO article);
-	void deleteArticleById(int articleId);
-	Article updateArticle(ArticleVO article);
-	int countArticlesByCriteria(ArticleVO articleVo);
+
+	void deleteArticleById(Integer articleId);
+
+	ArticleVO updateArticle(ArticleVO article);
+
+	int countArticlesByCriteria(ArticleVO articleVO);
+
 	/**
 	 * 不包括content
-	 * @param articleVo
+	 * @param articleVO
 	 * @return
 	 */
-	List<ArticleVO> findArticlesByCriteria(ArticleVO articleVo);
-	ArticleVO findArticleById(int articleId);
+	List<ArticleVO> findSimpleArticlesByCriteria(ArticleVO articleVO);
+
+	ArticleVO findArticleById(Integer articleId);
+
 	Article findArticleByTitle(String title);
-	List<ArticleVO> findArticlesOrderByClicks(ArticleVO articleVo);
+
+	List<ArticleVO> findArticlesOrderByClicks(ArticleVO articleVO);
 	
 	int countArticlesByTagId(TagsVO tagVO);
-	List<ArticleVO> findArticlesByTagId(TagsVO tagVO);
 
-	List<ArticleTags> findArticleTagsByArticleId(int articleId);
+	List<ArticleVO> findArticlesByTagId(TagsVO tagVO);
 }

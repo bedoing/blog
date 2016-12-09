@@ -11,9 +11,12 @@ public class MapperConstant {
 	public static final String ARTICLE_tagsGroup =  "article.tagsGroup";
 	public static final String ARTICLE_countArticlesByTagId = "article.countArticlesByTagId";
 	public static final String ARTICLE_findArticlesByTag = "article.findArticlesByTagId";
+
+	public static final String ARTICLE_tagsGroupByTagType = "article.tagsGroupByTagType";
+	public static final String ARTICLE_findArticlesOrderByClicks = "article.findArticlesOrderByClicks";
 	
 	// subject
-	public static final String ARTICLE_updateClicks = "article.updateClicks";
+
 	
 	// ************
 	public static final String LOGINACCOUNT_countByLoginAccount = "loginAccount.countByLoginAccount";

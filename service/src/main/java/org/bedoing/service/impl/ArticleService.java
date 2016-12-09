@@ -2,15 +2,18 @@ package org.bedoing.service.impl;
 
 import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
 import org.bedoing.constant.MapperConstant;
-import org.bedoing.entity.*;
+import org.bedoing.constant.TableAttrConstant;
+import org.bedoing.entity.Article;
+import org.bedoing.entity.ArticleTags;
+import org.bedoing.entity.Clicks;
+import org.bedoing.entity.Tag;
 import org.bedoing.mybatis.MyBatisDAO;
-import org.bedoing.repository.*;
+import org.bedoing.repository.ArticleRepository;
 import org.bedoing.service.IArticleService;
 import org.bedoing.service.utils.Convertor;
-import org.bedoing.util.CollectionUtils;
 import org.bedoing.util.DateUtils;
+import org.bedoing.util.ValidateUtils;
 import org.bedoing.vo.ArticleVO;
 import org.bedoing.vo.TagsVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,28 +28,33 @@ import java.util.List;
 @Service
 @Transactional
 public class ArticleService implements IArticleService {
-	private static final Logger log = Logger.getLogger(ArticleService.class);
 
 	@Autowired
 	private MyBatisDAO myBatisDAO;
 	@Autowired
 	private ArticleRepository articleRepository;
-	@Autowired
-	private TagRepository tagRepository;
-	@Autowired
-	private ArticleTagsRepository articleTagsRepository;
-	@Autowired
-	private ClicksRepository clicksRepository;
-	@Autowired
-	private SubjectRepository subjectRepository;
+
 	@Autowired
 	private TagService tagService;
+    @Autowired
+    private ArticleTagsService articleTagsService;
+    @Autowired
+    private ClicksService clicksService;
 
 	@Override
 	public Article addArticle(ArticleVO articleVO) {
+        ValidateUtils.validateObject(TableAttrConstant.ARTICLE, articleVO);
+        ValidateUtils.validateRequestParameterIsRequired(TableAttrConstant.TITLE, articleVO.getTitle());
+        ValidateUtils.validateRequestParameterIsRequired(TableAttrConstant.ARTICLE_TYPE, articleVO.getArticleType());
+        ValidateUtils.validateRequestParameterIsRequired(TableAttrConstant.CONTENT, articleVO.getContent());
+
+        articleVO.setArticleId(null);
 		Article a = Convertor.articleVo2Po(articleVO);
 		a.setCreateTime(DateUtils.getTimeImMillis(new Date()));
 		a.setLastUpdTime(a.getCreateTime());
+        // TODO
+        a.setCreateBy("ken");
+        a.setLastUpdBy("ken");
 
 		a = articleRepository.save(a);
 		
@@ -60,88 +68,128 @@ public class ArticleService implements IArticleService {
 			}
 			for (String tagId : tagStr.split(",")) {
 				at.setTagId(Integer.parseInt(tagId));
-				tagService.saveArticleTag(at);
+                articleTagsService.saveArticleTag(at);
 			}
 		}
 		
 		Clicks c = new Clicks();
 		c.setArticleId(a.getArticleId());
 		c.setClicks(1);
-		saveClicks(c);
+        clicksService.saveClicks(c);
 		
 		return a;
 	}
 
 	@Override
-	public void deleteArticleById(int articleId) {
-		tagService.deleteArticleTagByArticleId(articleId);
-		deleteClicksByArticleId(articleId);
-		
+	public void deleteArticleById(Integer articleId) {
+        ValidateUtils.validateRequestParameterIsRequired(TableAttrConstant.ARTICLE_ID, articleId);
+
+		articleTagsService.deleteArticleTagByArticleId(articleId);
+		clicksService.deleteClicksByArticleId(articleId);
 		articleRepository.delete(articleId);
 	}
 
 	@Override
-	public Article updateArticle(ArticleVO articleVO) {
+	public ArticleVO updateArticle(ArticleVO articleVO) {
+        ValidateUtils.validateObject(TableAttrConstant.ARTICLE, articleVO);
+        ValidateUtils.validateRequestParameterIsRequired(TableAttrConstant.ARTICLE_ID, articleVO.getArticleId());
+        ValidateUtils.validateRequestParameterIsRequired(TableAttrConstant.TITLE, articleVO.getTitle());
+        ValidateUtils.validateRequestParameterIsRequired(TableAttrConstant.ARTICLE_TYPE, articleVO.getArticleType());
+        ValidateUtils.validateRequestParameterIsRequired(TableAttrConstant.CONTENT, articleVO.getContent());
+
 		Article a = Convertor.getArticleUpdateFromVo(articleVO);
 		
 		myBatisDAO.update(MapperConstant.ARTICLE_updateArticle, articleVO);
 
-		tagService.deleteArticleTagByArticleId(a.getArticleId());
+		articleTagsService.deleteArticleTagByArticleId(a.getArticleId());
 		
 		if(StringUtils.isNotBlank(articleVO.getTags())) {
 			String[] tags = articleVO.getTags().split(",");
 			Arrays.stream(tags).forEach(id -> {
 				if(StringUtils.isNotBlank(id)) {
-					int tagId = Integer.parseInt(id);
-					tagService.saveArticleTag(new ArticleTags(a.getArticleId(), tagId));
+					Integer tagId = Integer.parseInt(id);
+					articleTagsService.saveArticleTag(new ArticleTags(a.getArticleId(), tagId));
 				}
 			});
 		}
-		return articleVO.getArticleId();
+		return articleVO;
 	}
 
 	@Override
-	public int countArticlesByCriteria(ArticleVO articleVo) {
-		Object count = myBatisDAO.get(MapperConstant.ARTICLE_countArticlesByCriteria, articleVo);
+	public int countArticlesByCriteria(ArticleVO articleVO) {
+        ValidateUtils.validateObject(TableAttrConstant.ARTICLE, articleVO);
+
+		Object count = myBatisDAO.get(MapperConstant.ARTICLE_countArticlesByCriteria, articleVO);
 		return (Integer) (count== null || (Integer)count == 0? 0:count);
 	}
 	
 	@Override
-	public List<ArticleVO> findArticlesByCriteria(ArticleVO articleVo) {
-		List<Article> list = myBatisDAO.getList(MapperConstant.ARTICLE_findArticleByCriteria, articleVo);
-		
-		return convertArticles2SimpleVOList(list);
+	public List<ArticleVO> findSimpleArticlesByCriteria(ArticleVO articleVO) {
+        ValidateUtils.validateObject(TableAttrConstant.ARTICLE, articleVO);
+
+		List<Article> result = myBatisDAO.getList(MapperConstant.ARTICLE_findArticleByCriteria, articleVO);
+        if(org.apache.cxf.common.util.CollectionUtils.isEmpty(result)) {
+            ValidateUtils.recordNotExistException(TableAttrConstant.ARTICLE, articleVO.toString());
+        }
+		return convertArticles2SimpleVOList(result);
 	}
 
 	@Override
-	public ArticleVO findArticleById(int articleId) {
-		ArticleVO vo = new ArticleVO();
-		vo.setArticleId(articleId);
+	public ArticleVO findArticleById(Integer articleId) {
+        ValidateUtils.validateRequestParameterIsRequired(TableAttrConstant.ARTICLE_ID, articleId);
+
 		Article a = articleRepository.findOne(articleId);
-		if(a == null) {
-			return null;
-		}else{
-			return convertArticleVo2Po(a);
-		}
+
+        ValidateUtils.recordNotExistException(TableAttrConstant.ARTICLE, String.valueOf(articleId));
+
+        return convertArticleVo2Po(a);
 	}
 
 	@Override
 	public int countArticlesByTagId(TagsVO tagVO) {
+        ValidateUtils.validateObject(TableAttrConstant.TAG, tagVO);
+        ValidateUtils.validateRequestParameterIsRequired(TableAttrConstant.TAG_ID, tagVO.getTagId());
+
 		Object count = myBatisDAO.get(MapperConstant.ARTICLE_countArticlesByTagId, tagVO);
-		return (Integer) (count== null || (Integer)count == 0? 0:count);
+		return count== null || (Integer)count == 0? 0: (int) count;
 	}
 	
 	@Override
 	public List<ArticleVO> findArticlesByTagId(TagsVO tagVO) {
-		List<Article> list = myBatisDAO.getList(MapperConstant.ARTICLE_findArticlesByTag, tagVO);
-		
-		return convertArticles2SimpleVOList(list);
+		List<Article> result = myBatisDAO.getList(MapperConstant.ARTICLE_findArticlesByTag, tagVO);
+
+        if(org.apache.cxf.common.util.CollectionUtils.isEmpty(result)) {
+            ValidateUtils.recordNotExistException(TableAttrConstant.ARTICLE, tagVO.toString());
+        }
+
+		return convertArticles2SimpleVOList(result);
 	}
+
+    @Override
+    public Article findArticleByTitle(String title) {
+        ValidateUtils.validateRequestParameterIsRequired(TableAttrConstant.TITLE, title);
+
+        Article article = articleRepository.findByTitle(title);
+        if(article == null) {
+            ValidateUtils.recordNotExistException(TableAttrConstant.ARTICLE, title);
+        }
+        return article;
+    }
+
+    @Override
+    public List<ArticleVO> findArticlesOrderByClicks(ArticleVO articleVO) {
+        ValidateUtils.validateObject(TableAttrConstant.ARTICLE, articleVO);
+        ValidateUtils.validateRequestParameterIsRequired(TableAttrConstant.ARTICLE_TYPE, articleVO.getArticleType());
+        List<Article> result = myBatisDAO.getList(MapperConstant.ARTICLE_findArticlesOrderByClicks, articleVO);
+
+        if(org.apache.cxf.common.util.CollectionUtils.isEmpty(result)) {
+            ValidateUtils.recordNotExistException(TableAttrConstant.ARTICLE, articleVO.toString());
+        }
+
+        return convertArticle2VOListSimple(result);
+    }
 	
 	private ArticleVO convertArticleVo2Po(Article a) {
-		if(a == null) {
-			throw new NullPointerException("空对象不能转换。");
-		}
 		ArticleVO vo = new ArticleVO();
 		vo.setArticleId(a.getArticleId());
 		vo.setTitle(a.getTitle());
@@ -152,32 +200,15 @@ public class ArticleService implements IArticleService {
 		vo.setCreateTime(a.getCreateTime());
 		vo.setLastUpdBy(a.getLastUpdBy());
 		vo.setLastUpdTime(a.getLastUpdTime());
-//		vo.setCreateTimeStcountArticlesByCriteriatr(DateUtils.toBeijinDate(a.getLastUpdTime(), Constant.YYYY_MM_DD));
 		
-		List<ArticleTags> tags = findArticleTagsByArticleId(a.getArticleId());
-		if(a.getArticleType() == 2) {
-			// subject
-//			Subject s = findSubjectByArticleId(a.getArticleId());
+		List<ArticleTags> articleTagses = articleTagsService.findArticleTagsByArticleId(a.getArticleId());
 
-			// TODO
-//			vo.setSubject(s);
-		}
-		
-		String tagIdStr = "";
-		/*for (ArticleTags articleTags : tags) {
-			tagIdStr += articleTags.getTagId() + ",";
-		}
-		vo.setTags(tagIdStr);*/
-		for (ArticleTags articleTags : tags) {
-			Tag t = new Tag();
-			t.setTagId(articleTags.getTagId());
-			// TODO
-			Tag tag = tagRepository.findOne(t.getTagId());
-			t.setTagName(tag == null? "NULL":tag.getTagName());
+        articleTagses.forEach(articleTag -> {
+            Tag tag = tagService.findTagById(articleTag.getTagId());
 
-			// TODO
-//			vo.getTagList().add(t);
-		}
+            vo.getTagList().add(new TagsVO(articleTag.getTagId(), tag.getTagName(), tag.getTagType()));
+        });
+
 		return vo;
 	}
 	
@@ -195,64 +226,12 @@ public class ArticleService implements IArticleService {
 			vo.setLastUpdBy(a.getLastUpdBy());
 			vo.setLastUpdTime(a.getLastUpdTime());
 
-			List<ArticleTags> tags = findArticleTagsByArticleId(a.getArticleId());
+			List<ArticleTags> tags = articleTagsService.findArticleTagsByArticleId(a.getArticleId());
 
-			if(CollectionUtils.isNotEmpty(tags)) {
-				tags.forEach(at -> {
-					Tag tag = tagRepository.findOne(at.getTagId());
-					if(tag != null) {
-						vo.getTagList().add(Convertor.tagPo2Vo(tag));
-					}
-				});
-			}
-
-			result.add(vo);
-		});
-
-		return result;
-	}
-
-	// TODO
-	private List<ArticleVO> convertArticles2FullVOList(List<Article> list) {
-		List<ArticleVO> result = Lists.newArrayList();
-
-		list.forEach(a -> {
-			ArticleVO vo = new ArticleVO();
-			vo.setArticleId(a.getArticleId());
-			vo.setTitle(a.getTitle());
-			vo.setArticleType(a.getArticleType());
-			vo.setSummary(a.getSummary());
-//			vo.setContent(a.getContent());
-			vo.setCreateBy(a.getCreateBy());
-			vo.setCreateTime(a.getCreateTime());
-			vo.setLastUpdBy(a.getLastUpdBy());
-			vo.setLastUpdTime(a.getLastUpdTime());
-//			vo.setCreateTimeStr(DateUtils.toBeijinDate(a.getCreateTime(), Constant.YYYY_MM_DD));
-//			vo.setLastUpdTimeStr(DateUtils.toBeijinDate(a.getLastUpdTime(), Constant.YYYY_MM_DD));
-
-			List<ArticleTags> tags = findArticleTagsByArticleId(a.getArticleId());
-			if(a.getArticleType() == 2) {
-				// subject
-//				Subject s = findSubjectByArticleId(a.getArticleId());
-				// TODO
-//				vo.setSubject(s);
-			}
-
-			String tagIdStr = "";
-			/*for (ArticleTags articleTags : tags) {
-				tagIdStr += articleTags.getTagId() + ",";
-			}
-			vo.setTags(tagIdStr);*/
-			for (ArticleTags articleTags : tags) {
-				Tag t = new Tag();
-				t.setTagId(articleTags.getTagId());
-				// TODO
-				Tag tag = tagRepository.findOne(t.getTagId());
-				t.setTagName(tag == null? "NULL":tag.getTagName());
-
-				// TODO
-//				vo.getTagList().add(t);
-			}
+            tags.forEach(at -> {
+                Tag tag = tagService.findTagById(at.getTagId());
+                vo.getTagList().add(new TagsVO(tag.getTagId(), tag.getTagName(), tag.getTagType()));
+            });
 
 			result.add(vo);
 		});
@@ -279,26 +258,4 @@ public class ArticleService implements IArticleService {
 		}
 		return result;
 	}
-
-	@Override
-	public Article findArticleByTitle(String title) {
-		if(StringUtils.isBlank(title)) {
-			// TODO
-			return null;
-		}
-		return articleRepository.findByTitle(title);
-	}
-
-	@Override
-	public List<ArticleVO> findArticlesOrderByClicks(ArticleVO articleVo) {
-		List<Article> list = myBatisDAO.getList("findArticlesOrderByClicks", articleVo);
-		
-		return convertArticle2VOListSimple(list);
-	}
-
-	@Override
-	public List<ArticleTags> findArticleTagsByArticleId(int articleId) {
-		return articleTagsRepository.findByArticleId(articleId);
-	}
-
 }

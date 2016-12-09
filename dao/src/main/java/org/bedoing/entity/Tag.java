@@ -22,4 +22,16 @@ public class Tag {
 
 	@Column
 	private int tagType;
+
+	public Tag(){}
+
+	public Tag(Integer tagId, String tagName) {
+		this.tagId = tagId;
+		this.tagName = tagName;
+	}
+
+	public Tag(String tagName, int tagType) {
+		this.tagName = tagName;
+		this.tagType = tagType;
+	}
 }
